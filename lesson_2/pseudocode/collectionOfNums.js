@@ -21,10 +21,6 @@
   // - IF currentNumber is
 }
 
-let arr1 = [3, 4, 55, 66, 1, 100, -3];
-let arr2 = [7, 1, 5, 6, 11, 200, 3];
-let arr3 = [44, 111, 888, 888, 22, 1_000, 1];
-
 function findGreatestValue(arr) {
   let greatestValue = -Infinity; // or arr[0]
 
@@ -45,6 +41,12 @@ function findGreatestValue(arr) {
   return greatestValue;
 }
 
-console.log(findGreatestValue(arr1)); // --> 100
-console.log(findGreatestValue(arr2)); // --> 200
-console.log(findGreatestValue(arr3)); // --> 1_000
+{
+  let arr1 = [3, 4, 55, 66, 1, 100, -3];
+  let arr2 = [7, 1, 5, 6, 11, 200, 3];
+  let arr3 = [44, 111, 888, 888, 22, 1_000, 1];
+
+  console.log(findGreatestValue(arr1)); // --> 100
+  console.log(findGreatestValue(arr2)); // --> 200
+  console.log(findGreatestValue(arr3)); // --> 1_000
+}
