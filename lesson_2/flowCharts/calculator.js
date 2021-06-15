@@ -42,11 +42,12 @@ const READ_LINE = require("readline-sync");
 }
 
 let validNumberInstructions = "Please enter valid number above 0: ";
+let again = true;
 
 function isValid(num) {
   let numValid = false;
   while (!numValid) {
-    if (num > 0) {
+    if (Number.isNaN(Number(num)) === false) {
       numValid = true;
       console.log("Number Passed!");
     } else {
@@ -72,18 +73,16 @@ function isValidOperator(op) {
   }
 }
 
-let again = true;
-
 while (again === true) {
   console.log("Welcome!");
 
-  let firstNum = Number(
-    READ_LINE.question(validNumberInstructions + "the first number: ")
+  let firstNum = READ_LINE.question(
+    validNumberInstructions + "the first number: "
   );
   isValid(firstNum);
 
-  let secondNum = Number(
-    READ_LINE.question(validNumberInstructions + "the second number: ")
+  let secondNum = READ_LINE.question(
+    validNumberInstructions + "the second number: "
   );
   isValid(secondNum);
   // }
