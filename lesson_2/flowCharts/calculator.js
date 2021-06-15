@@ -41,7 +41,7 @@ const READ_LINE = require("readline-sync");
     */
 }
 
-let validNumberInstructions = "Please enter valid number above 0 ";
+let validNumberInstructions = "Please enter valid number above 0: ";
 
 function isValid(num) {
   let numValid = false;
@@ -78,12 +78,12 @@ while (again === true) {
   console.log("Welcome!");
 
   let firstNum = Number(
-    READ_LINE.question(validNumberInstructions + "the first number")
+    READ_LINE.question(validNumberInstructions + "the first number: ")
   );
   isValid(firstNum);
 
   let secondNum = Number(
-    READ_LINE.question(validNumberInstructions + "the second number")
+    READ_LINE.question(validNumberInstructions + "the second number: ")
   );
   isValid(secondNum);
   // }
@@ -115,13 +115,13 @@ while (again === true) {
 
   let proceed = Number(
     READ_LINE.question(
-      "Would you like to calculate another pair of numbers? \n Enter 1 for Yes \n Enter 2 for No"
+      "Would you like to calculate another pair of numbers? \n Enter 1 for Yes \n Enter 2 for No: "
     )
   );
 
-  if (proceed === "2") {
+  console.log(proceed);
+
+  if (proceed === 2) {
     again = false;
   }
 }
-
-// let operation = READ_LINE.question("input operation type [+, -, *, /, %]: ");
