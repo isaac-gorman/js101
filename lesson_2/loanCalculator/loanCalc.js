@@ -1,7 +1,5 @@
 const READ_LINE = require("readline-sync");
 
-/* eslint-disable no-mixed-operators */
-/* eslint-disable max-len */
 // Informal Pseudo Code
 {
   /*
@@ -22,7 +20,9 @@ const READ_LINE = require("readline-sync");
     3. loanDuration in years
 
     Confirm that each input is acceptable.
-    Convert acceptable inputs to correct data type. loanAmount, and loanDuration to number, and annualPercentageRate to a floating point number.
+    Convert acceptable inputs to correct data type. loanAmount,
+    and loanDuration to number, and annualPercentageRate
+    to a floating point number.
 
     Create function called getMonthlyPayment:
       Pass getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration)
@@ -31,18 +31,37 @@ const READ_LINE = require("readline-sync");
       - monthlyRate to annualPercentageRate / MONTHS_IN_YEAR
       - numberOfPayments to loanDuration * MONTHS_IN_YEAR
       - monthlyPayments to the formula:
-        loanAmount * (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)))
+        loanAmount *
+        (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)))
 
       Return monthlyPayments
 
   */
 }
-let isValidLoanAmount = false;
-let isValidPercentageRate = false;
-let isValidLoanDuration = false;
 
+let again = true;
 let loanAmount;
 let annualPercentageRate;
+let loanDuration;
+
+function getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration) {
+  let monthlyRate = annualPercentageRate / 12;
+
+  let numberOfPayments = loanDuration * 12;
+
+  let monthlyPayment =
+    loanAmount *
+    (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)));
+
+  return (
+    "You will pay $" +
+    monthlyPayment.toFixed(2) +
+    " for " +
+    numberOfPayments +
+    " months." +
+    `\nFor a total of $${monthlyPayment.toFixed(2) * numberOfPayments}.`
+  );
+}
 
 function checkIfValidInput(userInput) {
   if (
@@ -69,52 +88,63 @@ function checkIfValidDecimalInput(userInput) {
     return false;
   }
 }
-while (isValidLoanAmount === false) {
-  loanAmount = READ_LINE.question(
-    "Please enter the loan amount.\nExample inputs are 1000 for $1000, 200 for $200: "
-  ).trim();
 
-  if (checkIfValidInput(loanAmount) === true) {
-    // loanAmount = Number(loanAmount);
-    isValidLoanAmount = true;
-    console.log("valid input");
+while (again === true) {
+  console.log("Welcome to the loan calculator!");
+  let isValidLoanAmount = false;
+  let isValidPercentageRate = false;
+  let isValidLoanDuration = false;
+
+  while (isValidLoanAmount === false) {
+    loanAmount = READ_LINE.question(
+      "Please enter the loan amount.\nExample inputs are whole numbers such as 1000 for $1000, and 200 for $200: "
+    ).trim();
+
+    if (checkIfValidInput(loanAmount) === true) {
+      loanAmount = Number(loanAmount);
+      isValidLoanAmount = true;
+      console.log("valid input");
+    }
   }
-}
-while (isValidPercentageRate === false) {
-  annualPercentageRate = READ_LINE.question(
-    "Please enter the Annual Percentage Rate (APR).\nExample inputs are 0.06 for 6%, and 0.12 for 12%: "
-  ).trim();
+  while (isValidPercentageRate === false) {
+    annualPercentageRate = READ_LINE.question(
+      "Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as 0.06 for 6%, and 0.12 for 12%: "
+    ).trim();
 
-  if (
-    checkIfValidInput(annualPercentageRate) === true &&
-    checkIfValidDecimalInput(annualPercentageRate) === true
-  ) {
-    // annualPercentageRate = Number(annualPercentageRate);
-    isValidPercentageRate = true;
-    console.log("valid input");
+    if (
+      checkIfValidInput(annualPercentageRate) === true &&
+      checkIfValidDecimalInput(annualPercentageRate) === true
+    ) {
+      annualPercentageRate = Number(annualPercentageRate);
+      isValidPercentageRate = true;
+      console.log("valid input");
+    }
   }
-}
+  while (isValidLoanDuration === false) {
+    loanDuration = READ_LINE.question(
+      "Please enter the Loan Duration in years.\nExample inputs are whole numbers such as 10 for 10 years, and 5 for 5 years: "
+    ).trim();
 
-console.log("typeof loanAmount: ", typeof loanAmount);
-console.log("typeof annualPercentageRate: ", typeof annualPercentageRate);
+    if (checkIfValidInput(loanDuration) === true) {
+      loanDuration = Number(loanDuration);
+      isValidLoanDuration = true;
+      console.log("valid input");
+    }
+  }
 
-function getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration) {
-  let monthlyRate = annualPercentageRate / 12;
-
-  let numberOfPayments = loanDuration * 12;
-
-  let monthlyPayment =
-    loanAmount *
-    (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)));
-
-  return (
-    "You will pay $" +
-    monthlyPayment.toFixed(2) +
-    " for " +
-    numberOfPayments +
-    " months." +
-    `\nFor a total of $${monthlyPayment.toFixed(2) * numberOfPayments}.`
+  console.log(
+    getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration)
   );
-}
 
-// console.log(getMonthlyPayment(1000, 0.06, 10)); // -> $11.00 for 120 months
+  let anotherCalculation = READ_LINE.question(
+    "Would you like to make another loan calculation? " +
+      "\nEnter: " +
+      "\n- 1 for Yes" +
+      "\n- 2 for No "
+  );
+
+  if (anotherCalculation === "2") {
+    again = false;
+    console.log("Thank you for using the loan calculator. Till next time :)!");
+  }
+}
