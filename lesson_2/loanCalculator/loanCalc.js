@@ -67,7 +67,7 @@ function getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration) {
     " for " +
     numberOfPayments +
     " months 📆." +
-    `\n📈 For a total of $${monthlyPayment.toFixed(2) * numberOfPayments}.`
+    `\n📈 For a total of 💲${(monthlyPayment * numberOfPayments).toFixed(2)}.`
   );
 }
 
