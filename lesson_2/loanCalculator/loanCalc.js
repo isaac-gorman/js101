@@ -13,7 +13,7 @@ const READ_LINE = require("readline-sync");
     - monthly interest rate
     - loan duration in months
 
-  LOGIC
+  BASIC LOGIC (NOT DYNAMIC)
    Get all three inputs from the user:
     1. loanAmount
     2. annualPercentageRate (as a decimal 6% = 0.06)
@@ -39,10 +39,15 @@ const READ_LINE = require("readline-sync");
   */
 }
 
-let again = true;
-let loanAmount;
-let annualPercentageRate;
-let loanDuration;
+// Define what each variable will contain;
+let again = true; // boolean value to allow user to continue with additional calculations
+let loanAmount; // the requested loan amount
+let annualPercentageRate; // the annual percentage rate in decimal format
+let loanDuration; // the duration in years
+// Boolean values to validate each input in a guard clause
+let isValidLoanAmount;
+let isValidPercentageRate;
+let isValidLoanDuration;
 
 function getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration) {
   let monthlyRate = annualPercentageRate / 12;
@@ -91,9 +96,9 @@ function checkIfValidDecimalInput(userInput) {
 
 while (again === true) {
   console.log("Welcome to the loan calculator!");
-  let isValidLoanAmount = false;
-  let isValidPercentageRate = false;
-  let isValidLoanDuration = false;
+  isValidLoanAmount = false;
+  isValidPercentageRate = false;
+  isValidLoanDuration = false;
 
   while (isValidLoanAmount === false) {
     loanAmount = READ_LINE.question(
