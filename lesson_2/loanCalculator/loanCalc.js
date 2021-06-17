@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 const READ_LINE = require("readline-sync");
 
 // Informal Pseudo Code
