@@ -44,7 +44,7 @@ let again = true; // boolean value to allow user to continue with additional cal
 let loanAmount; // the requested loan amount
 let annualPercentageRate; // the annual percentage rate in decimal format
 let loanDuration; // the duration in years
-// Boolean values to validate each input in a guard clause
+// Boolean values to validate each input in a guard   clause
 let isValidLoanAmount;
 let isValidPercentageRate;
 let isValidLoanDuration;
