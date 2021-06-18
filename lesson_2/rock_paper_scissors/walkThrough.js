@@ -26,32 +26,12 @@
 
 const READ_LINE = require("readline-sync");
 const VALID_CHOICES = ["rock", "paper", "scissors"];
+let playAgain = true;
 
-function prompt(message) {
-  console.log(`➡️  ${message}`);
-}
-
-// Asking the user to chose an object either: rock, paper or scissors:
-
-while (true) {
-  prompt(`Choose one: ${VALID_CHOICES.join(", ")}`);
-  let userChoice = READ_LINE.question();
-
-  while (!VALID_CHOICES.includes(userChoice)) {
-    prompt("That's not a valid choice");
-    userChoice = READ_LINE.question();
-  }
-
-  let randomIndex = Math.round(Math.random() * (VALID_CHOICES.length - 1));
-  let computerChoice = VALID_CHOICES[randomIndex];
-
-  prompt(`You chose 😊 ${userChoice}, 🤖 computer chose ${computerChoice}`);
-
-  // Winning Prompt Messages
+function displayWinner(userChoice, computerChoice) {
   let computerWinsMessage = `Computer win's! \n${computerChoice} beats ${userChoice}`;
-  let userWinsMessage = `You win's! \n${computerChoice} beats ${userChoice}`;
+  let userWinsMessage = `You win! \n${userChoice} beats ${computerChoice}`;
 
-  // Conditional Logic for Computer Winning
   if (
     (computerChoice === "paper" && userChoice === "rock") ||
     (computerChoice === "rock" && userChoice === "scissors") ||
@@ -60,7 +40,6 @@ while (true) {
     prompt(computerWinsMessage);
   }
 
-  // Conditional Logic for User Winning
   if (
     (userChoice === "paper" && computerChoice === "rock") ||
     (userChoice === "rock" && computerChoice === "scissors") ||
@@ -69,17 +48,47 @@ while (true) {
     prompt(userWinsMessage);
   }
 
-  // Conditional Logic for Tie Game!
-  if (computerChoice === userChoice) {
-    prompt("Tie!");
-  }
+  if (computerChoice === userChoice) prompt("Tie!");
+}
 
-  prompt("Do you want to play again? (y/n): ");
-  let answer = READ_LINE.question().trim().toLowerCase();
+function validateUserChoice(userChoice) {
+  while (!VALID_CHOICES.includes(userChoice)) {
+    prompt("That's not a valid choice");
+    userChoice = READ_LINE.question();
+  }
+}
+
+function getComputerChoice() {
+  let randomIndex = Math.round(Math.random() * (VALID_CHOICES.length - 1));
+  let computerChoice = VALID_CHOICES[randomIndex];
+  return computerChoice;
+}
+
+function validatePlayAgain(answer) {
   while (answer[0] !== "n" && answer[0] !== "y") {
     prompt('Please enter "y" or "n" .');
     answer = READ_LINE.question().trim().toLowerCase();
   }
+}
 
-  if (answer[0] !== "y") break;
+function prompt(message) {
+  console.log(`➡️  ${message}`);
+}
+
+while (playAgain) {
+  prompt(`Choose one: ${VALID_CHOICES.join(", ")}`);
+  let userChoice = READ_LINE.question();
+  validateUserChoice(userChoice);
+
+  let computerChoice = getComputerChoice();
+
+  prompt(`You chose 😊 ${userChoice}, 🤖 computer chose ${computerChoice}`);
+
+  displayWinner(userChoice, computerChoice);
+
+  prompt("Do you want to play again? (y/n): ");
+  let answer = READ_LINE.question().trim().toLowerCase();
+  validatePlayAgain(answer);
+
+  if (answer[0] !== "y") playAgain = false; // or simply write a break; when while condition is set to (true)
 }
