@@ -1,5 +1,3 @@
-/* eslint-disable max-statements */
-/* eslint-disable max-lines-per-function */
 const READ_LINE = require("readline-sync");
 
 let again = true;
@@ -25,15 +23,12 @@ function calculateMonthlyPayment(
     loanAmount *
     (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)));
 
-  return (
-    "\n" +
-    "\n 🤖" +
-    "\n🧾💸 You will pay 💲" +
-    monthlyPayment.toFixed(2) +
-    " for " +
-    numberOfPayments +
-    " months 📆." +
-    `\n📈 For a total of 💲${(monthlyPayment * numberOfPayments).toFixed(2)}.`
+  prompt(
+    `\n🧾💸 You will pay 💲${monthlyPayment.toFixed(
+      2
+    )} for ${numberOfPayments} months 📆. \n📈 For a total of 💲${(
+      monthlyPayment * numberOfPayments
+    ).toFixed(2)}.`
   );
 }
 
@@ -140,10 +135,29 @@ function getLoanDuration() {
   return loanDuration;
 }
 
+function askToCalculateAgain() {
+  isValidAnotherCalculationAnswer = false;
+  let anotherCalculation;
+  while (isValidAnotherCalculationAnswer === false) {
+    anotherCalculation = READ_LINE.question(
+      "\n" +
+        "\n💬 Would you like to make another loan calculation? " +
+        "\nEnter: " +
+        "\n- 1 for Yes" +
+        "\n- 2 for No" +
+        "\n➡️  "
+    );
+
+    if (checkAnotherCalculation(anotherCalculation) === true) {
+      isValidAnotherCalculationAnswer = true;
+    }
+  }
+  return anotherCalculation;
+}
+
 function getALoanEstimate() {
   while (again) {
     prompt("💰Welcome to the loan calculator!💰");
-    isValidAnotherCalculationAnswer = false;
 
     let loanAmount = getLoanAmount();
 
@@ -151,28 +165,15 @@ function getALoanEstimate() {
 
     let loanDuration = getLoanDuration();
 
-    prompt(
-      calculateMonthlyPayment(loanAmount, annualPercentageRate, loanDuration)
-    );
+    calculateMonthlyPayment(loanAmount, annualPercentageRate, loanDuration);
 
-    while (isValidAnotherCalculationAnswer === false) {
-      let anotherCalculation = READ_LINE.question(
-        "\n" +
-          "\n💬 Would you like to make another loan calculation? " +
-          "\nEnter: " +
-          "\n- 1 for Yes" +
-          "\n- 2 for No" +
-          "\n➡️  "
+    let doesUserWantToCalculateAgain = askToCalculateAgain();
+
+    if (doesUserWantToCalculateAgain === "2") {
+      prompt(
+        "\n🙋‍♀️ Thank you for using the loan calculator. Till next time :)!"
       );
-      if (checkAnotherCalculation(anotherCalculation) === true) {
-        isValidAnotherCalculationAnswer = true;
-        if (anotherCalculation === "2") {
-          prompt(
-            "\n🙋‍♀️ Thank you for using the loan calculator. Till next time :)!"
-          );
-          again = false;
-        }
-      }
+      again = false;
     }
   }
 }
