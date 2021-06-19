@@ -1,11 +1,14 @@
+/* eslint-disable max-statements */
+/* eslint-disable max-lines-per-function */
 const READ_LINE = require("readline-sync");
 
 function prompt(message) {
   console.log(message);
 }
 // Validation -------------------
-function checkIfValidInput(userInput) {
+function checkIfValidWholeNumber(userInput) {
   if (
+    !userInput.includes(".") &&
     !Number.isNaN(Number(userInput)) &&
     userInput.length !== 0 &&
     Number(userInput) > 0 &&
@@ -22,11 +25,19 @@ function checkIfValidInput(userInput) {
   }
 }
 
-function checkIfValidDecimalInput(userInput) {
+function checkIfValidDecimalNumber(userInput) {
   if (
     userInput[0] === "0" &&
     userInput[1] === "." &&
-    !Number.isNaN(Number(userInput[2]))
+    !Number.isNaN(Number(userInput[2])) &&
+    !Number.isNaN(Number(userInput)) &&
+    userInput.length !== 0 &&
+    Number(userInput) > 0 &&
+    userInput[0] !== "+" &&
+    userInput[0] !== "-" &&
+    userInput[0] !== "*" &&
+    userInput[0] !== "/" &&
+    userInput[0] !== "%"
   ) {
     return true;
   } else {
@@ -35,10 +46,18 @@ function checkIfValidDecimalInput(userInput) {
   }
 }
 
-function checkAnotherCalculation(userInput) {
+function checkYesOrNo(userInput) {
   // input has to be either "y" or "n" nothing else
   if (userInput[0] !== "y" && userInput[0] !== "n") {
     prompt(`\t🤦‍♂️😅👉 ${userInput} 👈😅🤦‍♂️  ❌‼️ Is Not Valid a Input❌‼️`);
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function checkIfLoanIncludesAPR(apr) {
+  if (apr === 0) {
     return false;
   } else {
     return true;
@@ -58,7 +77,7 @@ function getLoanAmount() {
         "\n➡️  "
     ).trim();
 
-    if (checkIfValidInput(loanAmount) === true) {
+    if (checkIfValidWholeNumber(loanAmount) === true) {
       loanAmount = Number(loanAmount);
       isValidLoanAmount = true;
       prompt("\t✅Valid Input✅");
@@ -71,24 +90,41 @@ function getLoanAmount() {
 function getAnnualPercentageRate() {
   let isValidPercentageRate = false;
   let annualPercentageRate;
+  let noAPR;
 
-  while (isValidPercentageRate === false) {
-    annualPercentageRate = READ_LINE.question(
-      "\n" +
-        "\n💬 Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as: \n- 0.06 for 6% \n- 0.12 for 12%" +
+  // Is your APR 0% (y/n)?
+
+  while (true) {
+    noAPR = READ_LINE.question(
+      "Do you have 0% APR (y/n)" +
+        "\nEnter: " +
+        "\n- Y for Yes" +
+        "\n- N for No" +
         "\n➡️  "
-    ).trim();
+    )
+      .trim()
+      .toLowerCase();
 
-    if (
-      checkIfValidInput(annualPercentageRate) === true &&
-      checkIfValidDecimalInput(annualPercentageRate) === true
-    ) {
-      annualPercentageRate = Number(annualPercentageRate);
-      isValidPercentageRate = true;
-      prompt("\t✅Valid Input✅");
-    }
+    if (checkYesOrNo(noAPR) === true) break;
   }
 
+  if (noAPR === "y") {
+    annualPercentageRate = 0;
+  } else {
+    while (isValidPercentageRate === false) {
+      annualPercentageRate = READ_LINE.question(
+        "\n" +
+          "\n💬 Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as: \n- 0.06 for 6% \n- 0.12 for 12%" +
+          "\n➡️  "
+      ).trim();
+
+      if (checkIfValidDecimalNumber(annualPercentageRate) === true) {
+        annualPercentageRate = Number(annualPercentageRate);
+        isValidPercentageRate = true;
+        prompt("\t✅Valid Input✅");
+      }
+    }
+  }
   return annualPercentageRate;
 }
 
@@ -103,7 +139,7 @@ function getLoanDuration() {
         "\n➡️  "
     ).trim();
 
-    if (checkIfValidInput(loanDuration) === true) {
+    if (checkIfValidWholeNumber(loanDuration) === true) {
       loanDuration = Number(loanDuration);
       isValidLoanDuration = true;
       prompt("\t✅Valid Input✅");
@@ -128,7 +164,7 @@ function askToCalculateAgain() {
       .trim()
       .toLowerCase();
 
-    if (checkAnotherCalculation(anotherCalculation) === true) break;
+    if (checkYesOrNo(anotherCalculation) === true) break;
   }
 
   return anotherCalculation;
@@ -136,7 +172,24 @@ function askToCalculateAgain() {
 // Requesting User Input --------
 
 // Operation On User Input ------
-function calculateMonthlyPayment(
+
+function decideHowToCalculateMonthlyPayment(
+  loanAmount,
+  annualPercentageRate,
+  loanDuration
+) {
+  if (checkIfLoanIncludesAPR(annualPercentageRate) === true) {
+    withAPRCalculateMonthlyPayment(
+      loanAmount,
+      annualPercentageRate,
+      loanDuration
+    );
+  } else {
+    withNoAPRCalculateMonthlyPayment(loanAmount, loanDuration);
+  }
+}
+
+function withAPRCalculateMonthlyPayment(
   loanAmount,
   annualPercentageRate,
   loanDuration
@@ -156,6 +209,16 @@ function calculateMonthlyPayment(
     ).toFixed(2)}.`
   );
 }
+
+function withNoAPRCalculateMonthlyPayment(loanAmount, loanDuration) {
+  const MONTHS_IN_YEAR = 12;
+  let numberOfPayments = loanDuration * MONTHS_IN_YEAR;
+  let monthlyPayment = loanAmount / numberOfPayments;
+
+  prompt(
+    `\nWith 0% APR you will pay $${monthlyPayment} each month for ${numberOfPayments} months.`
+  );
+}
 // Operation On User Input ------
 
 // Main Function ----------------
@@ -169,7 +232,11 @@ function getALoanEstimate() {
 
     let loanDuration = getLoanDuration();
 
-    calculateMonthlyPayment(loanAmount, annualPercentageRate, loanDuration);
+    decideHowToCalculateMonthlyPayment(
+      loanAmount,
+      annualPercentageRate,
+      loanDuration
+    );
 
     let doesUserWantToCalculateAgain = askToCalculateAgain();
 
