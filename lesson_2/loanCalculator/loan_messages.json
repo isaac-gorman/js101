@@ -1,0 +1,23 @@
+{
+  "welcome": "💰Welcome to the loan calculator!💰",
+
+  "goodbye": "\n🙋‍♀️ Thank you for using the loan calculator. Till next time :)!",
+
+  "zeroAPR_MonthlyPayment": "\nWith 0% APR each month you will pay: ",
+
+  "withAPR_MonthlyPayment": "\n🧾💸 You will pay each month: ",
+
+  "annualPercentageRate": "\n \n💬 Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as: \n- 0.06 for 6% \n- 0.12 for 12% \n➡️  ",
+
+  "anotherCalculation": "\n \n💬 Would you like to make another loan calculation (y/n)? \nEnter: \n- Y for Yes \n- N for No \n➡️  ",
+
+  "loanDuration": "\n \n💬 Please enter the Loan Duration in years.\nExample inputs are whole numbers such as: \n- 10 for 10 years \n- 5 for 5 years \n➡️  ",
+
+  "noAPR_Question": "Do you have 0% APR (y/n) \nEnter: \n- Y for Yes \n- N for No \n➡️  ",
+
+  "loanAmountQuestion": "\n \n💬Please enter the loan amount.\nExample inputs are whole numbers greater than 0 such as: \n- 1000 for $1000 \n- 200 for $200 \n➡️  ",
+
+  "notValidInput": "❌‼️ Is Not Valid a Input❌‼️",
+
+  "validInput": "\t✅Valid Input✅"
+}
