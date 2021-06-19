@@ -14,7 +14,11 @@ function prompt(message) {
   console.log(message);
 }
 
-function getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration) {
+function calculateMonthlyPayment(
+  loanAmount,
+  annualPercentageRate,
+  loanDuration
+) {
   let monthlyRate = annualPercentageRate / 12;
 
   let numberOfPayments = loanDuration * 12;
@@ -95,6 +99,28 @@ function getLoanAmount() {
   return loanAmount;
 }
 
+function getAnnualPercentageRate() {
+  isValidPercentageRate = false;
+  let annualPercentageRate;
+  while (isValidPercentageRate === false) {
+    annualPercentageRate = READ_LINE.question(
+      "\n" +
+        "\n💬 Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as: \n- 0.06 for 6% \n- 0.12 for 12%" +
+        "\n➡️  "
+    ).trim();
+
+    if (
+      checkIfValidInput(annualPercentageRate) === true &&
+      checkIfValidDecimalInput(annualPercentageRate) === true
+    ) {
+      annualPercentageRate = Number(annualPercentageRate);
+      isValidPercentageRate = true;
+      prompt("\t✅Valid Input✅");
+    }
+  }
+  return annualPercentageRate;
+}
+
 function getALoanEstimate() {
   while (again) {
     prompt("💰Welcome to the loan calculator!💰");
@@ -104,22 +130,8 @@ function getALoanEstimate() {
 
     let loanAmount = getLoanAmount();
 
-    while (isValidPercentageRate === false) {
-      annualPercentageRate = READ_LINE.question(
-        "\n" +
-          "\n💬 Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as: \n- 0.06 for 6% \n- 0.12 for 12%" +
-          "\n➡️  "
-      ).trim();
+    let annualPercentageRate = getAnnualPercentageRate();
 
-      if (
-        checkIfValidInput(annualPercentageRate) === true &&
-        checkIfValidDecimalInput(annualPercentageRate) === true
-      ) {
-        annualPercentageRate = Number(annualPercentageRate);
-        isValidPercentageRate = true;
-        prompt("\t✅Valid Input✅");
-      }
-    }
     while (isValidLoanDuration === false) {
       loanDuration = READ_LINE.question(
         "\n" +
@@ -134,7 +146,9 @@ function getALoanEstimate() {
       }
     }
 
-    prompt(getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration));
+    prompt(
+      calculateMonthlyPayment(loanAmount, annualPercentageRate, loanDuration)
+    );
 
     while (isValidAnotherCalculationAnswer === false) {
       let anotherCalculation = READ_LINE.question(
