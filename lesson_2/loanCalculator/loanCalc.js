@@ -2,10 +2,16 @@
 /* eslint-disable max-lines-per-function */
 const READ_LINE = require("readline-sync");
 
+// -
+// console.log function --------------
 function prompt(message) {
   console.log(message);
 }
-// Validation -------------------
+// console.log function --------------
+// -
+
+// -
+// Validation ------------------------
 function checkIfValidWholeNumber(userInput) {
   if (
     !userInput.includes(".") &&
@@ -63,9 +69,11 @@ function checkIfLoanIncludesAPR(apr) {
     return true;
   }
 }
-// Validation -------------------
+// Validation ------------------------
+// -
 
-// Requesting User Input --------
+// -
+// Requesting User Loan Input --------
 function getLoanAmount() {
   let isValidLoanAmount = false;
   let loanAmount;
@@ -169,10 +177,11 @@ function askToCalculateAgain() {
 
   return anotherCalculation;
 }
-// Requesting User Input --------
+// Requesting User Loan Input --------
+// -
 
-// Operation On User Input ------
-
+// -
+// Operation On Loan -----------------
 function decideHowToCalculateMonthlyPayment(
   loanAmount,
   annualPercentageRate,
@@ -219,9 +228,11 @@ function withNoAPRCalculateMonthlyPayment(loanAmount, loanDuration) {
     `\nWith 0% APR you will pay $${monthlyPayment} each month for ${numberOfPayments} months.`
   );
 }
-// Operation On User Input ------
+// Operation On Loan -----------------
+// -
 
-// Main Function ----------------
+// -
+// Main Function ---------------------
 function getALoanEstimate() {
   while (true) {
     prompt("💰Welcome to the loan calculator!💰");
@@ -248,6 +259,6 @@ function getALoanEstimate() {
     }
   }
 }
-
 getALoanEstimate();
-// Main Function ----------------
+// Main Function ----------------------
+// -
