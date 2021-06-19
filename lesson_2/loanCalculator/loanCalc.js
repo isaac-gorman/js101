@@ -3,28 +3,7 @@ const READ_LINE = require("readline-sync");
 function prompt(message) {
   console.log(message);
 }
-
-function calculateMonthlyPayment(
-  loanAmount,
-  annualPercentageRate,
-  loanDuration
-) {
-  const MONTHS_IN_YEAR = 12;
-  let monthlyRate = annualPercentageRate / MONTHS_IN_YEAR;
-  let numberOfPayments = loanDuration * MONTHS_IN_YEAR;
-  let monthlyPayment =
-    loanAmount *
-    (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)));
-
-  prompt(
-    `\n🧾💸 You will pay 💲${monthlyPayment.toFixed(
-      2
-    )} for ${numberOfPayments} months 📆. \n📈 For a total of 💲${(
-      monthlyPayment * numberOfPayments
-    ).toFixed(2)}.`
-  );
-}
-
+// Validation -------------------
 function checkIfValidInput(userInput) {
   if (
     !Number.isNaN(Number(userInput)) &&
@@ -65,7 +44,9 @@ function checkAnotherCalculation(userInput) {
     return true;
   }
 }
+// Validation -------------------
 
+// Requesting User Input --------
 function getLoanAmount() {
   let isValidLoanAmount = false;
   let loanAmount;
@@ -152,7 +133,32 @@ function askToCalculateAgain() {
 
   return anotherCalculation;
 }
+// Requesting User Input --------
 
+// Operation On User Input ------
+function calculateMonthlyPayment(
+  loanAmount,
+  annualPercentageRate,
+  loanDuration
+) {
+  const MONTHS_IN_YEAR = 12;
+  let monthlyRate = annualPercentageRate / MONTHS_IN_YEAR;
+  let numberOfPayments = loanDuration * MONTHS_IN_YEAR;
+  let monthlyPayment =
+    loanAmount *
+    (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)));
+
+  prompt(
+    `\n🧾💸 You will pay 💲${monthlyPayment.toFixed(
+      2
+    )} for ${numberOfPayments} months 📆. \n📈 For a total of 💲${(
+      monthlyPayment * numberOfPayments
+    ).toFixed(2)}.`
+  );
+}
+// Operation On User Input ------
+
+// Main Function ----------------
 function getALoanEstimate() {
   while (true) {
     prompt("💰Welcome to the loan calculator!💰");
@@ -177,3 +183,4 @@ function getALoanEstimate() {
 }
 
 getALoanEstimate();
+// Main Function ----------------
