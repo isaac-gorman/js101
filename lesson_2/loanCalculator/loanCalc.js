@@ -1,11 +1,5 @@
 const READ_LINE = require("readline-sync");
 
-let again = true;
-let isValidLoanAmount;
-let isValidPercentageRate;
-let isValidLoanDuration;
-let isValidAnotherCalculationAnswer;
-
 function prompt(message) {
   console.log(message);
 }
@@ -74,7 +68,7 @@ function checkAnotherCalculation(userInput) {
 }
 
 function getLoanAmount() {
-  isValidLoanAmount = false;
+  let isValidLoanAmount = false;
   let loanAmount;
   while (isValidLoanAmount === false) {
     loanAmount = READ_LINE.question(
@@ -93,7 +87,7 @@ function getLoanAmount() {
 }
 
 function getAnnualPercentageRate() {
-  isValidPercentageRate = false;
+  let isValidPercentageRate = false;
   let annualPercentageRate;
   while (isValidPercentageRate === false) {
     annualPercentageRate = READ_LINE.question(
@@ -115,7 +109,7 @@ function getAnnualPercentageRate() {
 }
 
 function getLoanDuration() {
-  isValidLoanDuration = false;
+  let isValidLoanDuration = false;
   let loanDuration;
 
   while (isValidLoanDuration === false) {
@@ -136,7 +130,7 @@ function getLoanDuration() {
 }
 
 function askToCalculateAgain() {
-  isValidAnotherCalculationAnswer = false;
+  let isValidAnotherCalculationAnswer = false;
   let anotherCalculation;
   while (isValidAnotherCalculationAnswer === false) {
     anotherCalculation = READ_LINE.question(
@@ -156,7 +150,7 @@ function askToCalculateAgain() {
 }
 
 function getALoanEstimate() {
-  while (again) {
+  while (true) {
     prompt("💰Welcome to the loan calculator!💰");
 
     let loanAmount = getLoanAmount();
@@ -173,7 +167,7 @@ function getALoanEstimate() {
       prompt(
         "\n🙋‍♀️ Thank you for using the loan calculator. Till next time :)!"
       );
-      again = false;
+      break;
     }
   }
 }
