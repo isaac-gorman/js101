@@ -1,20 +1,14 @@
-/* eslint-disable max-statements */
-/* eslint-disable max-lines-per-function */
 const READ_LINE = require("readline-sync");
-
-let again = true;
-let annualPercentageRate;
-let loanDuration;
-let isValidLoanAmount;
-let isValidPercentageRate;
-let isValidLoanDuration;
-let isValidAnotherCalculationAnswer;
 
 function prompt(message) {
   console.log(message);
 }
 
-function getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration) {
+function calculateMonthlyPayment(
+  loanAmount,
+  annualPercentageRate,
+  loanDuration
+) {
   let monthlyRate = annualPercentageRate / 12;
 
   let numberOfPayments = loanDuration * 12;
@@ -23,15 +17,12 @@ function getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration) {
     loanAmount *
     (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)));
 
-  return (
-    "\n" +
-    "\n 🤖" +
-    "\n🧾💸 You will pay 💲" +
-    monthlyPayment.toFixed(2) +
-    " for " +
-    numberOfPayments +
-    " months 📆." +
-    `\n📈 For a total of 💲${(monthlyPayment * numberOfPayments).toFixed(2)}.`
+  prompt(
+    `\n🧾💸 You will pay 💲${monthlyPayment.toFixed(
+      2
+    )} for ${numberOfPayments} months 📆. \n📈 For a total of 💲${(
+      monthlyPayment * numberOfPayments
+    ).toFixed(2)}.`
   );
 }
 
@@ -77,7 +68,7 @@ function checkAnotherCalculation(userInput) {
 }
 
 function getLoanAmount() {
-  isValidLoanAmount = false;
+  let isValidLoanAmount = false;
   let loanAmount;
   while (isValidLoanAmount === false) {
     loanAmount = READ_LINE.question(
@@ -95,65 +86,88 @@ function getLoanAmount() {
   return loanAmount;
 }
 
+function getAnnualPercentageRate() {
+  let isValidPercentageRate = false;
+  let annualPercentageRate;
+  while (isValidPercentageRate === false) {
+    annualPercentageRate = READ_LINE.question(
+      "\n" +
+        "\n💬 Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as: \n- 0.06 for 6% \n- 0.12 for 12%" +
+        "\n➡️  "
+    ).trim();
+
+    if (
+      checkIfValidInput(annualPercentageRate) === true &&
+      checkIfValidDecimalInput(annualPercentageRate) === true
+    ) {
+      annualPercentageRate = Number(annualPercentageRate);
+      isValidPercentageRate = true;
+      prompt("\t✅Valid Input✅");
+    }
+  }
+  return annualPercentageRate;
+}
+
+function getLoanDuration() {
+  let isValidLoanDuration = false;
+  let loanDuration;
+
+  while (isValidLoanDuration === false) {
+    loanDuration = READ_LINE.question(
+      "\n" +
+        "\n💬 Please enter the Loan Duration in years.\nExample inputs are whole numbers such as: \n- 10 for 10 years \n- 5 for 5 years" +
+        "\n➡️  "
+    ).trim();
+
+    if (checkIfValidInput(loanDuration) === true) {
+      loanDuration = Number(loanDuration);
+      isValidLoanDuration = true;
+      prompt("\t✅Valid Input✅");
+    }
+  }
+
+  return loanDuration;
+}
+
+function askToCalculateAgain() {
+  let isValidAnotherCalculationAnswer = false;
+  let anotherCalculation;
+  while (isValidAnotherCalculationAnswer === false) {
+    anotherCalculation = READ_LINE.question(
+      "\n" +
+        "\n💬 Would you like to make another loan calculation? " +
+        "\nEnter: " +
+        "\n- 1 for Yes" +
+        "\n- 2 for No" +
+        "\n➡️  "
+    );
+
+    if (checkAnotherCalculation(anotherCalculation) === true) {
+      isValidAnotherCalculationAnswer = true;
+    }
+  }
+  return anotherCalculation;
+}
+
 function getALoanEstimate() {
-  while (again) {
+  while (true) {
     prompt("💰Welcome to the loan calculator!💰");
-    isValidPercentageRate = false;
-    isValidLoanDuration = false;
-    isValidAnotherCalculationAnswer = false;
 
     let loanAmount = getLoanAmount();
 
-    while (isValidPercentageRate === false) {
-      annualPercentageRate = READ_LINE.question(
-        "\n" +
-          "\n💬 Please enter the Annual Percentage Rate (APR).\nExample inputs are decimal numbers such as: \n- 0.06 for 6% \n- 0.12 for 12%" +
-          "\n➡️  "
-      ).trim();
+    let annualPercentageRate = getAnnualPercentageRate();
 
-      if (
-        checkIfValidInput(annualPercentageRate) === true &&
-        checkIfValidDecimalInput(annualPercentageRate) === true
-      ) {
-        annualPercentageRate = Number(annualPercentageRate);
-        isValidPercentageRate = true;
-        prompt("\t✅Valid Input✅");
-      }
-    }
-    while (isValidLoanDuration === false) {
-      loanDuration = READ_LINE.question(
-        "\n" +
-          "\n💬 Please enter the Loan Duration in years.\nExample inputs are whole numbers such as: \n- 10 for 10 years \n- 5 for 5 years" +
-          "\n➡️  "
-      ).trim();
+    let loanDuration = getLoanDuration();
 
-      if (checkIfValidInput(loanDuration) === true) {
-        loanDuration = Number(loanDuration);
-        isValidLoanDuration = true;
-        prompt("\t✅Valid Input✅");
-      }
-    }
+    calculateMonthlyPayment(loanAmount, annualPercentageRate, loanDuration);
 
-    prompt(getMonthlyPayment(loanAmount, annualPercentageRate, loanDuration));
+    let doesUserWantToCalculateAgain = askToCalculateAgain();
 
-    while (isValidAnotherCalculationAnswer === false) {
-      let anotherCalculation = READ_LINE.question(
-        "\n" +
-          "\n💬 Would you like to make another loan calculation? " +
-          "\nEnter: " +
-          "\n- 1 for Yes" +
-          "\n- 2 for No" +
-          "\n➡️  "
+    if (doesUserWantToCalculateAgain === "2") {
+      prompt(
+        "\n🙋‍♀️ Thank you for using the loan calculator. Till next time :)!"
       );
-      if (checkAnotherCalculation(anotherCalculation) === true) {
-        isValidAnotherCalculationAnswer = true;
-        if (anotherCalculation === "2") {
-          prompt(
-            "\n🙋‍♀️ Thank you for using the loan calculator. Till next time :)!"
-          );
-          again = false;
-        }
-      }
+      break;
     }
   }
 }
