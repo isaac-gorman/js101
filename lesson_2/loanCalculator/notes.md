@@ -37,5 +37,3 @@
       (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)))
 
     Return monthlyPayments
-
-\
