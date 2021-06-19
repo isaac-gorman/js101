@@ -3,7 +3,6 @@
 const READ_LINE = require("readline-sync");
 
 let again = true;
-let loanAmount;
 let annualPercentageRate;
 let loanDuration;
 let isValidLoanAmount;
@@ -77,27 +76,34 @@ function checkAnotherCalculation(userInput) {
   }
 }
 
+function getLoanAmount() {
+  isValidLoanAmount = false;
+  let loanAmount;
+  while (isValidLoanAmount === false) {
+    loanAmount = READ_LINE.question(
+      "\n" +
+        "\n💬Please enter the loan amount.\nExample inputs are whole numbers greater than 0 such as: \n- 1000 for $1000 \n- 200 for $200" +
+        "\n➡️  "
+    ).trim();
+
+    if (checkIfValidInput(loanAmount) === true) {
+      loanAmount = Number(loanAmount);
+      isValidLoanAmount = true;
+      prompt("\t✅Valid Input✅");
+    }
+  }
+  return loanAmount;
+}
+
 function getALoanEstimate() {
   while (again) {
     prompt("💰Welcome to the loan calculator!💰");
-    isValidLoanAmount = false;
     isValidPercentageRate = false;
     isValidLoanDuration = false;
     isValidAnotherCalculationAnswer = false;
 
-    while (isValidLoanAmount === false) {
-      loanAmount = READ_LINE.question(
-        "\n" +
-          "\n💬Please enter the loan amount.\nExample inputs are whole numbers greater than 0 such as: \n- 1000 for $1000 \n- 200 for $200" +
-          "\n➡️  "
-      ).trim();
+    let loanAmount = getLoanAmount();
 
-      if (checkIfValidInput(loanAmount) === true) {
-        loanAmount = Number(loanAmount);
-        isValidLoanAmount = true;
-        prompt("\t✅Valid Input✅");
-      }
-    }
     while (isValidPercentageRate === false) {
       annualPercentageRate = READ_LINE.question(
         "\n" +
