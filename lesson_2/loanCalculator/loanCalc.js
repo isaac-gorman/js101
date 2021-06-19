@@ -11,9 +11,7 @@ function calculateMonthlyPayment(
 ) {
   const MONTHS_IN_YEAR = 12;
   let monthlyRate = annualPercentageRate / MONTHS_IN_YEAR;
-
   let numberOfPayments = loanDuration * MONTHS_IN_YEAR;
-
   let monthlyPayment =
     loanAmount *
     (monthlyRate / (1 - Math.pow(1 + monthlyRate, -numberOfPayments)));
@@ -59,12 +57,12 @@ function checkIfValidDecimalInput(userInput) {
 }
 
 function checkAnotherCalculation(userInput) {
-  // input has to be either "1" or "2" nothing else
-  if (userInput === "1" || userInput === "2") {
-    return true;
-  } else {
+  // input has to be either "y" or "n" nothing else
+  if (userInput[0] !== "y" && userInput[0] !== "n") {
     prompt(`\t🤦‍♂️😅👉 ${userInput} 👈😅🤦‍♂️  ❌‼️ Is Not Valid a Input❌‼️`);
     return false;
+  } else {
+    return true;
   }
 }
 
@@ -135,22 +133,21 @@ function getLoanDuration() {
 }
 
 function askToCalculateAgain() {
-  let isValidAnotherCalculationAnswer = false;
   let anotherCalculation;
 
-  while (isValidAnotherCalculationAnswer === false) {
+  while (true) {
     anotherCalculation = READ_LINE.question(
       "\n" +
-        "\n💬 Would you like to make another loan calculation? " +
+        "\n💬 Would you like to make another loan calculation (y/n)? " +
         "\nEnter: " +
-        "\n- 1 for Yes" +
-        "\n- 2 for No" +
+        "\n- Y for Yes" +
+        "\n- N for No" +
         "\n➡️  "
-    );
+    )
+      .trim()
+      .toLowerCase();
 
-    if (checkAnotherCalculation(anotherCalculation) === true) {
-      isValidAnotherCalculationAnswer = true;
-    }
+    if (checkAnotherCalculation(anotherCalculation) === true) break;
   }
 
   return anotherCalculation;
@@ -170,7 +167,7 @@ function getALoanEstimate() {
 
     let doesUserWantToCalculateAgain = askToCalculateAgain();
 
-    if (doesUserWantToCalculateAgain === "2") {
+    if (doesUserWantToCalculateAgain === "n") {
       prompt(
         "\n🙋‍♀️ Thank you for using the loan calculator. Till next time :)!"
       );
