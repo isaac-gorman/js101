@@ -3,8 +3,6 @@
 const READ_LINE = require("readline-sync");
 
 let again = true;
-let annualPercentageRate;
-let loanDuration;
 let isValidLoanAmount;
 let isValidPercentageRate;
 let isValidLoanDuration;
@@ -121,30 +119,37 @@ function getAnnualPercentageRate() {
   return annualPercentageRate;
 }
 
+function getLoanDuration() {
+  isValidLoanDuration = false;
+  let loanDuration;
+
+  while (isValidLoanDuration === false) {
+    loanDuration = READ_LINE.question(
+      "\n" +
+        "\n💬 Please enter the Loan Duration in years.\nExample inputs are whole numbers such as: \n- 10 for 10 years \n- 5 for 5 years" +
+        "\n➡️  "
+    ).trim();
+
+    if (checkIfValidInput(loanDuration) === true) {
+      loanDuration = Number(loanDuration);
+      isValidLoanDuration = true;
+      prompt("\t✅Valid Input✅");
+    }
+  }
+
+  return loanDuration;
+}
+
 function getALoanEstimate() {
   while (again) {
     prompt("💰Welcome to the loan calculator!💰");
-    isValidPercentageRate = false;
-    isValidLoanDuration = false;
     isValidAnotherCalculationAnswer = false;
 
     let loanAmount = getLoanAmount();
 
     let annualPercentageRate = getAnnualPercentageRate();
 
-    while (isValidLoanDuration === false) {
-      loanDuration = READ_LINE.question(
-        "\n" +
-          "\n💬 Please enter the Loan Duration in years.\nExample inputs are whole numbers such as: \n- 10 for 10 years \n- 5 for 5 years" +
-          "\n➡️  "
-      ).trim();
-
-      if (checkIfValidInput(loanDuration) === true) {
-        loanDuration = Number(loanDuration);
-        isValidLoanDuration = true;
-        prompt("\t✅Valid Input✅");
-      }
-    }
+    let loanDuration = getLoanDuration();
 
     prompt(
       calculateMonthlyPayment(loanAmount, annualPercentageRate, loanDuration)
