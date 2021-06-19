@@ -1,21 +1,17 @@
-// Informal Pseudo Code
-{
-  /*
-  INPUTS & OUTPUTS
-    Inputs:
-    - loan amount
-    - annual percentage rate (APR)
-    - loan duration
+# Informal Pseudo Code
 
-    Outputs:
-    - monthly interest rate
-    - loan duration in months
+## INPUTS & OUTPUTS
 
-  BASIC LOGIC (NOT DYNAMIC)
-   Get all three inputs from the user:
-    1. loanAmount
-    2. annualPercentageRate (as a decimal 6% = 0.06)
-    3. loanDuration in years
+**Inputs**
+⋅⋅* loan amount
+⋅⋅* annual percentage rate (APR)
+⋅⋅\* loan duration
+
+**Outputs** - monthly interest rate - loan duration in months
+
+## BASIC LOGIC (NOT DYNAMIC)
+
+Get all three inputs from the user: 1. loanAmount 2. annualPercentageRate (as a decimal 6% = 0.06) 3. loanDuration in years
 
     Confirm that each input is acceptable.
     Convert acceptable inputs to correct data type. loanAmount,
@@ -34,5 +30,5 @@
 
       Return monthlyPayments
 
-  */
+\*/
 }
