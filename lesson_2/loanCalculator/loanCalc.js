@@ -9,9 +9,10 @@ function calculateMonthlyPayment(
   annualPercentageRate,
   loanDuration
 ) {
-  let monthlyRate = annualPercentageRate / 12;
+  const MONTHS_IN_YEAR = 12;
+  let monthlyRate = annualPercentageRate / MONTHS_IN_YEAR;
 
-  let numberOfPayments = loanDuration * 12;
+  let numberOfPayments = loanDuration * MONTHS_IN_YEAR;
 
   let monthlyPayment =
     loanAmount *
@@ -70,6 +71,7 @@ function checkAnotherCalculation(userInput) {
 function getLoanAmount() {
   let isValidLoanAmount = false;
   let loanAmount;
+
   while (isValidLoanAmount === false) {
     loanAmount = READ_LINE.question(
       "\n" +
@@ -83,12 +85,14 @@ function getLoanAmount() {
       prompt("\t✅Valid Input✅");
     }
   }
+
   return loanAmount;
 }
 
 function getAnnualPercentageRate() {
   let isValidPercentageRate = false;
   let annualPercentageRate;
+
   while (isValidPercentageRate === false) {
     annualPercentageRate = READ_LINE.question(
       "\n" +
@@ -105,6 +109,7 @@ function getAnnualPercentageRate() {
       prompt("\t✅Valid Input✅");
     }
   }
+
   return annualPercentageRate;
 }
 
@@ -132,6 +137,7 @@ function getLoanDuration() {
 function askToCalculateAgain() {
   let isValidAnotherCalculationAnswer = false;
   let anotherCalculation;
+
   while (isValidAnotherCalculationAnswer === false) {
     anotherCalculation = READ_LINE.question(
       "\n" +
@@ -146,6 +152,7 @@ function askToCalculateAgain() {
       isValidAnotherCalculationAnswer = true;
     }
   }
+
   return anotherCalculation;
 }
 
