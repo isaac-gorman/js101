@@ -1,5 +1,7 @@
+/* eslint-disable complexity */
+/* eslint-disable max-lines-per-function */
 const READ_LINE = require("readline-sync");
-const VALID_CHOICES = ["rock", "paper", "scissors"];
+const VALID_CHOICES = ["rock", "paper", "scissors", "spock", "lizard"];
 
 function prompt(message) {
   console.log(`➡️  ${message}`);
@@ -35,8 +37,15 @@ function displayWinner(userChoice, computerChoice) {
   // Computer Winning Scenarios
   if (
     (computerChoice === "paper" && userChoice === "rock") ||
+    (computerChoice === "paper" && userChoice === "spock") ||
     (computerChoice === "rock" && userChoice === "scissors") ||
-    (computerChoice === "scissors" && userChoice === "paper")
+    (computerChoice === "rock" && userChoice === "lizard") ||
+    (computerChoice === "scissors" && userChoice === "paper") ||
+    (computerChoice === "scissors" && userChoice === "lizard") ||
+    (computerChoice === "lizard" && userChoice === "spock") ||
+    (computerChoice === "lizard" && userChoice === "paper") ||
+    (computerChoice === "spock" && userChoice === "scissors") ||
+    (computerChoice === "spock" && userChoice === "rock")
   ) {
     prompt(computerWinsMessage);
   }
@@ -44,8 +53,15 @@ function displayWinner(userChoice, computerChoice) {
   // User Winning Scenarios
   if (
     (userChoice === "paper" && computerChoice === "rock") ||
+    (userChoice === "paper" && computerChoice === "spock") ||
     (userChoice === "rock" && computerChoice === "scissors") ||
-    (userChoice === "scissors" && computerChoice === "paper")
+    (userChoice === "rock" && computerChoice === "lizard") ||
+    (userChoice === "scissors" && computerChoice === "paper") ||
+    (userChoice === "scissors" && computerChoice === "lizard") ||
+    (userChoice === "lizard" && computerChoice === "spock") ||
+    (userChoice === "lizard" && computerChoice === "paper") ||
+    (userChoice === "spock" && computerChoice === "scissors") ||
+    (userChoice === "spock" && computerChoice === "rock")
   ) {
     prompt(userWinsMessage);
   }
