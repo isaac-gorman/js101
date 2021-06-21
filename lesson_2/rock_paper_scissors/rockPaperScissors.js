@@ -1,12 +1,46 @@
-/* eslint-disable max-statements */
-/* eslint-disable complexity */
-/* eslint-disable max-lines-per-function */
 const READ_LINE = require("readline-sync");
 const VALID_CHOICES = ["rock", "paper", "scissors", "spock", "lizard"];
 
+// console.log function ----------------------
 function prompt(message) {
   console.log(`➡️  ${message}`);
-}
+} // -----------------------------------------
+
+// Play the best of 5 rounds -----------------
+function playBest3OutOf5() {
+  let rounds = 0;
+  let userScore = 0;
+  let computerScore = 0;
+
+  while (userScore < 3 && computerScore < 3) {
+    prompt(`\n \nRound ${rounds} for best 3 out of 5`);
+    prompt(`\n Your Score: ${userScore} \n Computers Score: ${computerScore}`);
+
+    let userChoice = getUserChoice();
+    let computerChoice = getComputerChoice();
+    let winner;
+
+    prompt(`You chose 😊 ${userChoice}, 🤖 computer chose ${computerChoice}`);
+    winner = displayWinner(userChoice, computerChoice);
+
+    if (winner === 0) {
+      computerScore += 1;
+      rounds += 1;
+      prompt(`computer score ${computerScore}`);
+    } else if (winner === 1) {
+      userScore += 1;
+      rounds += 1;
+      prompt(`user score ${userScore}`);
+    }
+  }
+
+  if (userScore > computerScore) {
+    prompt("You won!");
+  } else {
+    prompt("Computer won!");
+  }
+} // -----------------------------------------
+
 // Requesting User Choice --------------------
 function getUserChoice() {
   // Request Input
@@ -29,14 +63,8 @@ function getComputerChoice() {
   return computerChoice;
 } // -----------------------------------------
 
-// Displaying the Winner ---------------------
-function displayWinner(userChoice, computerChoice) {
-  // Custom Winning Messages
-  let computerWinsMessage = `Computer scored a point! \n${computerChoice} beats ${userChoice}`;
-  let userWinsMessage = `You scored a point! \n${userChoice} beats ${computerChoice}`;
-
-  // Computer Winning Scenarios
-  if (
+function computerWins(userChoice, computerChoice) {
+  return (
     (computerChoice === "paper" && userChoice === "rock") ||
     (computerChoice === "paper" && userChoice === "spock") ||
     (computerChoice === "rock" && userChoice === "scissors") ||
@@ -47,33 +75,24 @@ function displayWinner(userChoice, computerChoice) {
     (computerChoice === "lizard" && userChoice === "paper") ||
     (computerChoice === "spock" && userChoice === "scissors") ||
     (computerChoice === "spock" && userChoice === "rock")
-  ) {
+  );
+}
+
+// Displaying the Winner ---------------------
+function displayWinner(userChoice, computerChoice) {
+  let computerWinsMessage = `Computer scored a point! \n${computerChoice} beats ${userChoice}`;
+  let userWinsMessage = `You scored a point! \n${userChoice} beats ${computerChoice}`;
+
+  if (computerWins(userChoice, computerChoice)) {
     prompt(computerWinsMessage);
     return 0;
-  }
-
-  // User Winning Scenarios
-  if (
-    (userChoice === "paper" && computerChoice === "rock") ||
-    (userChoice === "paper" && computerChoice === "spock") ||
-    (userChoice === "rock" && computerChoice === "scissors") ||
-    (userChoice === "rock" && computerChoice === "lizard") ||
-    (userChoice === "scissors" && computerChoice === "paper") ||
-    (userChoice === "scissors" && computerChoice === "lizard") ||
-    (userChoice === "lizard" && computerChoice === "spock") ||
-    (userChoice === "lizard" && computerChoice === "paper") ||
-    (userChoice === "spock" && computerChoice === "scissors") ||
-    (userChoice === "spock" && computerChoice === "rock")
-  ) {
-    prompt(userWinsMessage);
-    return 1;
-  }
-
-  // Tie Game
-  if (computerChoice === userChoice) {
+  } else if (computerChoice === userChoice) {
     prompt("Tie!");
     return 2;
   }
+
+  prompt(userWinsMessage);
+  return 1;
 } // -----------------------------------------
 
 // Prompting User To Play Again --------------
@@ -94,38 +113,7 @@ function askToPlayAgain() {
 // Main Function -----------------------------
 function playRockPaperScissors() {
   while (true) {
-    let rounds = 0;
-    let userScore = 0;
-    let computerScore = 0;
-
-    while (userScore < 3 && computerScore < 3) {
-      prompt(`\n \nRound ${rounds} for best 3 out of 5`);
-      prompt(
-        `\n Your Score: ${userScore} \n Computers Score: ${computerScore}`
-      );
-
-      let userChoice = getUserChoice();
-      let computerChoice = getComputerChoice();
-      let winner;
-
-      prompt(`You chose 😊 ${userChoice}, 🤖 computer chose ${computerChoice}`);
-      winner = displayWinner(userChoice, computerChoice);
-      if (winner === 0) {
-        computerScore += 1;
-        rounds += 1;
-        prompt(`computer score ${computerScore}`);
-      } else if (winner === 1) {
-        userScore += 1;
-        rounds += 1;
-        prompt(`user score ${userScore}`);
-      }
-    }
-
-    if (userScore > computerScore) {
-      prompt("You won!");
-    } else {
-      prompt("Computer won!");
-    }
+    playBest3OutOf5();
 
     let doesUserWantToPlayAgain = askToPlayAgain();
 
