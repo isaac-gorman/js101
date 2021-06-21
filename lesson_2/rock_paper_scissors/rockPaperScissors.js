@@ -1,40 +1,62 @@
 const READ_LINE = require("readline-sync");
 const VALID_CHOICES = ["rock", "paper", "scissors", "spock", "lizard"];
+const WINNING_COMBOS = {
+  rock: ["scissors", "lizard"],
+  paper: ["rock", "spock"],
+  scissors: ["paper", "lizard"],
+  lizard: ["paper", "spock"],
+  spock: ["rock", "scissors"],
+};
+
+let gameScore = {
+  userScore: 0,
+  computerScore: 0,
+  rounds: 0,
+};
 
 // console.log function ----------------------
 function prompt(message) {
   console.log(`➡️  ${message}`);
 } // -----------------------------------------
 
+// Resetting the game scores to 0 ------------
+function resetGameScore() {
+  gameScore.userScore = 0;
+  gameScore.computerScore = 0;
+  gameScore.rounds = 0;
+} // -----------------------------------------
+
+// Scoring the winner of each round ----------
+function scoreRound(winner) {
+  if (winner === 0) {
+    gameScore.computerScore += 1;
+    gameScore.rounds += 1;
+    prompt(`computer score ${gameScore.computerScore}`);
+  } else if (winner === 1) {
+    gameScore.userScore += 1;
+    gameScore.rounds += 1;
+    prompt(`user score ${gameScore.userScore}`);
+  }
+} // -----------------------------------------
+
 // Play the best of 5 rounds -----------------
 function playBest3OutOf5() {
-  let rounds = 0;
-  let userScore = 0;
-  let computerScore = 0;
-
-  while (userScore < 3 && computerScore < 3) {
-    prompt(`\n \nRound ${rounds} for best 3 out of 5`);
-    prompt(`\n Your Score: ${userScore} \n Computers Score: ${computerScore}`);
+  while (gameScore.userScore < 3 && gameScore.computerScore < 3) {
+    prompt(`\n \nRound ${gameScore.rounds} for best 3 out of 5`);
+    prompt(
+      `\n Your Score: ${gameScore.userScore} \n Computers Score: ${gameScore.computerScore}`
+    );
 
     let userChoice = getUserChoice();
     let computerChoice = getComputerChoice();
-    let winner;
 
     prompt(`You chose 😊 ${userChoice}, 🤖 computer chose ${computerChoice}`);
-    winner = displayWinner(userChoice, computerChoice);
+    let winner = displayWinner(userChoice, computerChoice);
 
-    if (winner === 0) {
-      computerScore += 1;
-      rounds += 1;
-      prompt(`computer score ${computerScore}`);
-    } else if (winner === 1) {
-      userScore += 1;
-      rounds += 1;
-      prompt(`user score ${userScore}`);
-    }
+    scoreRound(winner);
   }
 
-  if (userScore > computerScore) {
+  if (gameScore.userScore > gameScore.computerScore) {
     prompt("You won!");
   } else {
     prompt("Computer won!");
@@ -63,20 +85,10 @@ function getComputerChoice() {
   return computerChoice;
 } // -----------------------------------------
 
+// Evaluating if the computer won ------------
 function computerWins(userChoice, computerChoice) {
-  return (
-    (computerChoice === "paper" && userChoice === "rock") ||
-    (computerChoice === "paper" && userChoice === "spock") ||
-    (computerChoice === "rock" && userChoice === "scissors") ||
-    (computerChoice === "rock" && userChoice === "lizard") ||
-    (computerChoice === "scissors" && userChoice === "paper") ||
-    (computerChoice === "scissors" && userChoice === "lizard") ||
-    (computerChoice === "lizard" && userChoice === "spock") ||
-    (computerChoice === "lizard" && userChoice === "paper") ||
-    (computerChoice === "spock" && userChoice === "scissors") ||
-    (computerChoice === "spock" && userChoice === "rock")
-  );
-}
+  return WINNING_COMBOS[computerChoice].includes(userChoice);
+} // ------------------------------------------
 
 // Displaying the Winner ---------------------
 function displayWinner(userChoice, computerChoice) {
@@ -117,7 +129,12 @@ function playRockPaperScissors() {
 
     let doesUserWantToPlayAgain = askToPlayAgain();
 
-    if (doesUserWantToPlayAgain[0] !== "y") break;
+    if (doesUserWantToPlayAgain[0] === "y") {
+      resetGameScore();
+    } else {
+      prompt("Thank you for playing! \n Till next time!");
+      break;
+    }
   }
 } // -----------------------------------------
 playRockPaperScissors();
