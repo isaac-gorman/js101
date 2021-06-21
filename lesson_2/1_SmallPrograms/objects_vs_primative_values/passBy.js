@@ -92,17 +92,17 @@
 */
 
 // 1) WHAT DOES PASS-BY-VALUE MEAN? CODE EXAMPLES ----------------------------
-function changeName(name) {
-  name = "opie";
-  console.log("changeName: ", name);
-  return name;
-}
+// function changeName(name) {
+//   name = "opie";
+//   console.log("changeName: ", name);
+//   return name;
+// }
 
-function anotherFunction() {
-  let name = "max";
-  changeName(name);
-  console.log("anotherFunction: ", name);
-}
+// function anotherFunction() {
+//   let name = "max";
+//   changeName(name);
+//   console.log("anotherFunction: ", name);
+// }
 
 // anotherFunction();
 
