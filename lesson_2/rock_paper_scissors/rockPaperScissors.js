@@ -4,7 +4,7 @@ const VALID_CHOICES = ["rock", "paper", "scissors"];
 function prompt(message) {
   console.log(`➡️  ${message}`);
 }
-// Requesting User Choice ------
+// Requesting User Choice --------------------
 function getUserChoice() {
   // Request Input
   prompt(`Choose one: ${VALID_CHOICES.join(", ")}`);
@@ -16,17 +16,17 @@ function getUserChoice() {
     userChoice = READ_LINE.question();
   }
   return userChoice;
-} // ---------------------------
+} // -----------------------------------------
 
-// Randomly Assigning Computers Choice
+// Randomly Assigning Computers Choice -------
 function getComputerChoice() {
   let randomIndex = Math.round(Math.random() * (VALID_CHOICES.length - 1));
   let computerChoice = VALID_CHOICES[randomIndex];
 
   return computerChoice;
-} // ---------------------------
+} // -----------------------------------------
 
-// Displaying the Winner -------
+// Displaying the Winner ---------------------
 function displayWinner(userChoice, computerChoice) {
   // Custom Winning Messages
   let computerWinsMessage = `Computer win's! \n${computerChoice} beats ${userChoice}`;
@@ -52,9 +52,9 @@ function displayWinner(userChoice, computerChoice) {
 
   // Tie Game
   if (computerChoice === userChoice) prompt("Tie!");
-} // ---------------------------
+} // -----------------------------------------
 
-// Prompting User To Play Again
+// Prompting User To Play Again --------------
 function askToPlayAgain() {
   // Request User Input
   prompt("Do you want to play again? (y/n): ");
@@ -67,9 +67,9 @@ function askToPlayAgain() {
   }
 
   return answer;
-} // ----------------------------
+} // -----------------------------------------
 
-// Main Function ----------------
+// Main Function -----------------------------
 function playRockPaperScissors() {
   while (true) {
     let userChoice = getUserChoice();
@@ -83,5 +83,5 @@ function playRockPaperScissors() {
 
     if (doesUserWantToPlayAgain[0] !== "y") break;
   }
-} // ------------------------------
+} // -----------------------------------------
 playRockPaperScissors();
