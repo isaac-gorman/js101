@@ -1,3 +1,5 @@
+# Q&A Review
+
 ## Q: What is variable scope?
 
 - _A: Scope describes where JavaScript🤖 looks👀🔍 for any variable used in an expression._
