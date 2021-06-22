@@ -16,12 +16,12 @@
 
 - _A: Scope determines where a variable is accessible from. In other words scope is the what tells JavaScript where to find declared variables that it needs to use._
 
-  **Q: What in JavaScript always creates new scopes?**
+**Q: What in JavaScript always creates new scopes?**
 
-  - _A: In JavaScript scope is created by_
+- _A: In JavaScript scope is created by_
 
-    1. _Functions_
-    2. _Blocks_
+  1. _Functions_
+  2. _Blocks_
 
 **Q: What happens if no variables are defined within the scope?**
 
