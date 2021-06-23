@@ -54,3 +54,14 @@ foo("abc");
 Snippet B does use pass-by-reference at least one time. The `foo()` function is passed-by-value `"abc"` but `foo()` returns an object of `{qux: s}`
 
 ---
+
+- [ ] **Snippet C**
+
+```javascript
+let foo = { qux: "xyzzy" };
+let bar = foo;
+```
+
+Snippet C does not use pass-by-reference at all. The term pass-by-reference only applies to functions, not assignments and initializations.
+
+---
