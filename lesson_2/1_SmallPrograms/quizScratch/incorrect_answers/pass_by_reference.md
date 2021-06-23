@@ -40,3 +40,17 @@ foo("abc");
 Snippet A does not use pass-by-reference at all. It passes `abc` to the `foo()` function and then the function returns a primitive value of `("abcabc")`
 
 ---
+
+- [x] **Snippet B**
+
+```javascript
+function foo(s) {
+  return { qux: s };
+}
+
+foo("abc");
+```
+
+Snippet B does use pass-by-reference at least one time. The `foo()` function is passed-by-value `"abc"` but `foo()` returns an object of `{qux: s}`
+
+---
