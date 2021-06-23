@@ -25,7 +25,7 @@ _A: Whenever a function is passed by reference any changes made to the object wi
 
 > **Q: Which of the following code snippets use pass-by-reference at least once?**
 
-- [x] Snippet A
+- [ ] **Snippet A**
 
 ```javascript
 function foo(s) {
@@ -36,3 +36,5 @@ foo("abc");
 ```
 
 Snippet A does not use pass-by-reference at all. It passes `abc` to the `foo()` function and then the function returns a primitive value of `("abcabc")`
+
+---
