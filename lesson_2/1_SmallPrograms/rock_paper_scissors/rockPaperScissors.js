@@ -7,6 +7,7 @@ const WINNING_COMBOS = {
   lizard: ["paper", "spock"],
   spock: ["rock", "scissors"],
 };
+prompt(WINNING_COMBOS.rock);
 
 let gameScore = {
   userScore: 0,
@@ -14,32 +15,28 @@ let gameScore = {
   rounds: 0,
 };
 
-// console.log function ----------------------
 function prompt(message) {
   console.log(`➡️  ${message}`);
-} // -----------------------------------------
+}
 
-// Resetting the game scores to 0 ------------
 function resetGameScore() {
   gameScore.userScore = 0;
   gameScore.computerScore = 0;
   gameScore.rounds = 0;
-} // -----------------------------------------
+}
 
-// Scoring the winner of each round ----------
 function scoreRound(winner) {
-  if (winner === 0) {
+  if (winner === "computer") {
     gameScore.computerScore += 1;
     gameScore.rounds += 1;
     prompt(`computer score ${gameScore.computerScore}`);
-  } else if (winner === 1) {
+  } else if (winner === "user") {
     gameScore.userScore += 1;
     gameScore.rounds += 1;
     prompt(`user score ${gameScore.userScore}`);
   }
-} // -----------------------------------------
+}
 
-// Play the best of 5 rounds -----------------
 function playBest3OutOf5() {
   while (gameScore.userScore < 3 && gameScore.computerScore < 3) {
     prompt(`\n \nRound ${gameScore.rounds} for best 3 out of 5`);
@@ -50,10 +47,10 @@ function playBest3OutOf5() {
     let userChoice = getUserChoice();
     let computerChoice = getComputerChoice();
 
-    prompt(`You chose 😊 ${userChoice}, 🤖 computer chose ${computerChoice}`);
     let winner = displayWinner(userChoice, computerChoice);
 
     scoreRound(winner);
+    console.clear();
   }
 
   if (gameScore.userScore > gameScore.computerScore) {
@@ -61,9 +58,8 @@ function playBest3OutOf5() {
   } else {
     prompt("Computer won!");
   }
-} // -----------------------------------------
+}
 
-// Requesting User Choice --------------------
 function getUserChoice() {
   // Request Input
   prompt(`Choose one: ${VALID_CHOICES.join(", ")}`);
@@ -75,39 +71,35 @@ function getUserChoice() {
     userChoice = READ_LINE.question();
   }
   return userChoice;
-} // -----------------------------------------
+}
 
-// Randomly Assigning Computers Choice -------
 function getComputerChoice() {
   let randomIndex = Math.round(Math.random() * (VALID_CHOICES.length - 1));
   let computerChoice = VALID_CHOICES[randomIndex];
 
   return computerChoice;
-} // -----------------------------------------
+}
 
-// Evaluating if the computer won ------------
 function computerWins(userChoice, computerChoice) {
   return WINNING_COMBOS[computerChoice].includes(userChoice);
-} // ------------------------------------------
+}
 
-// Displaying the Winner ---------------------
 function displayWinner(userChoice, computerChoice) {
   let computerWinsMessage = `Computer scored a point! \n${computerChoice} beats ${userChoice}`;
   let userWinsMessage = `You scored a point! \n${userChoice} beats ${computerChoice}`;
 
   if (computerWins(userChoice, computerChoice)) {
     prompt(computerWinsMessage);
-    return 0;
+    return "computer";
   } else if (computerChoice === userChoice) {
     prompt("Tie!");
-    return 2;
+    return "tie";
   }
 
   prompt(userWinsMessage);
-  return 1;
-} // -----------------------------------------
+  return "user";
+}
 
-// Prompting User To Play Again --------------
 function askToPlayAgain() {
   // Request User Input
   prompt("Do you want to play again? (y/n): ");
@@ -120,9 +112,8 @@ function askToPlayAgain() {
   }
 
   return answer;
-} // -----------------------------------------
+}
 
-// Main Function -----------------------------
 function playRockPaperScissors() {
   while (true) {
     playBest3OutOf5();
@@ -136,5 +127,5 @@ function playRockPaperScissors() {
       break;
     }
   }
-} // -----------------------------------------
+}
 playRockPaperScissors();
