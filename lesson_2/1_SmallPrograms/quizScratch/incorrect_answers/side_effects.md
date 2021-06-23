@@ -23,7 +23,7 @@ function volume(height, width, depth) {
 }
 ```
 
-Snippet A does have side effects. The `volume()` function performs an output operation which is a side-effect.
+Snippet A does have side effects. The `volume()` function performs an output operation to the console which is a side-effect.
 
 ---
 
@@ -57,5 +57,21 @@ function setBoo() {
 ```
 
 Snippet C does have side effects. Within the function `setBoo()` the global variable `boo` is re-assigned, which is a mutation (side-effect).
+
+---
+
+- [ ] **Snippet D**
+
+```javascript
+let num = 22;
+
+function multiply(a, b) {
+    a * b;
+}
+
+}
+```
+
+Snippet D DOES-NOT have side effects. Although the function `multiply()` does multiply the given arguments of `a * b` nothing is passed to `multiply()` and nothing is being I/O and no value is being changed.
 
 ---
