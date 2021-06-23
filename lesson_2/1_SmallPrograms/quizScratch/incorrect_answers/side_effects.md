@@ -43,3 +43,19 @@ function askYesOrNo(prompt) {
 Snippet B does have side effects. Snippet B is performing an input request from the keyboard.
 
 ---
+
+- [x] **Snippet C**
+
+```javascript
+let boo = "gar";
+
+function setBoo() {
+    boo = "xyz";
+}
+
+}
+```
+
+Snippet C does have side effects. Within the function `setBoo()` the global variable `boo` is re-assigned, which is a mutation (side-effect).
+
+---
