@@ -1,9 +1,11 @@
 ## Variable Shadowing
 
 **Q: What is variable shadowing?**
+
 _A: Variable shadowing refers to the practice of naming two variables for example, a global and a local variable and a callback function parameter with the same name and within scopes that over lap._
 
 **Q: What does the variable scoping rule state?**
+
 _A: Inner scope can access variables defined in the outer scope_
 
 **Example:** Of global variable being accessible from inner scope function
