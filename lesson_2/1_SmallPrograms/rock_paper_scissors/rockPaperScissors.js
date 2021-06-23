@@ -7,6 +7,7 @@ const WINNING_COMBOS = {
   lizard: ["paper", "spock"],
   spock: ["rock", "scissors"],
 };
+prompt(WINNING_COMBOS.rock);
 
 let gameScore = {
   userScore: 0,
@@ -25,11 +26,11 @@ function resetGameScore() {
 }
 
 function scoreRound(winner) {
-  if (winner === 0) {
+  if (winner === "computer") {
     gameScore.computerScore += 1;
     gameScore.rounds += 1;
     prompt(`computer score ${gameScore.computerScore}`);
-  } else if (winner === 1) {
+  } else if (winner === "user") {
     gameScore.userScore += 1;
     gameScore.rounds += 1;
     prompt(`user score ${gameScore.userScore}`);
@@ -82,20 +83,21 @@ function getComputerChoice() {
 function computerWins(userChoice, computerChoice) {
   return WINNING_COMBOS[computerChoice].includes(userChoice);
 }
+
 function displayWinner(userChoice, computerChoice) {
   let computerWinsMessage = `Computer scored a point! \n${computerChoice} beats ${userChoice}`;
   let userWinsMessage = `You scored a point! \n${userChoice} beats ${computerChoice}`;
 
   if (computerWins(userChoice, computerChoice)) {
     prompt(computerWinsMessage);
-    return 0;
+    return "computer";
   } else if (computerChoice === userChoice) {
     prompt("Tie!");
-    return 2;
+    return "tie";
   }
 
   prompt(userWinsMessage);
-  return 1;
+  return "user";
 }
 
 function askToPlayAgain() {
