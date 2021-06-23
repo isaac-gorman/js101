@@ -46,10 +46,10 @@ function playBest3OutOf5() {
     let userChoice = getUserChoice();
     let computerChoice = getComputerChoice();
 
-    prompt(`You chose 😊 ${userChoice}, 🤖 computer chose ${computerChoice}`);
     let winner = displayWinner(userChoice, computerChoice);
 
     scoreRound(winner);
+    console.clear();
   }
 
   if (gameScore.userScore > gameScore.computerScore) {
