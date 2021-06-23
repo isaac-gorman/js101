@@ -25,6 +25,8 @@ _A: Whenever a function is passed by reference any changes made to the object wi
 
 > **Q: Which of the following code snippets use pass-by-reference at least once?**
 
+---
+
 - [ ] **Snippet A**
 
 ```javascript
