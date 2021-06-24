@@ -5,7 +5,10 @@ function checkLastIndex(character, string) {
   return string[string.length - 1] === character;
 }
 
-console.log(checkLastIndex("?", str2)); // => true
-console.log(checkLastIndex("?", str1)); // => false
-console.log(checkLastIndex("!", str1)); // => true
-console.log(checkLastIndex("!", str2)); // => false
+// console.log(checkLastIndex("?", str2)); // => true
+// console.log(checkLastIndex("?", str1)); // => false
+// console.log(checkLastIndex("!", str1)); // => true
+// console.log(checkLastIndex("!", str2)); // => false
+
+// Or simply use the pre-built js method "endsWith()"
+// console.log(str1.endsWith("!"));
