@@ -1,9 +1,13 @@
-let ages = { Herman: 32, Lily: 30, Grandpa: 402, Eddie: 10, Spot: 22 };
+let ages = {
+  Herman: 32,
+  Lily: 30,
+  Grandpa: 402,
+  Eddie: 10,
+  Spot: 22,
+  Jasmine: 24,
+};
 
-// const descriptor1 = Object.getOwnPropertyDescriptor(ages, "Spot");
-
-// console.log(descriptor1.configurable);
-
+// The manual way
 let getEntry = (entry, object) => {
   let arrayOfKeys = Object.keys(object);
   let containsEntry = false;
@@ -14,6 +18,12 @@ let getEntry = (entry, object) => {
     }
   }
 
-  return containsEntry;
+  console.log(containsEntry);
 };
-console.log(getEntry("Spot", ages));
+getEntry("Spot", ages);
+
+// The pre-built method way
+let getEntryEasy = (entry, object) => {
+  console.log(object.hasOwnProperty(entry));
+};
+getEntryEasy("Isaac", ages);
