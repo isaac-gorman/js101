@@ -21,4 +21,4 @@ function switchWord(string, targetWord, switchWord) {
 // switchWord(advice, "important", "urgent");
 
 // or use an existing array method
-prompt(advice.replace("life", "vida"));
+// prompt(advice.replace("life", "vida"));
