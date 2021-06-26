@@ -2,6 +2,7 @@
 
 let flintstones = ["Fred", "Barney", "Wilma", "Betty", "Bambam", "Pebbles"];
 
-flintstones.push("Dino");
+// Passing multiple arguments to .push()
+flintstones.push("Dino", "Hoppy");
 
 console.log(flintstones);
