@@ -11,5 +11,24 @@
 // output:
 // - [1, 2, 4, 5]
 
+function prompt(message) {
+  console.log(message);
+}
+
 let startArray = [1, 2, 3, 4, 5];
-console.log(startArray.filter((currentValue, index) => index !== 2));
+// console.log(startArray.filter((currentValue, index) => index !== 2));
+
+// Using the splice()
+// Q: What does the splice method do?
+// A: The splice method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+
+// Q: How do I used the splice method?
+// A: the splice syntax is as follows
+/*
+ splice(startIndex)
+ splice(startIndex, deleteCount)
+ splice(start, deleteCount, replacementItem1)
+ splice(start, deleteCount, replacementItem1, replacementItem2)
+*/
+startArray.splice(2, 1, "🦖");
+prompt(startArray);
