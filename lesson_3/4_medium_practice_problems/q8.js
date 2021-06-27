@@ -18,7 +18,7 @@ function messWithDemographics(demoObject) {
 function doNotMessWithDemographics(demoObject) {
   let newObject = {};
   for (const key in demoObject) {
-    newObject.key = demoObject.key;
+    newObject = {key}
   }
   console.log(newObject);
 

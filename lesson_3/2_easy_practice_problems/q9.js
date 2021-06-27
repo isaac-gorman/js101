@@ -13,3 +13,6 @@ function whiteSpaces(amount) {
 
 console.log(whiteSpaces(centerSpaces) + title + whiteSpaces(centerSpaces));
 console.log(whiteSpaces(40));
+
+
+
