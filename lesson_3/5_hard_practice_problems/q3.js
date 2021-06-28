@@ -6,6 +6,11 @@
 }
 
 function messWithVars(one, two, three) {
+  // non-mutating operation (reassigning)
+  // one = two;
+  // two = three;
+  // three = one;
+
   one.splice(0, 1, "two");
   two.splice(0, 1, "three");
   three.splice(0, 1, "one");
