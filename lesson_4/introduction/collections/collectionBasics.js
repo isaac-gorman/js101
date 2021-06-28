@@ -65,5 +65,31 @@ let getWord = (word, string) => {
   return false;
 };
 
-getWord("hello", practiceString);
-getWord("grass", practiceString);
+// getWord("hello", practiceString);
+// getWord("grass", practiceString);
+
+// Q: What happens when you pass negative arguments to the slice() method?
+/*
+
+  When negative numbers are passed to the slice() method the negative numbers are evaluated as: 
+    string.length + (-index)
+
+
+*/
+
+// Q: What is the difference between the string methods slice() and substring()
+/* A: 
+
+   Both methods return a substring based on taking a starting, and an ending index but the differ in the following ways:
+   
+     1. Whenever the substring() method is passed a start index that is
+        greater last index substring swaps the two arguments. While slice
+        would return an empty string. 
+
+     2. Whenever you pass substring() a negative arguments for either argument
+        substring will reassign any negative value as 0. 
+
+
+*/
+
+// Conclusion: Do not use substring as it has un-natural behaviors and outcomes. Instead use splice. Also be aware of .substr() a legacy method.
