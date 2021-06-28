@@ -1,4 +1,4 @@
-let prompt = (message) => console.log(`${message}`);
+export let prompt = (message) => console.log(`${message}`);
 
 // OVERVIEW
 // Q: What are collections made up of?
