@@ -104,66 +104,30 @@
   - return the resultsArray
 
 */
-// Implementing the example algorithm
 
-let substringfy = (string) => {
-  let targetArray = [];
-  string.split("").forEach((crrV, index, currentArray) => {
-    if (index === currentArray.length - 2) {
-      // append 2 letters
-      targetArray.push(`${crrV}${currentArray[index + 1]}`);
-    } else if (index < currentArray.length - 2) {
-      // append 2 letters
-      targetArray.push(`${crrV}${currentArray[index + 1]}`);
+// Implementing the hard parts of the algorithm
 
-      // append 3 letters
-      targetArray.push(
-        `${crrV}${currentArray[index + 1]}${currentArray[index + 2]}`
-      );
-    }
-  });
-  return targetArray;
-};
+/* Hard Parts of the Algorithm
 
-let isPalindrome = (substring) => {
-  // I need to compare every element in the array with its reversed version of itself
-  let reversedWord = substring.split("").reverse().join("");
-  console.log(reversedWord);
-  if (substring === reversedWord) {
-    console.log(`${substring} is a palindrome`);
-    return true;
-  } else {
-    console.log(`${substring} is NOT palindrome`);
-    return false;
-  }
-};
-// isPalindrome(subStringArray);
-
-function palindromeSubstrings(string) {
-  let resultsArray = [];
-  let subStringsArray = substringfy(string);
-
-  subStringsArray.forEach((substring) => {
-    if (isPalindrome(substring)) {
-      resultsArray.push(substring);
-    }
-  });
-
-  console.log(resultsArray);
-  return resultsArray;
-}
-
-palindromeSubstrings("abcddcbA");
-
-/* Substring Logic 
-
-    substring logic for string 'halo'
+  for each starting index from 0 through the next to the last index position or (collection.length - 2)
+    for each substring length from 2 until there are no substrings of that length
+        extract that substring of the indicated length starting at the indicated index position 
+    end inner loop
+  end outer loop  
 
 */
 
-let simpleString = "mom";
+let simpleString = "halo";
+let stringArray = simpleString.split("");
+let subStringArray = [];
 
-let subStringArray = substringfy(simpleString);
-// console.log(subStringArray);
+for (let index = 0; index < stringArray.length - 1; index++) {
+  //   console.log(stringArray[index]);
+  let tempStringArray = stringArray.slice(index, stringArray.length);
+  while (tempStringArray.length !== 1) {
+    subStringArray.push(tempStringArray.join(""));
+    tempStringArray.pop();
+  }
+}
 
-// let substringArray = ["ha", "hal", "al", "alo", "lo"];
+console.log(subStringArray);
