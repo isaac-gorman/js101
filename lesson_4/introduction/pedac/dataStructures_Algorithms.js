@@ -126,7 +126,7 @@ let mySubStringify = (string) => {
     console.log(subStringArray);
   }
 };
-mySubStringify("tacocat");
+// mySubStringify("tacocat");
 
 /* More hard parts
 
@@ -169,6 +169,11 @@ Implement this logic
 
 */
 
+/*
+
+- Inside the 'isPalindrome' function, check whether the string value is equal to the its reversed value
+
+*/
 function getSubStrings(string) {
   let result = [];
   let startingIndex = 0;
@@ -178,24 +183,45 @@ function getSubStrings(string) {
   while (startingIndex <= string.length) {
     let numChars = 2;
     if (outerRound >= 2) {
-      console.log(`\n\tReset numChars = ${numChars}`);
+      //   console.log(`\n\tReset numChars = ${numChars}`);
     }
-    console.log(`\nOuter Round ${outerRound}`);
+    // console.log(`\nOuter Round ${outerRound}`);
     while (numChars <= string.length - startingIndex) {
       let substring = string.slice(startingIndex, startingIndex + numChars);
-      console.log(` - inner round ${innerRound}: `, substring);
+      //   console.log(` - inner round ${innerRound}: `, substring);
       result.push(substring);
       numChars++;
       innerRound++;
-      console.log(`\tincremented numChars = ${numChars}`);
+      //   console.log(`\tincremented numChars = ${numChars}`);
     }
 
-    console.log("startingIndex: ", startingIndex);
+    // console.log("startingIndex: ", startingIndex);
     innerRound = 1;
     startingIndex++;
     outerRound++;
   }
-  console.log(result);
+  //   console.log(result);
   return result;
 }
-getSubStrings("goalies");
+
+function isPalindrome(string) {
+  return string === string.split("").reverse().join("");
+}
+
+function palindromeSubstrings(string) {
+  let palindromeArray = [];
+  let substringArray = getSubStrings(string);
+
+  substringArray.forEach((crrV) => {
+    if (isPalindrome(crrV)) {
+      palindromeArray.push(crrV);
+    }
+  });
+
+  return palindromeArray;
+}
+
+console.log(palindromeSubstrings("supercalifragilisticexpialidocious")); // ["ili"]
+console.log(palindromeSubstrings("abcddcbA")); // ["bcddcb", "cddc", "dd"]
+console.log(palindromeSubstrings("palindrome")); // []
+console.log(palindromeSubstrings("")); // []
