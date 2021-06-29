@@ -89,11 +89,6 @@
                 - compare weather the next two characters before and after the reversed word is a palindrome. Repeat this process till the words do not equal palindrome. 
 
         - return the palindromeArray     
-
-
-
-
-
 */
 /* Example Algorithm
 
@@ -106,7 +101,6 @@
 */
 
 // Implementing the hard parts of the algorithm
-
 /* Hard Parts of the Algorithm
 
   for each starting index from 0 through the next to the last index position or (collection.length - 2)
@@ -115,19 +109,93 @@
     end inner loop
   end outer loop  
 
+
 */
 
-let simpleString = "halo";
-let stringArray = simpleString.split("");
-let subStringArray = [];
+let mySubStringify = (string) => {
+  let stringArray = string.split("");
+  let subStringArray = [];
 
-for (let index = 0; index < stringArray.length - 1; index++) {
-  //   console.log(stringArray[index]);
-  let tempStringArray = stringArray.slice(index, stringArray.length);
-  while (tempStringArray.length !== 1) {
-    subStringArray.push(tempStringArray.join(""));
-    tempStringArray.pop();
+  for (let index = 0; index < stringArray.length - 1; index++) {
+    let tempStringArray = stringArray.slice(index, stringArray.length);
+
+    while (tempStringArray.length !== 1) {
+      subStringArray.push(tempStringArray.join(""));
+      tempStringArray.pop();
+    }
+    console.log(subStringArray);
   }
-}
+};
+mySubStringify("tacocat");
 
-console.log(subStringArray);
+/* More hard parts
+
+Implement this logic
+
+// - create an empty array called `result` that will contain all required substrings
+// - create a `startingIndex` variable (value `0`) for the starting index of a substring
+// - start a loop that uses `startingIndex` to iterate over `string` from `0` to the length of the string minus 2
+//   - create a `numChars` variable (value `2`) for the length of a substring
+//   - start an inner loop that uses `numChars` to iterate over `string` from `2` to `string.length - startingIndex`
+//     - extract a substring of length `numChars` from `string` starting at `startingIndex`
+//     - append the extracted substring to the `result` array
+//     - increment the `numChars` variable by `1`
+//   - end the inner loop
+//   - increment the `startingIndex` variable by `1`
+// - end the outer loop
+// - return the `result` array
+
+*/
+
+/*
+
+  START
+
+   Given a string named `string`
+
+   SET result = []
+   SET startingIndex = 0
+
+   WHILE startingIndex <= string.length - 2
+     SET numChars = 2
+     WHILE numChars <= string.length - startingIndex
+       SET substring = numChars character form string starting at the index startingIndex
+       append substring to result array
+       SET numChars = numChars + 1;
+     
+     SET startingIndex += 1
+   
+   RETURN result
+
+*/
+
+function getSubStrings(string) {
+  let result = [];
+  let startingIndex = 0;
+  let innerRound = 1;
+  let outerRound = 1;
+
+  while (startingIndex <= string.length) {
+    let numChars = 2;
+    if (outerRound >= 2) {
+      console.log(`\n\tReset numChars = ${numChars}`);
+    }
+    console.log(`\nOuter Round ${outerRound}`);
+    while (numChars <= string.length - startingIndex) {
+      let substring = string.slice(startingIndex, startingIndex + numChars);
+      console.log(` - inner round ${innerRound}: `, substring);
+      result.push(substring);
+      numChars++;
+      innerRound++;
+      console.log(`\tincremented numChars = ${numChars}`);
+    }
+
+    console.log("startingIndex: ", startingIndex);
+    innerRound = 1;
+    startingIndex++;
+    outerRound++;
+  }
+  console.log(result);
+  return result;
+}
+getSubStrings("goalies");
