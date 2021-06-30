@@ -1,22 +1,45 @@
-function sumEvenNumberRow(rowNumber) {
-  //
-}
-
 function createRow(startInteger, rowLength) {
-  const row = [];
+  let row = [];
+  let currentInteger = startInteger;
 
   while (row.length < rowLength) {
-    row.push(startInteger);
-    startInteger += 2;
+    row.push(currentInteger);
+    currentInteger += 2;
   }
 
-  return rows;
+  return row;
 }
 
-// Test Cases
-console.log(createRow(2, 1)); // => [2]
-console.log(createRow(4, 2)); // => [4, 6]
-console.log(createRow(8, 3)); // => [8, 10, 12]
+function sumOfIntegers(lastArray) {
+  return lastArray.reduce((acc, crrV) => (acc += crrV), 0);
+}
+
+function sumEvenNumberRow(rowNumber) {
+  let rows = [];
+  let startInteger = 2;
+  for (let currentRowNum = 1; currentRowNum <= rowNumber; currentRowNum++) {
+    let row = createRow(startInteger, currentRowNum);
+    rows.push(row);
+    startInteger = row[row.length - 1] + 2;
+  }
+
+  let finalRow = rows.pop();
+  let sum = sumOfIntegers(finalRow);
+
+  return sum;
+}
+
+// TEST CASES
+// - sumEvenNumberRow
+console.log(sumEvenNumberRow(1)); // => 2
+console.log(sumEvenNumberRow(2)); // => 10
+console.log(sumEvenNumberRow(3)); // => 30
+console.log(sumEvenNumberRow(4)); // => 68
+
+// - createRow
+// console.log(createRow(2, 1)); // => [2]
+// console.log(createRow(4, 2)); // => [4, 6]
+// console.log(createRow(8, 3)); // => [8, 10, 12]
 
 // Algorithm
 // 1. Create an empty "row" array to contain the integers
