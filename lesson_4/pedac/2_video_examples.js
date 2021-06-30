@@ -196,7 +196,7 @@
 */
 
 // My Solution
-function getRows(rowMax) {
+function getRow(rowMax) {
   const ROW_MAX = rowMax;
   let rowsArray = [];
   let consecutiveIntegerSequence = 2;
@@ -213,7 +213,7 @@ function getRows(rowMax) {
     integersPerRow++;
   }
 
-  return rowsArray;
+  return rowsArray[ROW_MAX - 1];
 }
 
 function sumOfRow(row) {
@@ -221,8 +221,8 @@ function sumOfRow(row) {
 }
 
 function sumEvenNumberRows(rowMax) {
-  let rowsArray = getRows(rowMax);
-  let sum = sumOfRow(rowsArray[rowMax - 1]);
+  let rowArray = getRow(rowMax);
+  let sum = sumOfRow(rowArray);
   console.log(sum);
 }
 // sumEvenNumberRows(4);
@@ -242,5 +242,27 @@ function sumEvenNumberRows(rowMax) {
     3. Repeat step 2 till we have created all the rows rows have been created specified up to the specified number of rows
     4. Sum the final row
     5. Return the sum of the final row
+
+
+    Sub-Problem: Create a Row
+
+        Rules: 
+        - Row is an array
+        - Arrays contain integers
+        - Integers are consecutive even numbers 
+        - Integers in each row form part of the overall larger sequence 
+        - Rows are equal in length to their row number
+
+        Inputs: 
+        - number that specifies row
+        
+        
+        Outputs: 
+        - specified row and its integers
+        
+        
+
+
+
 
 */
