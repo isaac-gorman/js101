@@ -1,5 +1,4 @@
 // Selection and Transformation
-
 /* Q: Besides iterations what are the two most common actions done on collection?
    
    - 1. Selection 
