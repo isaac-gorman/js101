@@ -54,5 +54,4 @@ let fruits = ["apple", "orange", "pear"];
 
    A: Whether or not we need to mutate the original collection or return a new collection.
 
-
 */
