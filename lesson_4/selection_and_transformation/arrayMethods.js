@@ -1,5 +1,6 @@
 // ARRAY METHODS
-/*  Q&A Assignment Annotations
+// - Q&A Assignment Annotations
+/* - Intro / forEach()
 
     Q: Why is iterating over collections with for or while loop repetitive and unnecessary?
     A: Because JS provides easier ways to work with arrays using built in methods
@@ -39,10 +40,12 @@
     Q: What is array destructuring assignment? 
     A: Array destructuring assignment is the process of assigning elements of an array to multiple variables by wrapping the multiple variable names in brackets
 
-    None Intuitive Behaviors
+    Non-Intuitive Behaviors
     Q: What is odd about the forEach method?
-    A:
+    A: forEach() methods always return undefined 
 
+    Q: Why does forEach always return undefined?
+    A: Because forEach is just a method call. And all methods in JS return something even if it's undefined. For that matter the return value of forEach is not important because its sole purpose is for iteration. Furthermore forEach is immutable.
 
 
 */
@@ -50,3 +53,7 @@
 // [1, 2, 3].forEach((currentNumber) => console.log(currentNumber));
 
 // "abcdefghijklmnopqrstuvwxyz".split("").forEach((char) => console.log(char));
+
+// let ogArray = [1, 2, 3];
+// ogArray.forEach((currentNumber) => console.log((currentNumber += 1)));
+// console.log(ogArray);
