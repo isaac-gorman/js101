@@ -1,5 +1,5 @@
 // ARRAY METHODS
-// - Q&A Assignment Annotations
+// Q&A Assignment Annotations
 /* - Intro / forEach()
 
     Q: Why is iterating over collections with for or while loop repetitive and unnecessary?
@@ -47,13 +47,82 @@
     Q: Why does forEach always return undefined?
     A: Because forEach is just a method call. And all methods in JS return something even if it's undefined. For that matter the return value of forEach is not important because its sole purpose is for iteration. Furthermore forEach is immutable.
 
+    **Scratch Code**
+    // [1, 2, 3].forEach((currentNumber) => console.log(currentNumber));
+
+    // "abcdefghijklmnopqrstuvwxyz".split("").forEach((char) => console.log(char));
+
+    // let ogArray = [1, 2, 3];
+    // ogArray.forEach((currentNumber) => console.log(  (currentNumber += 1)));
+    // console.log(ogArray);
 
 */
 
-// [1, 2, 3].forEach((currentNumber) => console.log(currentNumber));
+/* - Array.prototype.filter()
 
-// "abcdefghijklmnopqrstuvwxyz".split("").forEach((char) => console.log(char));
+    Q: What do we do if we want to select of filter certain elements from an array?
+    A: We can either use a for or while loop, or we can use a much more succinct approach with the filter() method.
 
-// let ogArray = [1, 2, 3];
-// ogArray.forEach((currentNumber) => console.log((currentNumber += 1)));
-// console.log(ogArray);
+    Q: How does filter() work?
+    A: To preform selections filter() it:
+      Step 1) Examines each of the return value of the callback on each iteration. 
+
+      Step 2) As it examines each of the return values it determines the truthiness of the return value. In fact that is the only thing that the filter() method is concerned with in regards to the callback's return value: wether it is truthy or falsy. And remember that truthy and falsy are not the same as true and false.
+
+    Q: What are the 6 values that JS evaluates as falsy?
+    A: List:
+     1. 0
+     2. null
+     3. undefined
+     4. ""
+     5. NaN
+     6. false
+
+    Q: What is the preferred method of implementation for a simple "selection criterion"? 
+    A: Using an implied return 
+    [1, 2, 3].filter(num => num % 2 === 1) 
+
+    Q: What is better to for filtering an object, filter() or forEach() and why?
+    A: forEach is better suited for filtering an object as you don't have to deal with the limitations of a filter only returning the array in which meets a selection criterion an you can simply just add a selection criterion to a forEach instead.
+
+
+let test = [1, 2, 3].filter((num) => num - 3);
+console.log(test); // => [1, 2]
+
+let produce = {
+  apple: "Fruit",
+  carrot: "Vegetable",
+  pear: "Fruit",
+  broccoli: "Vegetable",
+};
+
+let produceKeyValuePairs = Object.entries(produce);
+let onlyVegetables = {};
+
+produceKeyValuePairs.forEach((nestedKeyValuePair) => {
+  let [key, value] = nestedKeyValuePair;
+  if (value === "Vegetable") onlyVegetables[key] = value;
+});
+
+console.log(onlyVegetables);
+
+*/
+
+/* - Array.prototype.map()
+
+   Q: What is similar and different about the  filter() and map() methods?
+   A:
+
+   Q: How does map() work?
+   A:
+
+   Q: What is happens if we write code like this: 
+   Q: What did you just realize about filter and map?
+   A: Operations are conducted based on the return values of the callback not something else occurring from within the callback
+
+
+
+*/
+
+// let newArray = [1, 2, 3].map((num) => num % 2 === 1);
+// console.log(newArray);
