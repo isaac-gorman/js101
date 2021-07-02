@@ -81,11 +81,9 @@ let produce = {
 };
 
 let justTheFruit = selectFruit(produce);
-// => { apple: 'Fruit', pear: 'Fruit' }
 // console.log(justTheFruit);
 
 let justOtherTheFruit = otherSelectFruit(produce);
-// => { apple: 'Fruit', pear: 'Fruit' }
 // console.log(justOtherTheFruit);
 
 // - Extracting transformations logic to functions
