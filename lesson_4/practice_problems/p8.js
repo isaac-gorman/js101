@@ -9,4 +9,4 @@ let flintstones = ["Fred", "Barney", "Wilma", "Betty", "Pebbles", "Bambam"];
 
 let flintObj = {};
 flintstones.forEach((element, index) => (flintObj[element] = index));
-console.log(flintObj);
+console.table(flintObj);
