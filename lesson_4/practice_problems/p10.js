@@ -36,4 +36,4 @@ charInStatement.forEach((char) => {
 
 // Where we are result[char] = result[char] || 0; we are taking advantage of 'short-circuiting'
 // Q: What is short-circuiting?
-// A: When you evaluate the left operand of the || (or operator)
+// A: When you evaluate the left operand of the || (or operator). If truthy JavaScript will evaluate the right operand; it only takes the right operand when left falsy. Thus, if a character doesn't exist as a key it will return undefined aka a falsy value, resulting to the assignment to be 0;
