@@ -1,4 +1,4 @@
-// SORTING
+// SORTING Notes
 /*
     Q: What are the various way to work with collections?
     - A: Examples: 
@@ -135,31 +135,40 @@
 let prompt = (output) => console.log(output);
 let tablefy = (output) => console.table(output);
 
-let words = ["go", "ahead", "and", "jump"];
-// tablefy(words.sort((a, b) => a.length - b.length));
+// Sorting array of words by length
+{
+  let words = ["go", "ahead", "and", "jump"];
+  // tablefy(words.sort((a, b) => a.length - b.length));
+}
 
-let numbers = [2, 11, 9, 4, 107, 21, 1];
-// let round = 1;
-// tablefy(
-//   numbers.sort((a, b) => {
-//     prompt(`${a} - ${b} = ${a - b}\nround: ${round}`);
-//     round++;
-//     return a - b;
-//   })
-// );
+// Sorting array by numeric value
+{
+  let numbers = [2, 11, 9, 4, 107, 21, 1];
+  // let round = 1;
+  // tablefy(
+  //   numbers.sort((a, b) => {
+  //     prompt(`${a} - ${b} = ${a - b}\nround: ${round}`);
+  //     round++;
+  //     return a - b;
+  //   })
+  // );
+}
 
-let scores = [
-  [3, 6, 4],
-  [6, 8, 9],
-  [1, 4, 2],
-];
+// Sorting nested arrays by total
+{
+  let scores = [
+    [3, 6, 4],
+    [6, 8, 9],
+    [1, 4, 2],
+  ];
 
-let reducer = (arr) => arr.reduce((acc, cv) => (acc += cv), 0);
+  let reducer = (arr) => arr.reduce((acc, cv) => (acc += cv), 0);
 
-tablefy(
-  scores.sort((a, b) => {
-    let aReduce = reducer(a);
-    let bReduce = reducer(b);
-    return aReduce - bReduce;
-  })
-);
+  // tablefy(
+  //   scores.sort((a, b) => {
+  //     let aReduce = reducer(a);
+  //     let bReduce = reducer(b);
+  //     return aReduce - bReduce;
+  //   })
+  // );
+}
