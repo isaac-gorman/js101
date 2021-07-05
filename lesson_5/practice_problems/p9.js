@@ -41,5 +41,5 @@ let sortedArrays = arr.map((subArr) => {
       : copyArr.sort();
   });
 
-  console.log(sortedArrays);
+  //   console.log(sortedArrays);
 }
