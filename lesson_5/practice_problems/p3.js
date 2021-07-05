@@ -11,4 +11,4 @@ let arr2 = [
 // console.log(arr2[1].third[0]);
 
 let arr3 = [["abc"], ["def"], { third: ["ghi"] }];
-console.log(arr3[2].third[0][0]);
+// console.log(arr3[2].third[0][0]);
