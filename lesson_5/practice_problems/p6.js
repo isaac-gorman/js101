@@ -14,12 +14,11 @@ let munsters = {
 let munstersMembers = Object.keys(munsters);
 let munstersFamilyIntro = () => {
   return munstersMembers.forEach((crrV) => {
-    let age = crrV["age"];
-    console.log(crrV.age);
     let upperCaseName = crrV.charAt(0).toUpperCase() + crrV.slice(1);
-    let gender = crrV["gender"];
-    console.log(`${upperCaseName} is  ${age}-year-old ${gender}`);
+    let age = munsters[crrV]["age"];
+    let gender = munsters[crrV]["gender"];
+    console.log(`${upperCaseName} a is ${age}-year-old ${gender}`);
   });
 };
 
-munstersFamilyIntro();
+// munstersFamilyIntro();
