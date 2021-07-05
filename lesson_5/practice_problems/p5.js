@@ -14,6 +14,8 @@ let deepCopyMunstersData = JSON.parse(serializedMunstersData);
 // console.log(Object.keys(deepCopyMunstersData));
 let agesTotal = 0;
 Object.keys(deepCopyMunstersData).forEach((crrV) => {
-  return (agesTotal += deepCopyMunstersData[crrV]["age"]);
+  if (deepCopyMunstersData[crrV]["gender"] === "male") {
+    return (agesTotal += deepCopyMunstersData[crrV]["age"]);
+  }
 });
-// console.log(agesTotal);
+console.log(agesTotal); // => 444
