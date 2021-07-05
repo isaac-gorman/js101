@@ -15,3 +15,8 @@ let obj1 = { first: [1, 2, [3]] };
 // console.log(obj1);
 obj1["first"][2][0] = 4;
 // console.log(obj1);
+
+let obj2 = { a: { a: ["1", "two", 3], b: 4 }, b: 5 };
+console.log(obj2);
+obj2["a"]["a"][2] = 4;
+console.log(obj2);
