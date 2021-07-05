@@ -31,14 +31,15 @@ let sortedArrays = arr.map((subArr) => {
 //   ["black", "blue", "green"]
 // ]
 
-console.log(sortedArrays);
+// console.log(sortedArrays);
 
 {
   let sortedArrays = arr.map((subArr) => {
+    let copyArr = subArr.slice();
     return typeof subArr[0] === "number"
-      ? subArr.sort((a, b) => Number(a) - Number(b))
-      : subArr.sort();
+      ? copyArr.sort((a, b) => Number(a) - Number(b))
+      : copyArr.sort();
   });
 
-  //   console.log(sortedArrays);
+  console.log(sortedArrays);
 }
