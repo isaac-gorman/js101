@@ -10,3 +10,8 @@ let arr2 = [{ a: 1 }, { b: 2, c: [7, 6, 5], d: 4 }, 3];
 // console.log(arr2);
 arr2[2] = 4;
 // console.log(arr2);
+
+let obj1 = { first: [1, 2, [3]] };
+// console.log(obj1);
+obj1["first"][2][0] = 4;
+// console.log(obj1);
