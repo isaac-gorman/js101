@@ -94,11 +94,18 @@
 
     - Step 5): Is the return value being used by whatever instigated the action? 
 
+
+    Q: Why doesn't displaying a value with console.log the same as returning a value? 
+    - A: Because using the return key word terminates a function and returns can pass a particular value to whatever has called it. Returns can transfer data from itself to whatever has called it, console.log() simply displays data to the terminal or console. Return completer stops the flow of code, console.log() does not.
+
 */
 
 let prompt = (output) => console.log(output);
 let tablefy = (output) => console.table(output);
 
+let greet = (test) => test;
+let arr = [1, 2, greet("hi"), greet("bye")];
+// prompt(arr[3]);
 // Scratch
 {
   let printGreeting = (test) => console.log(test);
@@ -213,10 +220,10 @@ let tablefy = (output) => console.table(output);
         */
   }
 
-  let withMap = [
-    [1, 2],
-    [3, 4],
-  ].map((arr) => console.log([arr[0]]));
+  // let withMap = [
+  //   [1, 2],
+  //   [3, 4],
+  // ].map((arr) => console.log([arr[0]]));
 
   let codeMappingChart = [
     {
@@ -254,12 +261,224 @@ let tablefy = (output) => console.table(output);
     },
   ];
 
-  tablefy(codeMappingChart);
+  // tablefy(codeMappingChart);
 }
 
 // Example 3
 {
-  /*
-        Q: 
-    */
+  let randomArray = [
+    [1, 2],
+    [3, 4],
+    ["🚀", "🤖"],
+  ];
+
+  let pseudoMap = (array, callback) => {
+    let newArray = [];
+    // repeat the code bellow for each element in the array
+    array.forEach((crrV) => {
+      let newElements = callback(crrV);
+      newArray.push(newElements);
+    });
+
+    return newArray;
+  };
+
+  // let execution = prompt(
+  //   pseudoMap(randomArray, (arr) => {
+  //     let handOffValue = arr[0];
+  //     // console.log(arr[0]);
+  //     return handOffValue;
+  //     // Callback Return Values:
+  //     // return 1. => 1
+  //     // return 2. => 3
+  //     // return 3. => "🚀"
+  //   })
+  // ); // pseudoMap => [1, 3, "🚀"]
+
+  // return execution;
+
+  // let mapArr = [
+  //   [1, 2],
+  //   [3, 4],
+  //   ["🚀", "🤖"],
+  // ].map((arr) => {
+  //   console.log(arr[0]);
+  //   return arr[0];
+  //   // Callback Return Values:
+  //   // return 1. => 1
+  //   // return 2. => 3
+  //   // return 3. => "🚀"
+  // }); // => [1, 3, "🚀"]
+
+  // prompt(typeof mapArr[0]);
+
+  let codeMappingChart = [
+    {
+      actionNumber: 1,
+      action: "method call (map())",
+      preformedOn: "the outer array (the nested array)",
+      sideEffects: NaN,
+      returnValues: [1, 3],
+      isReturnValueUsed: false,
+    },
+    {
+      actionNumber: 2,
+      action: "callback execution",
+      preformedOn: "each sub-array",
+      sideEffects: NaN,
+      returnValues: "A number at the index of 0 per each sub-array",
+      isReturnValueUsed:
+        "Yes, each callback returns the sub-arrays element at the index of 0",
+    },
+    {
+      actionNumber: 3,
+      action: "element reference within the console.log()",
+      preformedOn: "each sub-array",
+      sideEffects: "Yes, outputs a string representation of the integer values",
+      returnValues: undefined,
+      isReturnValueUsed: false,
+    },
+    {
+      actionNumber: 4,
+      action: "element reference at the return",
+      preformedOn: "each sub-array",
+      sideEffects: NaN,
+      returnValues: "the element at that sub array",
+      isReturnValueUsed: "Yes, by the by the return",
+    },
+    {
+      actionNumber: 5,
+      action: "method call of console.log()",
+      preformedOn: "the element at the index of 0 of the sub-array",
+      sideEffects:
+        "outputs the string representation of the number at the sub-array index of 0",
+      returnValues: undefined,
+      isReturnValueUsed: false,
+    },
+    {
+      actionNumber: 6,
+      action: "explicit return",
+      preformedOn: "the element at the index of 0 of the sub-array",
+      sideEffects: "returns the number at index of 0 of each sub-array",
+      returnValues: [1, 3],
+      isReturnValueUsed:
+        "Yes, the returned values are used by the map() method to construct a new array",
+    },
+  ];
 }
+
+// Example 4
+{
+  let codeMappingChart = [
+    {
+      actionNumber: "-1",
+      action: "variable declaration and assignment",
+      preformedOn: NaN,
+      sideEffects: false,
+      returnValues:
+        "undefined, (variable declaration always evaluates to undefined)",
+      isReturnValueUsed: false,
+    },
+    {
+      actionNumber: 0,
+      action: "None, the myArr variable isn't being called",
+      preformedOn: "lack of action or call on the myArr variable",
+      sideEffects: NaN,
+      returnValues: undefined,
+      isReturnValueUsed: false,
+    },
+    {
+      actionNumber: 1,
+      action: "method call of forEach",
+      preformedOn: "outer array [[18, 7], [3, 12]]",
+      sideEffects: false,
+      returnValues: undefined,
+      isReturnValueUsed:
+        "Yes, if the the myArr variable is ever called it will actually assign the return of undefined to myArr",
+    },
+    {
+      actionNumber: 2,
+      action: "outer callback execution",
+      preformedOn: "each sub-array",
+      sideEffects: false,
+      returnValues: "The value of map: [undefined, undefined]",
+      isReturnValueUsed: false,
+    },
+    {
+      actionNumber: 3,
+      action: "method call of map",
+      preformedOn: "each element within the sub-array",
+      sideEffects: false,
+      returnValues: [undefined, undefined],
+      isReturnValueUsed:
+        "Yes, the value aka the array is handed off to the outer callback",
+    },
+    {
+      actionNumber: 4,
+      action: "inner callback execution",
+      preformedOn:
+        "every element within the subarray limited to the iteration of the outer callback, the callback does not have control to the logic of how many times it gets executed ",
+      sideEffects: false,
+      returnValues: undefined,
+      isReturnValueUsed:
+        "Yes, by map but the since the value is undefined it gets pushed to the new array of map as undefined",
+    },
+    {
+      actionNumber: 5,
+      action: "the comparison selection criterion or conditional logic",
+      preformedOn: "every element of the sub-array in that iteration ",
+      sideEffects: false,
+      returnValues: Boolean,
+      isReturnValueUsed: "Yes, evaluated by if",
+    },
+    {
+      actionNumber: 6,
+      action: "method execution of console.log()",
+      preformedOn:
+        "every execution of the callback within the map method on each element of the sub-array of the outer most array",
+      sideEffects: "Yes, transforms every non string into a string value",
+      returnValues: false,
+      isReturnValueUsed: false,
+    },
+  ];
+}
+// example of invoking a function without calling it
+// (function testFunc() {
+//   console.log("SUP!");
+// })();
+
+return;
+let randomArray = [
+  [18, 7],
+  [3, 12],
+];
+
+let testCallback = (num) => {
+  if (num > 5) {
+    return console.log("returned from conditional: ", num);
+  }
+};
+let forEachValue = randomArray.forEach((arr) => {
+  let mapValue = arr.map((num) => {
+    let result = testCallback(num);
+    console.log("is there a result? ", result);
+    return result;
+
+    // Callback Round 1: return (aka data handoff):
+    // return 1. => "18"
+    // return 2. => "7"
+
+    // Callback Round 2: return (aka data handoff):
+    // return 1. => "undefined"
+    // return 2. => "12"
+  }); // map return:
+  console.log("mapValue: ", mapValue);
+  return mapValue;
+  // round 1 => [undefined, undefined]
+  // round 2 => [undefined, undefined]
+}); // forEach() => undefined
+
+// prompt(forEachValue);
+
+// let hi = testFunc("hi");
+// let bye = testFunc("bye");
