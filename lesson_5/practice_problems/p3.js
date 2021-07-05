@@ -8,4 +8,7 @@ let arr2 = [
   { first: ["a", "b", "c"], second: ["d", "e", "f"] },
   { third: ["g", "h", "i"] },
 ];
-console.log(arr2[1].third[0]);
+// console.log(arr2[1].third[0]);
+
+let arr3 = [["abc"], ["def"], { third: ["ghi"] }];
+console.log(arr3[2].third[0][0]);
