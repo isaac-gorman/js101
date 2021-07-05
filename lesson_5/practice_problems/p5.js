@@ -12,10 +12,14 @@ let munsters = {
 let serializedMunstersData = JSON.stringify(munsters);
 let deepCopyMunstersData = JSON.parse(serializedMunstersData);
 // console.log(Object.keys(deepCopyMunstersData));
-let agesTotal = 0;
+let maleTotal = 0;
+let femaleTotal = 0;
 Object.keys(deepCopyMunstersData).forEach((crrV) => {
   if (deepCopyMunstersData[crrV]["gender"] === "male") {
-    return (agesTotal += deepCopyMunstersData[crrV]["age"]);
+    return (maleTotal += deepCopyMunstersData[crrV]["age"]);
+  } else {
+    return (femaleTotal += deepCopyMunstersData[crrV]["age"]);
   }
 });
-console.log(agesTotal); // => 444
+console.log(maleTotal); // => 444
+console.log(femaleTotal); // => 53
