@@ -22,4 +22,4 @@ let vowelsInObj = objKeys.map((key) => {
   });
 });
 
-console.log(vowelsInObj.flat(Infinity));
+// console.log(vowelsInObj.flat(Infinity));
