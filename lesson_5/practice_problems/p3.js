@@ -12,3 +12,6 @@ let arr2 = [
 
 let arr3 = [["abc"], ["def"], { third: ["ghi"] }];
 // console.log(arr3[2].third[0][0]);
+
+let obj1 = { a: ["d", "e"], b: ["f", "g"], c: ["h", "i"] };
+console.log(obj1.b[1]);
