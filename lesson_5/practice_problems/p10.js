@@ -1,5 +1,5 @@
 // Challenge:
-// - Perform the same transformation of sorting the subarrays we did in the previous exercise with one difference; sort the elements in descending order.
+// - Perform the same transformation of sorting the sub-arrays we did in the previous exercise with one difference; sort the elements in descending order.
 
 let arr = [
   ["b", "c", "a"],
@@ -14,4 +14,4 @@ let descendingSortedArrays = arr.map((subArr) => {
     : copyArr.sort().reverse();
 });
 
-console.log(descendingSortedArrays);
+// console.log(descendingSortedArrays);
