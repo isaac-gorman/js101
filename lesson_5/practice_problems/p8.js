@@ -8,12 +8,18 @@ let obj = {
   fourth: ["over", "the", "lazy", "dog"],
 };
 
-let vowelArray;
-obj["first"].forEach((crrV) => {
-  let vowels = "aeiou";
-  return (vowelArray = crrV.split("").filter((char) => {
-    return vowels.includes(char);
-  }));
+let objKeys = Object.keys(obj);
+let vowels = "aeiou";
+
+let vowelsInObj = objKeys.map((key) => {
+  return obj[key].map((word) => {
+    let characterArrays = word.split("");
+    let vowelsInWord = characterArrays.filter((char) => {
+      return vowels.includes(char);
+    });
+    return vowelsInWord;
+    // console.log(vowelsInWord);
+  });
 });
 
-console.log(vowelArray);
+console.log(vowelsInObj.flat(Infinity));
