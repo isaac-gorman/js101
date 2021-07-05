@@ -26,7 +26,7 @@ let result = [
     // - true
     // - - true
   });
-});
+}); // => [ { c: 'cat', d: 'dog' }, { G: 'Goat', l: 'log' } ]
 
 console.log(result);
 
