@@ -17,4 +17,4 @@ let obj1 = { a: ["d", "e"], b: ["f", "g"], c: ["h", "i"] };
 // console.log(obj1.b[1]);
 
 let obj2 = { first: { d: 3 }, second: { e: 2, f: 1 }, third: { g: 0 } };
-console.log(Object.keys(obj2.third)[0]);
+// console.log(Object.keys(obj2.third)[0]);
