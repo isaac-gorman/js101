@@ -8,3 +8,4 @@ let arr2 = [
   { first: ["a", "b", "c"], second: ["d", "e", "f"] },
   { third: ["g", "h", "i"] },
 ];
+console.log(arr2[1].third[0]);
