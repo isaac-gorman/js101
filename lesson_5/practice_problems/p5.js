@@ -11,4 +11,9 @@ let munsters = {
 
 let serializedMunstersData = JSON.stringify(munsters);
 let deepCopyMunstersData = JSON.parse(serializedMunstersData);
-// console.log(deepCopyMunstersData);
+// console.log(Object.keys(deepCopyMunstersData));
+let agesTotal = 0;
+Object.keys(deepCopyMunstersData).forEach((crrV) => {
+  return (agesTotal += deepCopyMunstersData[crrV]["age"]);
+});
+// console.log(agesTotal);
