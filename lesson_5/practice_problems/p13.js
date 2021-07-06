@@ -73,6 +73,6 @@ let sortArray = (array, evenOrOdd) => {
   return sortedArray;
 };
 
-console.log(sortArray(testCases["arr1"], "even"));
-console.log(sortArray(testCases["arr2"], "even"));
-console.log(sortArray(testCases["arr2"], "odd"));
+console.log(sortArray(testArrays["arr1"], "even"));
+console.log(sortArray(testArrays["arr2"], "even"));
+console.log(sortArray(testArrays["arr2"], "odd"));
