@@ -19,16 +19,17 @@ let arr = [
 // -> new array [{ e: [8], f: [6, 10] }]
 
 let result = arr.filter((subObject) => {
-  let numValues = Object.values(subObject).flat(Infinity);
+  let subArrays = Object.values(subObject);
 
-  let testCriterion = numValues.every((num) => {
-    return num % 2 === 0;
+  let filterCriterion = subArrays.every((nestedArray) => {
+    let allEvenNumbers = nestedArray.every((num) => num % 2 === 0);
+    return allEvenNumbers;
   });
 
-  return testCriterion;
+  return filterCriterion;
 });
 
-console.log(result);
+// console.log(result);
 
 // Possible Solution: with nested every()
 {
