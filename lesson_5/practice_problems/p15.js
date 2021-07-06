@@ -19,19 +19,25 @@ let arr = [
 // -> new array [{ e: [8], f: [6, 10] }]
 
 let result = arr.filter((subObject) => {
-  console.log("subObject: ", subObject);
-
   let numValues = Object.values(subObject).flat(Infinity);
-  console.log("numValues: ", numValues);
 
   let testCriterion = numValues.every((num) => {
-    console.log("num: ", num);
     return num % 2 === 0;
   });
-  console.log("testCriterion: ", testCriterion);
-  console.log("\n");
 
   return testCriterion;
 });
 
 console.log(result);
+
+// Possible Solution: with nested every()
+{
+  // console.log(
+  //   arr.filter((obj) => {
+  //     return Object.values(obj).every((subArr) => {
+  //       return subArr.every((num) => num % 2 === 0);
+  //     });
+  //   })
+  // );
+  // return;
+}
