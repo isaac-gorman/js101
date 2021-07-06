@@ -12,4 +12,6 @@
 // - Output:
 // -> lowercase letter "a - f" of the english alphabet
 
-console.log(fromCharCode(61));
+// UTF code range of lowercase english alphabet is 97 - 122
+
+console.log(String.fromCharCode(97, 122));
