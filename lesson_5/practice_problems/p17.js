@@ -1,5 +1,5 @@
 let randomLetter = () => {
-  let randomNumber = Math.floor(Math.random() * (122 - 96 + 1)) + 96;
+  let randomNumber = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
   let letter = String.fromCharCode(randomNumber);
   return letter;
 };
@@ -9,54 +9,43 @@ let randomNumber = () => {
   return number;
 };
 
-let generateUUID = () => {
-  let UUID_Array = [];
+let generateRandomSection = (numOfCharacter) => {
+  let sectionString = "";
 
-  let UUID_Code;
+  while (sectionString.length < numOfCharacter) {
+    sectionString.trim();
 
-  return UUID_Code;
+    let randomChoice = Math.floor(Math.random() * (1 - 0 + 1) + 0);
+
+    if (randomChoice === 0) {
+      let randomChar = randomLetter();
+      sectionString += randomChar;
+    } else {
+      let randomInt = randomNumber();
+      sectionString += randomInt;
+    }
+  }
+
+  return sectionString;
 };
 
-// let sectionString = "";
-// sectionString += "a";
-// sectionString += 7;
+let generateSections = (array) => {
+  let UUID_Array = [];
 
-// console.log(sectionString);
-// // generate a random choice for either a string or number
-// let randomChoice = Math.floor(Math.random() * (1 - 0 + 1) + 0);
+  array.forEach((digitSequence) => {
+    let sectionCharacters = generateRandomSection(digitSequence);
+    UUID_Array.push(sectionCharacters);
+  });
 
-// if (randomChoice === 0) {
-//   // generate a random letter
-//   let randomChar = randomLetter();
-//   // then push that letter to the section string
-//   sectionString += randomChar;
-// } else {
-//   let randomInt = randomNumber();
-//   sectionString += randomInt;
-// }
+  return UUID_Array;
+};
 
-// console.log("sectionString: ", sectionString);
+let generateUUID = () => {
+  let UUID_Array = generateSections([8, 4, 4, 4, 12]);
 
-// return;
-// Build and push section 1 of 5
+  let UUID_Code = UUID_Array.join("-");
 
-let sectionString = "";
-console.log("sectionString: ", sectionString);
-
-while (sectionString.length < 8) {
-  sectionString.trim();
-  // generate a random choice for either a string or number
-  let randomChoice = Math.floor(Math.random() * (1 - 0 + 1) + 0);
-
-  if (randomChoice === 0) {
-    // generate a random letter
-    let randomChar = randomLetter();
-    // then push that letter to the section string
-    sectionString += randomChar;
-  } else {
-    let randomInt = randomNumber();
-    sectionString += randomInt;
-  }
-}
-
-console.log("sectionString: ", sectionString);
+  console.log(UUID_Code);
+  return UUID_Code;
+};
+generateUUID();
