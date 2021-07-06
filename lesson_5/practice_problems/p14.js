@@ -22,13 +22,12 @@ let getData = () => {
   let extractedData = [];
 
   for (let key in obj) {
-    let colors = obj[key]["colors"];
-    let upperCased = colors.map((word) => {
+    let colors = obj[key]["colors"].map((word) => {
       return (word = word.charAt(0).toUpperCase() + word.substring(1));
     });
-    extractedData.push(upperCased);
+    extractedData.push(colors);
 
-    let size = obj[key]["size"];
+    let size = obj[key]["size"].toUpperCase();
     extractedData.push(size);
   }
 
