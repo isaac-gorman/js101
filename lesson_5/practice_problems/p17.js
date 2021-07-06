@@ -9,14 +9,6 @@ let randomNumber = () => {
   return number;
 };
 
-let generateUUID = () => {
-  let UUID_Array = [];
-
-  let UUID_Code;
-
-  return UUID_Code;
-};
-
 let generateRandomSection = (numOfCharacter) => {
   let sectionString = "";
 
@@ -37,4 +29,27 @@ let generateRandomSection = (numOfCharacter) => {
   return sectionString;
 };
 
-console.log(generateRandomSection(8));
+let generateUUID = () => {
+  let UUID_Array = [];
+  // 8 - 4 - 4 - 4 - 12;
+  let section8 = generateRandomSection(8);
+  UUID_Array.push(section8);
+
+  let sectionFirst4 = generateRandomSection(4);
+  UUID_Array.push(sectionFirst4);
+
+  let sectionSecond4 = generateRandomSection(4);
+  UUID_Array.push(sectionSecond4);
+
+  let sectionThird4 = generateRandomSection(4);
+  UUID_Array.push(sectionThird4);
+
+  let section12 = generateRandomSection(12);
+  UUID_Array.push(section12);
+
+  let UUID_Code = UUID_Array.join("-");
+
+  return UUID_Code;
+};
+
+console.log(generateUUID());
