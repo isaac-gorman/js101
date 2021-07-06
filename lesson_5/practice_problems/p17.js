@@ -12,6 +12,9 @@
 // - Output:
 // -> lowercase letter "a - f" of the english alphabet
 
-// UTF code range of lowercase english alphabet is 97 - 122
+// [x] UTF code range of lowercase english alphabet is 97 - 122
 
-console.log(String.fromCharCode(97, 122));
+// - Generate a random number between 96 and 123
+console.log(Math.floor(Math.random() * (122 - 96 + 1)) + 96);
+
+// console.log(String.fromCharCode(97, 122));
