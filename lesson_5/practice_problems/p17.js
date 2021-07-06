@@ -42,11 +42,10 @@ let generateSections = (array) => {
 
 let generateUUID = () => {
   let UUID_Array = generateSections([8, 4, 4, 4, 12]);
-  // 8 - 4 - 4 - 4 - 12;
 
   let UUID_Code = UUID_Array.join("-");
 
+  console.log(UUID_Code);
   return UUID_Code;
 };
-
-console.log(generateUUID());
+generateUUID();
