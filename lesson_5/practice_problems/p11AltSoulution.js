@@ -22,5 +22,5 @@ let newArr = arr.map((subObj) => {
 //   return incrementedObj;
 // });
 
-console.log("new array: ", newArr);
-console.log("\noriginal array: ", arr);
+// console.log("new array: ", newArr);
+// console.log("\noriginal array: ", arr);
