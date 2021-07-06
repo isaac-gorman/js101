@@ -14,18 +14,19 @@
 // Output:
 // -> [[ 1, 8, 3 ], [ 1, 6, 7 ], [ 1, 5, 3 ]]
 
-let arr1 = [
-  [1, 6, 7],
-  [1, 5, 3],
-  [1, 8, 3],
-];
-
-let arr2 = [
-  [4, 8, 2],
-  [4, 5, 10],
-  [2, 6, 7],
-  [1, 3, 7],
-];
+let testArrays = {
+  arr1: [
+    [1, 6, 7],
+    [1, 5, 3],
+    [1, 8, 3],
+  ],
+  arr2: [
+    [4, 8, 2],
+    [4, 5, 10],
+    [2, 6, 7],
+    [1, 3, 7],
+  ],
+};
 
 let sortEvens = (array) => {
   return array.sort((arrayA, arrayB) => {
@@ -72,6 +73,6 @@ let sortArray = (array, evenOrOdd) => {
   return sortedArray;
 };
 
-console.log(sortArray(arr1, "even"));
-console.log(sortArray(arr2, "even"));
-console.log(sortArray(arr2, "odd"));
+console.log(sortArray(testCases["arr1"], "even"));
+console.log(sortArray(testCases["arr2"], "even"));
+console.log(sortArray(testCases["arr2"], "odd"));
