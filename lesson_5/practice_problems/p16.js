@@ -45,4 +45,7 @@ let robustSolution = () => {
 // console.log(robustSolution());
 
 let elegantSolution = () => Object.fromEntries(deepCopy);
-console.log(elegantSolution());
+// console.log(elegantSolution());
+
+// Q: What does the Object.fromEntries() do?
+// - A: It returns a new object based on preceding index ([0] key & [1] value) values of nested sub-arrays
