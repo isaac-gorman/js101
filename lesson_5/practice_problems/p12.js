@@ -21,14 +21,17 @@ let arr = [[2], [3, 5, 7], [9], [11, 15, 18]];
 // Output:
 // new array -> [[3], [9], [15, 18]]
 
-let onlyMultiplesOf = (integer, array) => {
-  let newArray = array.map((subArray) => {
+let onlyMultiplesOf = (integer, inArray) => {
+  let newArray = inArray.map((subArray) => {
     let arrayOfMultiples = subArray.filter((number) => {
-      return number % integer === 0;
+      let testCriterion = number % integer === 0;
+
+      return testCriterion;
     });
 
     return arrayOfMultiples;
   });
+
   return newArray;
 };
 
