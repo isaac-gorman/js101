@@ -2,28 +2,48 @@
 // - Given the following data structure, sort the array so that the sub-arrays are ordered based on the sum of the odd numbers that they contain.
 // - Since 1 + 3 < 1 + 7 < 1 + 5 + 3, the sorted array should look like this:
 
-let arr = [
-  [1, 6, 7],
-  [1, 5, 3],
-  [1, 8, 3],
-];
-
 // Input:
 // -> [[ 1, 6, 7 ], [ 1, 5, 3 ], [ 1, 8, 3 ]]
 
 // Process:
 // - access each sub-array
 // - access each integer of the sub-array
-// - sum all the odd numbers
+// - sum all the odd numbers and assign it to a sum total
+// - compare that sum total with the sum total of the preceding array
 
 // Output:
 // -> [[ 1, 8, 3 ], [ 1, 6, 7 ], [ 1, 5, 3 ]]
 
-let sortOdd = (array) => {
-  let deepCopyArray = JSON.parse(JSON.stringify(array));
-  deepCopyArray.push(["!"]);
-  return deepCopyArray;
+let arr = [
+  [1, 6, 7],
+  [1, 5, 3],
+  [1, 8, 3],
+];
+
+let sortOdds = (array) => {
+  return array.sort((arrayA, arrayB) => {
+    let aSumOdds = arrayA
+      .filter((num) => num % 2 !== 0)
+      .reduce((acc, crV) => (acc += crV), 0);
+
+    let bSumOdds = arrayB
+      .filter((num) => num % 2 !== 0)
+      .reduce((acc, crV) => (acc += crV), 0);
+
+    let testCriterion = aSumOdds - bSumOdds;
+
+    return testCriterion;
+  });
+};
+
+let deepCopyObj = (array) => JSON.parse(JSON.stringify(array));
+
+let sortArray = (array, evenOrOdd) => {
+  let deepCopyArray = deepCopyObj(array);
+
+  let sortedArray = deepCopyArray.sort();
+
+  return sortedArray;
 };
 
 console.log(sortOdd(arr));
-console.log(arr);
