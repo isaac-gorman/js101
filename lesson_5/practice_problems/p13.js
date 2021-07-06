@@ -14,11 +14,34 @@
 // Output:
 // -> [[ 1, 8, 3 ], [ 1, 6, 7 ], [ 1, 5, 3 ]]
 
-let arr = [
+let arr1 = [
   [1, 6, 7],
   [1, 5, 3],
   [1, 8, 3],
 ];
+
+let arr2 = [
+  [4, 8, 2],
+  [4, 5, 10],
+  [2, 6, 7],
+  [1, 3, 7],
+];
+
+let sortEvens = (array) => {
+  return array.sort((arrayA, arrayB) => {
+    let aSumEvens = arrayA
+      .filter((num) => num % 2 === 0)
+      .reduce((acc, crV) => (acc += crV), 0);
+
+    let bSumEvens = arrayB
+      .filter((num) => num % 2 === 0)
+      .reduce((acc, crV) => (acc += crV), 0);
+
+    let testCriterion = aSumEvens - bSumEvens;
+
+    return testCriterion;
+  });
+};
 
 let sortOdds = (array) => {
   return array.sort((arrayA, arrayB) => {
@@ -40,10 +63,15 @@ let deepCopyObj = (array) => JSON.parse(JSON.stringify(array));
 
 let sortArray = (array, evenOrOdd) => {
   let deepCopyArray = deepCopyObj(array);
+  let sortedArray;
 
-  let sortedArray = deepCopyArray.sort();
+  evenOrOdd === "odd"
+    ? (sortedArray = sortOdds(deepCopyArray))
+    : (sortedArray = sortEvens(deepCopyArray));
 
   return sortedArray;
 };
 
-console.log(sortOdd(arr));
+console.log(sortArray(arr1, "even"));
+console.log(sortArray(arr2, "even"));
+console.log(sortArray(arr2, "odd"));
