@@ -18,16 +18,20 @@ let arr = [
 // Output:
 // -> new array [{ e: [8], f: [6, 10] }]
 
-let result = arr.map((subObject) => {
-  for (let key in subObject) {
-    let currentCollections = [];
-    currentCollections.push(subObject[key]);
+let result = arr.filter((subObject) => {
+  console.log("subObject: ", subObject);
 
-    console.log(currentCollections);
-    // currentCollections.every((num) => num % 2 === 0);
-  }
+  let numValues = Object.values(subObject).flat(Infinity);
+  console.log("numValues: ", numValues);
 
-  return;
+  let testCriterion = numValues.every((num) => {
+    console.log("num: ", num);
+    return num % 2 === 0;
+  });
+  console.log("testCriterion: ", testCriterion);
+  console.log("\n");
+
+  return testCriterion;
 });
 
 console.log(result);
