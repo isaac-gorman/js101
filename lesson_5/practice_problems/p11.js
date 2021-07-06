@@ -9,10 +9,8 @@ let deepCopyArray = JSON.parse(serializedArray);
 let subObjKeys = deepCopyArray.map((subObj) => {
   let objectKeys = Object.keys(subObj);
 
-  //   console.log("objectKeys: ", objectKeys);
-  //   console.log("objectValue: ", subObj[objectKeys]);
   return objectKeys.forEach((key) => {
-    console.log(`{${key}: ${subObj[key]}}`);
+    return (subObj[key] += 1);
   });
 });
 
