@@ -28,9 +28,11 @@ let arr = [
     }
 */
 
+let deepCopy = JSON.parse(JSON.stringify(arr));
+
 let robustSolution = () => {
-  let deepCopy = JSON.parse(JSON.stringify(arr));
   let extractedDataObj = {};
+
   deepCopy.forEach((subArray) => {
     let key = subArray[0];
     let value = subArray[1];
@@ -40,4 +42,7 @@ let robustSolution = () => {
   return extractedDataObj;
 };
 
-console.log(robustSolution());
+// console.log(robustSolution());
+
+let elegantSolution = () => Object.fromEntries(deepCopy);
+console.log(elegantSolution());
