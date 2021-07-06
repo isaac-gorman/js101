@@ -31,10 +31,12 @@ let arr = [
 let deepCopy = JSON.parse(JSON.stringify(arr));
 let extractedDataObj = {};
 
-deepCopy.forEach((subArray) => {
-  let key = subArray[0];
-  let value = subArray[1];
-  extractedDataObj[key] = value;
-});
+let robustSolution = () => {
+  return deepCopy.forEach((subArray) => {
+    let key = subArray[0];
+    let value = subArray[1];
+    extractedDataObj[key] = value;
+  });
+};
 
-console.log(extractedDataObj);
+console.log(robustSolution());
