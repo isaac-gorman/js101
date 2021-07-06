@@ -12,9 +12,18 @@
 // - Output:
 // -> lowercase letter "a - f" of the english alphabet
 
+// Steps
 // [x] UTF code range of lowercase english alphabet is 97 - 122
+// [x] Generate a random number between 96 and 123
+// [x] Pass the random number to the String.fromCharCode to generate random letter between "a - f"
 
-// - Generate a random number between 96 and 123
-console.log(Math.floor(Math.random() * (122 - 96 + 1)) + 96);
+let randomLetter = () => {
+  let randomNumber = Math.floor(Math.random() * (122 - 96 + 1)) + 96;
+  let letter = String.fromCharCode(randomNumber);
+  return letter;
+};
 
+console.log(randomLetter());
+
+// console.log(Math.floor(Math.random() * (122 - 96 + 1)) + 96);
 // console.log(String.fromCharCode(97, 122));
