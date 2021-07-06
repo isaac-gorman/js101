@@ -8,10 +8,15 @@ let deepCopyArray = JSON.parse(serializedArray);
 
 let subObjKeys = deepCopyArray.map((subObj) => {
   let objectKeys = Object.keys(subObj);
+  console.log("objectKeys: ", objectKeys);
   return objectKeys;
 });
-let flatKeys = subObjKeys.flat(Infinity);
+
+console.log(subObjKeys);
+// let flatKeys = subObjKeys.flat(Infinity);
 
 // console.log(flatKeys);
 
-flatKeys.map((key) => deepCopyArray.map((subObj) => console.log(subObj[key])));
+// flatKeys.map((key) => deepCopyArray.map((subObj) => console.log(subObj[key])));
+
+// deepCopyArray
