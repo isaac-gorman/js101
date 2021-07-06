@@ -29,10 +29,12 @@ let arr = [
 */
 
 let deepCopy = JSON.parse(JSON.stringify(arr));
-let extractedData = {};
+let extractedDataObj = {};
 
 deepCopy.forEach((subArray) => {
-  extractedData[subArray[0]] = subArray[1];
+  let key = subArray[0];
+  let value = subArray[1];
+  extractedDataObj[key] = value;
 });
 
-console.log(extractedData);
+console.log(extractedDataObj);
