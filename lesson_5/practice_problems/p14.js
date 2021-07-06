@@ -23,7 +23,7 @@ let getData = () => {
 
   for (let key in obj) {
     let colors = obj[key]["colors"].map((word) => {
-      return (word = word.charAt(0).toUpperCase() + word.substring(1));
+      return (word = word.charAt(0).toUpperCase() + word.slice(1));
     });
     extractedData.push(colors);
 
