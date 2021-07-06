@@ -19,7 +19,15 @@ let arr = [
 // -> new array [{ e: [8], f: [6, 10] }]
 
 let result = arr.map((subObject) => {
-  return Object.keys(subObject).filter((key) => subObject[key] % 2 === 0);
+  for (let key in subObject) {
+    let currentCollections = [];
+    currentCollections.push(subObject[key]);
+
+    console.log(currentCollections);
+    // currentCollections.every((num) => num % 2 === 0);
+  }
+
+  return;
 });
 
 console.log(result);
