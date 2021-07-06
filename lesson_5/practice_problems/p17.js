@@ -29,23 +29,20 @@ let generateRandomSection = (numOfCharacter) => {
   return sectionString;
 };
 
-let generateUUID = () => {
+let generateSections = (array) => {
   let UUID_Array = [];
+
+  array.forEach((digitSequence) => {
+    let sectionCharacters = generateRandomSection(digitSequence);
+    UUID_Array.push(sectionCharacters);
+  });
+
+  return UUID_Array;
+};
+
+let generateUUID = () => {
+  let UUID_Array = generateSections([8, 4, 4, 4, 12]);
   // 8 - 4 - 4 - 4 - 12;
-  let section8 = generateRandomSection(8);
-  UUID_Array.push(section8);
-
-  let sectionFirst4 = generateRandomSection(4);
-  UUID_Array.push(sectionFirst4);
-
-  let sectionSecond4 = generateRandomSection(4);
-  UUID_Array.push(sectionSecond4);
-
-  let sectionThird4 = generateRandomSection(4);
-  UUID_Array.push(sectionThird4);
-
-  let section12 = generateRandomSection(12);
-  UUID_Array.push(section12);
 
   let UUID_Code = UUID_Array.join("-");
 
