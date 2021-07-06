@@ -23,8 +23,10 @@ let getData = () => {
 
   for (let key in obj) {
     let colors = obj[key]["colors"];
-    colors.forEach((word) => word.charAt(0).toUpperCase() + word.substring(1));
-    extractedData.push(colors);
+    let upperCased = colors.map((word) => {
+      return (word = word.charAt(0).toUpperCase() + word.substring(1));
+    });
+    extractedData.push(upperCased);
 
     let size = obj[key]["size"];
     extractedData.push(size);
