@@ -29,7 +29,7 @@ let result = arr.filter((subObject) => {
   return filterCriterion;
 });
 
-// console.log(result);
+console.log(result);
 
 // Possible Solution: with nested every()
 {
