@@ -1,5 +1,5 @@
 let randomLetter = () => {
-  let randomNumber = Math.floor(Math.random() * (122 - 96 + 1)) + 96;
+  let randomNumber = Math.floor(Math.random() * (122 - 97 + 1)) + 97;
   let letter = String.fromCharCode(randomNumber);
   return letter;
 };
