@@ -39,6 +39,7 @@
          for that function in my code, not just the function definition. 
 
     Q: What is another way to evaluate expressions or execute functions?
+    - A: Another useful way to evaluate expressions or execute functions is to access the debugger within the the REPL. You can access the REPL by via the `repl` command. Within the REPL you can now access variables that are within the scope at the point of the program execution has paused, and you can evaluate expressions or execute functions, within the repl all of this can be done with out the constraints of the `exec` command. 
 
    Setting and Clearing Breakpoints:
     Q: How have I learned to set up breakpoint in my code so far?
