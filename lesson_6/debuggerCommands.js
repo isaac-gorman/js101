@@ -61,8 +61,22 @@
 
    Stepping Into Functions:
     Q: How would I step through function as of now?
+    - A: I would use the "n" command or loop through the entire scope using the "c" command.
+
+    Q: In what situation wouldn't the `n` command be useful?
+    - A: When ever a function is calling another function e.g. a higher-order function. Such as a callback execution within a method. 
+
+    - - There will be situations where I need to step into the inner scope of the function at just the right line so that I figure out what is happing within the inner function scope.
+
+    Q: So how would I "step inside" a higher-order functions to understand what is being executed? 
+    - A: Using the `s` or 'step` command.
 
     Q: When reaching the inner function invocation how would I move into the execution of that function, rather than just moving over to the next expression? Why is this useful?
+    - A: I would use the `step` or `s` command. 
+         This would enable me to not skip over to the next function call or expression. Rather I would be able to look under the hood of the functions scope to see what other functions are doing. 
+
+     Q: How would I step out of the inner scope of a function? 
+     - A: Using the `out` or `o` command.
 
    Other Commands:
     Q: What are some other useful commands when trouble shooting code?
