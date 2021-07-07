@@ -24,8 +24,19 @@
 
    Executing Expression Functions: 
     Q: What is the exec command?
+    - A: The exec command is a node debugger command for executing the code you want
+         to trouble shoot.
+
+         The exec command is a way for accessing in-scope variables within the debugger. 
+         Fun fact: Did you know that the exec command can be used to evaluate expressions
+         or execute functions
+    
+    Q: How do actually use exec command again?
+    - A: Go to the terminal and type `node inspect <file.js>`
 
     Q: What do I need in order to execute a function with the exec key word?
+    - A: In order to execute with the exec command I need to have an actual invocation
+         for that function in my code, not just the function definition. 
 
     Q: What is another way to evaluate expressions or execute functions?
 
