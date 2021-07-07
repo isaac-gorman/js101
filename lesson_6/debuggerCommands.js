@@ -43,12 +43,21 @@
 
    Setting and Clearing Breakpoints:
     Q: How have I learned to set up breakpoint in my code so far?
+    - A: Using the `next` command or `n`?
+         
+         I can actually set up a breakpoint manually by using the `debugger` keyword right in my code. But can begin to become very time consuming. 
 
-    Q: How can I add or remove breakpoint as it is running within the debugger?
+    Q: How can I add or remove breakpoint as the debugger is running?
+    - A: I can set up breakpoints by using setBreakPoint() or sb() commands, and remove breakpoints by using the clearBreakPoint() or cb() commands.
 
     Q: What is setBreakpoint() / sb()?
+    - A: setBreakPoint() and sb() are commands that set up breakpoints.
+         They can be used without arguments if the are set on the current line, or with an argument if they are passed as an argument in order to set a breakpoint on the line specified. 
 
     Q: What is clearBreakpoint() / cb()?
+    - A: These commands remove breakpoints, and take two arguments: 
+        1) the name of the file name
+        2) the line number
 
    Stepping Into Functions:
     Q: How would I step through function as of now?
