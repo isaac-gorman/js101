@@ -12,4 +12,4 @@ let returnHowAreYou = () => {
 
 let print = (greet1, greet2) => console.log(greet1, " ", greet2);
 
-print(hello(), returnHowAreYou());
+// print(hello(), returnHowAreYou());
