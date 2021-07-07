@@ -1,7 +1,27 @@
 // Annotations
 /* 
+   Overview: 
     Q: What will I cover in this assignment?
-    
+    - A: I will add some more debugging methods to my tool box.
+         When dealing with more complex programs its more important to know how to identify a and eliminate bugs when the occur. 
+
+         I will become a little more familiar with the debugger
+
+   Review: 
+    Q: What are the basic commands for the debugger, and concepts that I have already covered? 
+    - A: 
+         Calm Patient Temperament: Think Spock from Star Trek.   
+         Bugs are just apart of the process, develop a clam problem solving personality 
+         and mentality.
+         
+         Stack Trace:
+         Become very used to reading the stack trace. The stack trace is the text that shows up on my screen when I make an error in my code. 
+
+         Common Error 
+         - Syntax Error 
+         - Variable Doesn't Exist 
+         - TypeErrors when you call a method on a value that it is not a prototype of
+
    Executing Expression Functions: 
     Q: What is the exec command?
 
