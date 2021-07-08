@@ -10,16 +10,24 @@
 
     Q: Describe the game of tic-tac-toe: 
     - Tic-Tac-Toe
-         2 player-game
-         Played on a 3 x 3 grid called the board
-         Each player take a turn marking there square on the board
-         First player to get three 
+      - 2 player-game
+      - Played on a 3 x 3 grid called the board
+      - Each player take a turn marking there square on the board
+      - First player to get three 3 squares in a row - vertically, horizontally, or diagonal wins
+      - I all 9 square filled an no player has 3 rows then the game is tied.
 
 
-
-
-
-    Q: What are the rule so of tic-tac-toe?
+    Q: What is the sequence of tic-tac-toe?
+       1. Display the initial empty 3x3 board
+       2. Ask the user to mark the square
+       3. Computer marks a square
+       4. Display the updated board state
+       5. If its a winning board display: winner
+       6. If the board is filled with now 3 rows display: tie
+       7. If neither player won and the board is not full, go to #2
+       8. Play again?
+       9. If yes, go to #1
+       10. If no, end the game and display: Goodbye, thank you for playing!
 
     Q: What is the generic sequence of the game? 
 
