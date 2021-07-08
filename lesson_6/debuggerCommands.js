@@ -80,9 +80,17 @@
 
    Other Commands:
     Q: What are some other useful commands when trouble shooting code?
+    - A: help(), and list()
 
-    Q: What does the help() command do?
+    Q: What does the `help` command do?
+        - A: The help command simply list all the commands that
+         are available. 
 
-    Q: What does the list() command do?
+    Q: What does the `list()` command do?
+    - A: The list() command can be used the reveal additional lines of code in the file.
+
+      Pro-Tip: 
+      - Pass the list() command function the number of arguments for the number
+        of lines  of code you want to display.
 
 */
