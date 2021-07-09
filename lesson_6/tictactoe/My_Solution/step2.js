@@ -3,18 +3,18 @@ const READ_LINE = require('readline-sync');
 let displayBoard = (board) => console.table(board);
 let initializeBoard = () => {
   let gameBoard = [];
-  gameBoard[0] = [[], [], []];
-  gameBoard[1] = [[], [], []];
-  gameBoard[3] = [[], [], []];
+  gameBoard[0] = [' ', ' ', ' '];
+  gameBoard[1] = [' ', ' ', ' '];
+  gameBoard[2] = [' ', ' ', ' '];
 
   return gameBoard;
 };
 
 let choiceBoard = () => {
   let choiceBoard = [];
-  choiceBoard[0] = [['R1-C1'], ['R1-C2'], ['R1-C3']];
-  choiceBoard[1] = [['R2-C1'], ['R2-C2'], ['R2-C3']];
-  choiceBoard[2] = [['R3-C1'], ['R3-C2'], ['R3-C3']];
+  choiceBoard[0] = ['R1-C1', 'R1-C2', 'R1-C3'];
+  choiceBoard[1] = ['R2-C1', 'R2-C2', 'R2-C3'];
+  choiceBoard[2] = ['R3-C1', 'R3-C2', 'R3-C3'];
 
   return choiceBoard;
 };
@@ -23,6 +23,8 @@ let board = initializeBoard();
 let optionsBoard = choiceBoard();
 
 displayBoard(board);
+console.log(board[1][1]);
+return;
 console.log(
   `\n Please make your move enter the R#-C# for the square you would like to mark:`
 );
@@ -81,7 +83,7 @@ displayBoard(board);
 let computerChoice = () => {
   console.log(optionsBoard);
   let randomRange = optionsBoard.map((subArray) =>
-    console.log('sub-array', subArray)
+    subArray.filter((element) => element !== 'X')
   );
   return randomRange;
 };
