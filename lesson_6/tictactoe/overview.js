@@ -29,7 +29,14 @@
        9. If yes, go to #1
        10. If no, end the game and display: Goodbye, thank you for playing!
 
-    Q: What is the generic sequence of the game? 
+    Q: Where in the sequence are the two main loop? 
+       - The inner loop is all the steps in the sequence up to step #7
+       - The outer loop is the steps in the sequence up to step #10
+
+    Q: According to solution what are the two loops within the sequence?
+       Inner Loop: There is an inner loop  between steps 2 - 7 that repeat as there is no winner and the board isn't full. 
+
+       Outer Loop: An outer loop between 1 - 9 that repeats as long as the player wants to keep playing.
 
     Q: What do the main two loops do with the function do? 
 
