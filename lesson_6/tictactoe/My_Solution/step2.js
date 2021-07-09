@@ -24,7 +24,7 @@ let optionsBoard = choiceBoard();
 
 displayBoard(board);
 console.log(board[1][1]);
-return;
+
 console.log(
   `\n Please make your move enter the R#-C# for the square you would like to mark:`
 );
@@ -81,10 +81,11 @@ displayBoard(board);
 // - choice can be based on random numbers within the range of the current choices within the board.
 
 let computerChoice = () => {
-  console.log(optionsBoard);
-  let randomRange = optionsBoard.map((subArray) =>
-    subArray.filter((element) => element !== 'X')
-  );
+    console.log(optionsBoard);
+  let randomRange = optionsBoard.((subArray) => {
+    let noXs = subArray.filter((element) => element !== 'X');
+    return noXs;
+  });
   return randomRange;
 };
 
