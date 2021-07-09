@@ -32,3 +32,7 @@ let initializeBoard = () => {
 
 let board = initializeBoard();
 displayBoard(board);
+
+// Testing assignment of mark
+// board["row_one"][1] = "X";
+// displayBoard(board);
