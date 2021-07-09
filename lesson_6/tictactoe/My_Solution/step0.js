@@ -23,9 +23,9 @@
        3. Computer marks a square
        4. Display the updated board state
        5. If its a winning board display: winner
-       6. If the board is filled with now 3 rows display: tie
+       6. If the board is filled with no 3 rows display: tie
        7. If neither player won and the board is not full, go to #2
-       8. Play again?
+       8. Play again
        9. If yes, go to #1
        10. If no, end the game and display: Goodbye, thank you for playing!
 
