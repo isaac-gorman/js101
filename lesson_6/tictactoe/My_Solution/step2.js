@@ -55,9 +55,27 @@ switch (playerChoice) {
 
   // cases for second-row
   // [["R2-C1"], ["R2-C2"], ["R2-C3"]]
+  case 'R2-C1':
+    board['row_two'][0] = 'X';
+    break;
+  case 'R2-C2':
+    board['row_two'][1] = 'X';
+    break;
+  case 'R2-C3':
+    board['row_two'][2] = 'X';
+    break;
 
   // cases for third-row
   // [["R3-C1"], ["R3-C2"], ["R3-C3"]]
+  case 'R3-C1':
+    board['row_three'][0] = 'X';
+    break;
+  case 'R3-C2':
+    board['row_three'][1] = 'X';
+    break;
+  case 'R3-C3':
+    board['row_three'][2] = 'X';
+    break;
 
   default:
 }
