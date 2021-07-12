@@ -27,11 +27,20 @@ const READ_LINE = require("readline-sync");
 
 display(board);
 
+function isValid(gameBoard) {
+  return "";
+}
+
 function playerChoosesSquare(gameBoard) {
   prompt("Your move. Please make a selection (1-9)");
   let playerSelection = READ_LINE.question();
 
-  gameBoard[playerSelection] = "X";
+  let isValidInput = isValid(playerSelection);
+  //   if (isValidInput) {
+  //     gameBoard[playerSelection] = "X";
+  //   } else {
+
+  //   }
 }
 playerChoosesSquare(board);
 
