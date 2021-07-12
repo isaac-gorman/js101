@@ -1,4 +1,4 @@
-function displayBoard(board) {
+function display(board) {
   console.log("");
   console.log("     |     |");
   console.log(`  ${board[1]}  |  ${board[2]}  |  ${board[3]}`);
@@ -27,24 +27,10 @@ function initializeBoard() {
 }
 
 let board = initializeBoard();
-displayBoard(board);
-// board =
-/*
-  board = {
-    '1': ' ',
-    '2': ' ',
-    '3': ' ',
-    '4': ' ',
-    '5': ' ',
-    '6': ' ',
-    '7': ' ',
-    '8': ' ',
-    '9': ' '
-  }
-*/
+// displayBoard(board);
 
 module.exports = {
-  displayBoard,
+  display,
   initializeBoard,
   board,
 };

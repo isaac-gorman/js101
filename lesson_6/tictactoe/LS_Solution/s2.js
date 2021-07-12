@@ -21,23 +21,20 @@
 
 // 1) write a function called `playerChoosesSquare`. Think about what arguments it needs to take as input. We need to pass as the input the board object, since we need to mutate it after the player has made a move (selected a square).
 
-const { board } = require("./s1");
+const { board, display } = require("./s1");
+const { prompt } = require("./utils");
+const READ_LINE = require("readline-sync");
 
-console.log(board);
-
-let prompt = (message) => console.log(message);
+display(board);
 
 function playerChoosesSquare(gameBoard) {
-  // - ask the user to make a selection
-  prompt("Your move. Please make a selection.");
+  prompt("Your move. Please make a selection (1-9)");
   let playerSelection = READ_LINE.question();
 
-  // - read that input
-
-  // - implementing the players choice
   gameBoard[playerSelection] = "X";
 }
+playerChoosesSquare(board);
 
-// playerChoosesSquare();
+display(board);
 
 // 2) Next I need to prompt the user to make a square selection, and read that input.
