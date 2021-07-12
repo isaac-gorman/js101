@@ -33,6 +33,9 @@
 
     2) If the square has already been chosen, the `playerChoseSquare()` function doesn't prevent the player from selecting an already selected square. Nor does it complain about entering an already existing square.
 
+    Q: What is the thought process on implementing a solution to the above two problems?
+    - A: Well I obviously want to limit the input choices for the user that make sense. And I want to signify to them what input choices make sense ( are available ). One avenue is to assure the input choice is available is that it contains a (" ") in the position that corresponds to the keys. 
+
  
 */
 
@@ -44,10 +47,24 @@ prompt(board);
 display(board);
 
 function playerChoosesSquare(gameBoard) {
-  prompt("Your move. Please make a selection (1-9)");
-  let playerSelection = READ_LINE.question();
+  let squareNumber;
 
-  gameBoard[playerSelection] = "X";
+  let emptySquares = Object.keys(gameBoard).filter((key) => {
+    return gameBoard[key] === " ";
+  });
+
+  while (true) {
+    prompt("Your move. Please make a selection (1-9)");
+    let playerSelection = READ_LINE.question().trim();
+
+    // Now I need to check wether the users input is valid
+    let isValid = emptySquares.includes(playerSelection);
+
+    if (isValid) {
+      gameBoard[playerSelection] = "X";
+      break;
+    }
+  }
 }
 playerChoosesSquare(board);
 
