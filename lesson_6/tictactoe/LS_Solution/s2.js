@@ -21,29 +21,35 @@
 
 // 1) write a function called `playerChoosesSquare`. Think about what arguments it needs to take as input. We need to pass as the input the board object, since we need to mutate it after the player has made a move (selected a square).
 
+// 2) Next I need to prompt the user to make a square selection, and read that input.
+
+// 3) Now I need to implement a guard clause to only allow valid inputs, and to enable the user to only select squares that have not been selected yet.
+/* - Step 3 Implementation Overview:
+
+   Q: What is the problem with the current implementation? 
+   - A: Well there are two major issues: 
+
+    1) If the player enter something other than (1-9) the `playerChoseSquare()` will simply append another entry to the board object containing the key value pair of <entered input>: "X". Furthermore it also won't complain about the invalid input.
+
+    2) If the square has already been chosen, the `playerChoseSquare()` function doesn't prevent the player from selecting an already selected square. Nor does it complain about entering an already existing square.
+
+ 
+*/
+
 const { board, display } = require("./s1");
 const { prompt } = require("./utils");
 const READ_LINE = require("readline-sync");
 
+prompt(board);
 display(board);
-
-function isValid(gameBoard) {
-  return "";
-}
 
 function playerChoosesSquare(gameBoard) {
   prompt("Your move. Please make a selection (1-9)");
   let playerSelection = READ_LINE.question();
 
-  let isValidInput = isValid(playerSelection);
-  //   if (isValidInput) {
-  //     gameBoard[playerSelection] = "X";
-  //   } else {
-
-  //   }
+  gameBoard[playerSelection] = "X";
 }
 playerChoosesSquare(board);
 
+prompt(board);
 display(board);
-
-// 2) Next I need to prompt the user to make a square selection, and read that input.
