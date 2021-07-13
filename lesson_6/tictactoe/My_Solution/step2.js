@@ -79,14 +79,16 @@ displayBoard(board);
 
 // based on the current available boxes the computer will pick at random a choice
 // - choice can be based on random numbers within the range of the current choices within the board.
-
 let computerChoice = () => {
-    console.log(optionsBoard);
-  let randomRange = optionsBoard.((subArray) => {
+  console.log(optionsBoard);
+
+  let randomRange = optionsBoard.map((subArray) => {
     let noXs = subArray.filter((element) => element !== 'X');
+    console.log(noXs);
     return noXs;
   });
+
   return randomRange;
 };
 
-computerChoice();
+// computerChoice();

@@ -1,4 +1,13 @@
-function displayBoard(board) {
+const { prompt } = require("./utils");
+
+const INITIAL_MARKER = " ";
+const HUMAN_MARKER = "X";
+const COMPUTER_MARKER = "O";
+
+function display(board) {
+  console.clear();
+
+  prompt(`You are ${HUMAN_MARKER}. Computer is ${COMPUTER_MARKER}.`);
   console.log("");
   console.log("     |     |");
   console.log(`  ${board[1]}  |  ${board[2]}  |  ${board[3]}`);
@@ -20,11 +29,20 @@ function initializeBoard() {
 
   // use a for loop to construct each level of the board
   for (let square = 1; square <= 9; square++) {
-    initialBoard[String(square)] = " ";
+    initialBoard[String(square)] = INITIAL_MARKER;
   }
 
   return initialBoard;
 }
 
 let board = initializeBoard();
-displayBoard(board);
+// displayBoard(board);
+
+module.exports = {
+  display,
+  board,
+  initializeBoard,
+  INITIAL_MARKER,
+  HUMAN_MARKER,
+  COMPUTER_MARKER,
+};
