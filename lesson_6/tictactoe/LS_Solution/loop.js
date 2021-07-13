@@ -1,3 +1,4 @@
+const READ_LINE = require("readline-sync");
 const { prompt } = require("./utils");
 const {
   board,
@@ -60,17 +61,33 @@ function someoneWon(gameBoard) {
 }
 
 while (true) {
+  let board = initializeBoard();
+
+  while (true) {
+    display(board);
+
+    playerChoosesSquare(board);
+    display(board);
+    // if (someoneWon(board) || boardIsFull(board)) break;
+
+    computerChoosesSquare(board);
+
+    display(board);
+    if (someoneWon(board) || boardIsFull(board)) break;
+  }
   display(board);
-  playerChoosesSquare(board);
-  if (someoneWon(board) || boardIsFull(board)) break;
+  if (someoneWon(board)) {
+    prompt(`${detectWinner(board)} won!`);
+  } else {
+    prompt("It's a tie!");
+  }
 
-  computerChoosesSquare(board);
-  if (someoneWon(board) || boardIsFull(board)) break;
+  prompt("\n Would you like to play again (y or n)");
+  let answer = READ_LINE.question().trim();
+  if (answer !== "y") {
+    break;
+  }
 }
-display(board);
-
-if (someoneWon(board)) {
-  prompt(`${detectWinner(board)} won!`);
-} else {
-  prompt("It's a tie!");
-}
+``;
+console.clear();
+prompt("Thank you for playing");

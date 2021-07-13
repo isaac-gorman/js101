@@ -15,9 +15,6 @@ let getEmptySquares = (gameBoard) => {
   });
 };
 
-prompt(board);
-display(board);
-
 function playerChoosesSquare(gameBoard) {
   let squareNumber;
 
@@ -38,10 +35,6 @@ function playerChoosesSquare(gameBoard) {
 
   gameBoard[squareNumber] = HUMAN_MARKER;
 }
-playerChoosesSquare(board);
-
-prompt(board);
-display(board);
 
 function computerChoosesSquare(gameBoard) {
   let emptySquares = getEmptySquares(gameBoard);
@@ -50,10 +43,6 @@ function computerChoosesSquare(gameBoard) {
   let squareSelection = emptySquares[randomIndex];
   gameBoard[squareSelection] = COMPUTER_MARKER;
 }
-computerChoosesSquare(board);
-
-prompt(board);
-display(board);
 
 module.exports = {
   playerChoosesSquare,

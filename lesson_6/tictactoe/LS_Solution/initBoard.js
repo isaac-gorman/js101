@@ -40,8 +40,8 @@ let board = initializeBoard();
 
 module.exports = {
   display,
-  initializeBoard,
   board,
+  initializeBoard,
   INITIAL_MARKER,
   HUMAN_MARKER,
   COMPUTER_MARKER,
