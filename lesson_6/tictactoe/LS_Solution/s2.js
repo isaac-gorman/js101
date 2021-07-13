@@ -42,6 +42,7 @@
 const { board, display } = require("./s1");
 const { prompt } = require("./utils");
 const READ_LINE = require("readline-sync");
+const MESSAGES = require("./messages.json");
 
 prompt(board);
 display(board);
@@ -55,14 +56,15 @@ function playerChoosesSquare(gameBoard) {
 
   while (true) {
     prompt("Your move. Please make a selection (1-9)");
-    let playerSelection = READ_LINE.question().trim();
+    squareNumber = READ_LINE.question().trim();
 
-    // Now I need to check wether the users input is valid
-    let isValid = emptySquares.includes(playerSelection);
+    let isValid = emptySquares.includes(squareNumber);
 
     if (isValid) {
-      gameBoard[playerSelection] = "X";
+      gameBoard[squareNumber] = "X";
       break;
+    } else {
+      prompt(`${MESSAGES.invalid_move}`);
     }
   }
 }
