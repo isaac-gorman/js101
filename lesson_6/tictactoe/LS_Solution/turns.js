@@ -9,6 +9,9 @@ const { prompt } = require("./utils");
 const READ_LINE = require("readline-sync");
 const MESSAGES = require("./messages.json");
 
+// input: [1, 2, 3]
+// output: 1, 2, or 3
+
 let getEmptySquares = (gameBoard) => {
   return Object.keys(gameBoard).filter((key) => {
     return gameBoard[key] === INITIAL_MARKER;
