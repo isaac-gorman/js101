@@ -1,3 +1,4 @@
+const { prompt } = require("./utils");
 const {
   board,
   initializeBoard,
@@ -9,6 +10,8 @@ const {
   playerChoosesSquare,
   computerChoosesSquare,
   getEmptySquares,
+  HUMAN_MARKER,
+  COMPUTER_MARKER,
 } = require("./turns");
 
 display(board);
@@ -27,6 +30,27 @@ function detectWinner(gameBoard) {
     [1, 5, 9],
     [3, 5, 7],
   ];
+
+  let result;
+  for (let line = 0; line < winningLines.length; line++) {
+    let [sq1, sq2, sq3] = winningLines[line];
+
+    if (
+      gameBoard[sq1] === HUMAN_MARKER &&
+      gameBoard[sq2] === HUMAN_MARKER &&
+      gameBoard[sq3] === HUMAN_MARKER
+    ) {
+      return "Player";
+    } else if (
+      gameBoard[sq1] === COMPUTER_MARKER &&
+      gameBoard[sq2] === COMPUTER_MARKER &&
+      gameBoard[sq3] === COMPUTER_MARKER
+    ) {
+      return "Computer";
+    }
+  }
+
+  return null;
 }
 
 function boardIsFull(gameBoard) {

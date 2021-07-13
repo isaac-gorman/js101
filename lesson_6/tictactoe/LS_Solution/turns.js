@@ -55,4 +55,6 @@ module.exports = {
   playerChoosesSquare,
   computerChoosesSquare,
   getEmptySquares,
+  HUMAN_MARKER,
+  COMPUTER_MARKER,
 };
