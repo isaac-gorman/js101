@@ -55,17 +55,21 @@ function checkMoves(gameBoard) {
     [5, 7, [3]],
   ];
 
+  let output;
   for (let line = 0; line < potentialWins.length; line++) {
     let [sq1, sq2] = potentialWins[line];
+    console.log("sq1: ", sq1);
+    console.log("sq2: ", sq2);
 
     if (gameBoard[sq1] === HUMAN_MARKER && gameBoard[sq2] === HUMAN_MARKER) {
       console.log("true");
-      return { result: true, counterMove: potentialWins[2][0] };
+      output = { result: true, counterMove: potentialWins[2][0] };
     } else {
       console.log("false");
-      return { result: false };
+      output = { result: false };
     }
   }
+  return output;
 }
 
 function computerChoosesSquare(gameBoard) {
