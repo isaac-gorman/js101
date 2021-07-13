@@ -5,9 +5,13 @@ const {
   COMPUTER_MARKER,
   HUMAN_MARKER,
 } = require("./initBoard");
-const { prompt } = require("./utils");
+const { prompt, joinOr } = require("./utils");
 const READ_LINE = require("readline-sync");
 const MESSAGES = require("./messages.json");
+
+function findAtRiskSquare(line, gameBoard) {
+  let markersInLine = line.map((square) => gameBoard[square]);
+}
 
 let getEmptySquares = (gameBoard) => {
   return Object.keys(gameBoard).filter((key) => {
@@ -20,7 +24,7 @@ function playerChoosesSquare(gameBoard) {
 
   let emptySquares = getEmptySquares(gameBoard);
 
-  let squareChoices = `${emptySquares.join(", ")}`;
+  let squareChoices = `${joinOr(emptySquares)}`;
 
   while (true) {
     prompt(`Your move. Please make a selection ${squareChoices}`);

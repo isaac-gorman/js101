@@ -5,8 +5,6 @@ const HUMAN_MARKER = "X";
 const COMPUTER_MARKER = "O";
 
 function display(board) {
-  console.clear();
-
   prompt(`You are ${HUMAN_MARKER}. Computer is ${COMPUTER_MARKER}.`);
   console.log("");
   console.log("     |     |");
