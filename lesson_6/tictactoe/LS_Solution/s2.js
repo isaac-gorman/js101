@@ -54,19 +54,20 @@ function playerChoosesSquare(gameBoard) {
     return gameBoard[key] === " ";
   });
 
+  let squareChoices = `${emptySquares.join(", ")}`;
+
   while (true) {
-    prompt("Your move. Please make a selection (1-9)");
+    prompt(`Your move. Please make a selection ${squareChoices}`);
     squareNumber = READ_LINE.question().trim();
 
     let isValid = emptySquares.includes(squareNumber);
 
-    if (isValid) {
-      gameBoard[squareNumber] = "X";
-      break;
-    } else {
-      prompt(`${MESSAGES.invalid_move}`);
-    }
+    if (isValid) break;
+
+    prompt(`${MESSAGES.invalid_move}`);
   }
+
+  gameBoard[squareNumber] = "X";
 }
 playerChoosesSquare(board);
 
