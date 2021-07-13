@@ -17,6 +17,10 @@ function boardIsFull(gameBoard) {
   return getEmptySquares(gameBoard).length === 0;
 }
 
+function someoneWon(gameBoard) {
+  return false;
+}
+
 while (true) {
   playerChoosesSquare(board);
   computerChoosesSquare(board);
@@ -27,5 +31,5 @@ while (true) {
   // - if the board is full (no empty squares)
   // someoneWon(board) ||
 
-  if (boardIsFull(board)) break;
+  if (someoneWon(board) || boardIsFull(board)) break;
 }
