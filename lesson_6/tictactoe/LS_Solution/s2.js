@@ -34,3 +34,18 @@ playerChoosesSquare(board);
 
 prompt(board);
 display(board);
+
+function computerChoosesSquare(gameBoard) {
+  let emptySquares = Object.keys(gameBoard).filter((key) => {
+    return gameBoard[key] === INITIAL_MARKER;
+  });
+
+  let randomIndex = Math.floor(Math.random() * emptySquares.length);
+
+  let squareSelection = emptySquares[randomIndex];
+  gameBoard[squareSelection] = COMPUTER_MARKER;
+}
+computerChoosesSquare(board);
+
+prompt(board);
+display(board);
