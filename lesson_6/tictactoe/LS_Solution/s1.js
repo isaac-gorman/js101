@@ -1,3 +1,5 @@
+const INITIAL_MARKER = " ";
+
 function display(board) {
   console.log("");
   console.log("     |     |");
@@ -20,7 +22,7 @@ function initializeBoard() {
 
   // use a for loop to construct each level of the board
   for (let square = 1; square <= 9; square++) {
-    initialBoard[String(square)] = " ";
+    initialBoard[String(square)] = INITIAL_MARKER;
   }
 
   return initialBoard;
@@ -33,4 +35,5 @@ module.exports = {
   display,
   initializeBoard,
   board,
+  INITIAL_MARKER,
 };
