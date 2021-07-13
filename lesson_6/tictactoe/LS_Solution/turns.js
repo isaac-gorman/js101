@@ -9,6 +9,10 @@ const { prompt, joinOr } = require("./utils");
 const READ_LINE = require("readline-sync");
 const MESSAGES = require("./messages.json");
 
+function findAtRiskSquare(line, gameBoard) {
+  let markersInLine = line.map((square) => gameBoard[square]);
+}
+
 let getEmptySquares = (gameBoard) => {
   return Object.keys(gameBoard).filter((key) => {
     return gameBoard[key] === INITIAL_MARKER;
