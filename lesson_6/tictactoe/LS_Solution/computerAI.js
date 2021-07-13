@@ -7,6 +7,8 @@ const {
   COMPUTER_MARKER,
   HUMAN_MARKER,
 } = require("./initBoard");
+const READ_LINE = require("readline-sync");
+const MESSAGES = require("./messages.json");
 
 const {
   playerChoosesSquare,
@@ -68,6 +70,7 @@ function checkMoves(gameBoard) {
 
 function computerChoosesSquare(gameBoard) {
   let checkObject = checkMoves(gameBoard);
+  console.log(checkObject);
   if (checkObject.result === true) {
     gameBoard[checkObject.counterMove] = COMPUTER_MARKER;
   } else {
