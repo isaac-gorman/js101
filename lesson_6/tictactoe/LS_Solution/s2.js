@@ -5,15 +5,19 @@ const MESSAGES = require("./messages.json");
 const HUMAN_MARKER = "X";
 const COMPUTER_MARKER = "O";
 
+let getEmptySquares = (gameBoard) => {
+  return Object.keys(gameBoard).filter((key) => {
+    return gameBoard[key] === INITIAL_MARKER;
+  });
+};
+
 prompt(board);
 display(board);
 
 function playerChoosesSquare(gameBoard) {
   let squareNumber;
 
-  let emptySquares = Object.keys(gameBoard).filter((key) => {
-    return gameBoard[key] === INITIAL_MARKER;
-  });
+  let emptySquares = getEmptySquares(gameBoard);
 
   let squareChoices = `${emptySquares.join(", ")}`;
 
@@ -36,10 +40,7 @@ prompt(board);
 display(board);
 
 function computerChoosesSquare(gameBoard) {
-  let emptySquares = Object.keys(gameBoard).filter((key) => {
-    return gameBoard[key] === INITIAL_MARKER;
-  });
-
+  let emptySquares = getEmptySquares(gameBoard);
   let randomIndex = Math.floor(Math.random() * emptySquares.length);
 
   let squareSelection = emptySquares[randomIndex];
