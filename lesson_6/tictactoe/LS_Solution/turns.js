@@ -54,4 +54,5 @@ display(board);
 module.exports = {
   playerChoosesSquare,
   computerChoosesSquare,
+  getEmptySquares,
 };

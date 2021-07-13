@@ -5,10 +5,17 @@ const {
   INITIAL_MARKER,
 } = require("./initBoard");
 
-const { playerChoosesSquare, computerChoosesSquare } = require("./turns");
+const {
+  playerChoosesSquare,
+  computerChoosesSquare,
+  getEmptySquares,
+} = require("./turns");
 
-let board = initializeBoard();
 display(board);
+
+function boardIsFull(gameBoard) {
+  return getEmptySquares(gameBoard).length === 0;
+}
 
 while (true) {
   playerChoosesSquare(board);
@@ -16,4 +23,9 @@ while (true) {
   display(board);
 
   // break if a condition is meet
+  // - if we have winner
+  // - if the board is full (no empty squares)
+  // someoneWon(board) ||
+
+  if (boardIsFull(board)) break;
 }
