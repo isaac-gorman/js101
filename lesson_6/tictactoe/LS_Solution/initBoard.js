@@ -1,8 +1,13 @@
+const { prompt } = require("./utils");
+
 const INITIAL_MARKER = " ";
+const HUMAN_MARKER = "X";
+const COMPUTER_MARKER = "O";
 
 function display(board) {
   console.clear();
 
+  prompt(`You are ${HUMAN_MARKER}. Computer is ${COMPUTER_MARKER}.`);
   console.log("");
   console.log("     |     |");
   console.log(`  ${board[1]}  |  ${board[2]}  |  ${board[3]}`);
@@ -38,4 +43,6 @@ module.exports = {
   initializeBoard,
   board,
   INITIAL_MARKER,
+  HUMAN_MARKER,
+  COMPUTER_MARKER,
 };

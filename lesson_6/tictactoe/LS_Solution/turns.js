@@ -1,9 +1,13 @@
-const { board, display, INITIAL_MARKER } = require("./initBoard");
+const {
+  board,
+  display,
+  INITIAL_MARKER,
+  COMPUTER_MARKER,
+  HUMAN_MARKER,
+} = require("./initBoard");
 const { prompt } = require("./utils");
 const READ_LINE = require("readline-sync");
 const MESSAGES = require("./messages.json");
-const HUMAN_MARKER = "X";
-const COMPUTER_MARKER = "O";
 
 let getEmptySquares = (gameBoard) => {
   return Object.keys(gameBoard).filter((key) => {
@@ -55,6 +59,4 @@ module.exports = {
   playerChoosesSquare,
   computerChoosesSquare,
   getEmptySquares,
-  HUMAN_MARKER,
-  COMPUTER_MARKER,
 };

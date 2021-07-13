@@ -4,14 +4,14 @@ const {
   initializeBoard,
   display,
   INITIAL_MARKER,
+  COMPUTER_MARKER,
+  HUMAN_MARKER,
 } = require("./initBoard");
 
 const {
   playerChoosesSquare,
   computerChoosesSquare,
   getEmptySquares,
-  HUMAN_MARKER,
-  COMPUTER_MARKER,
 } = require("./turns");
 
 function detectWinner(gameBoard) {
