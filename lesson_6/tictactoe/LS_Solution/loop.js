@@ -13,12 +13,28 @@ const {
 
 display(board);
 
+function detectWinner(gameBoard) {
+  let winningLines = [
+    // rows
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    // columns
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    // diagonals
+    [1, 5, 9],
+    [3, 5, 7],
+  ];
+}
+
 function boardIsFull(gameBoard) {
   return getEmptySquares(gameBoard).length === 0;
 }
 
 function someoneWon(gameBoard) {
-  return false;
+  return !!detectWinner(gameBoard);
 }
 
 while (true) {
@@ -32,4 +48,10 @@ while (true) {
   // someoneWon(board) ||
 
   if (someoneWon(board) || boardIsFull(board)) break;
+}
+
+if (someoneWon(board)) {
+  prompt(`${detectWinner(board)} won!`);
+} else {
+  prompt("It's a tie!");
 }
