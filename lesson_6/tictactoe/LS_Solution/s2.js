@@ -2,6 +2,8 @@ const { board, display, INITIAL_MARKER } = require("./s1");
 const { prompt } = require("./utils");
 const READ_LINE = require("readline-sync");
 const MESSAGES = require("./messages.json");
+const HUMAN_MARKER = "X";
+const COMPUTER_MARKER = "O";
 
 prompt(board);
 display(board);
@@ -26,7 +28,7 @@ function playerChoosesSquare(gameBoard) {
     prompt(`${MESSAGES.invalid_move}`);
   }
 
-  gameBoard[squareNumber] = "X";
+  gameBoard[squareNumber] = HUMAN_MARKER;
 }
 playerChoosesSquare(board);
 
