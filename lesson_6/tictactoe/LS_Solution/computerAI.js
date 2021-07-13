@@ -66,7 +66,7 @@ function checkMoves(gameBoard) {
 
     if (gameBoard[sq1] === HUMAN_MARKER && gameBoard[sq2] === HUMAN_MARKER) {
       console.log("true");
-      return (output = { result: true, counterMove: potentialWins[2][0] });
+      return (output = { result: true, counterMove: potentialWins[line][0] });
     } else {
       console.log("false");
       output = { result: false };
