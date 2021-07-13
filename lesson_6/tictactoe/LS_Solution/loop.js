@@ -14,8 +14,6 @@ const {
   COMPUTER_MARKER,
 } = require("./turns");
 
-display(board);
-
 function detectWinner(gameBoard) {
   let winningLines = [
     // rows
@@ -62,17 +60,14 @@ function someoneWon(gameBoard) {
 }
 
 while (true) {
-  playerChoosesSquare(board);
-  computerChoosesSquare(board);
   display(board);
+  playerChoosesSquare(board);
+  if (someoneWon(board) || boardIsFull(board)) break;
 
-  // break if a condition is meet
-  // - if we have winner
-  // - if the board is full (no empty squares)
-  // someoneWon(board) ||
-
+  computerChoosesSquare(board);
   if (someoneWon(board) || boardIsFull(board)) break;
 }
+display(board);
 
 if (someoneWon(board)) {
   prompt(`${detectWinner(board)} won!`);
