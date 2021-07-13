@@ -1,4 +1,4 @@
-const { board, display, INITIAL_MARKER } = require("./s1");
+const { board, display, INITIAL_MARKER } = require("./initBoard");
 const { prompt } = require("./utils");
 const READ_LINE = require("readline-sync");
 const MESSAGES = require("./messages.json");
@@ -50,3 +50,8 @@ computerChoosesSquare(board);
 
 prompt(board);
 display(board);
+
+module.exports = {
+  playerChoosesSquare,
+  computerChoosesSquare,
+};
