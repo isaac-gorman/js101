@@ -90,40 +90,50 @@ function playerChoosesSquare(gameBoard) {
   gameBoard[squareNumber] = HUMAN_MARKER;
 }
 
-function findAtRiskSquare(gameBoard) {
-  let move = undefined;
-
+function computerAI(gameBoard) {
   for (let line = 0; line < WINNING_LINES.length; line++) {
+    console.log("\nline: ", line);
+    console.log("WINNING_LINES[line]: ", WINNING_LINES[line]);
+
     let markersInLine = WINNING_LINES[line].map(
       (squareNum) => gameBoard[squareNum]
     );
+    console.log("markersInLine: ", markersInLine);
 
     // offensive logic
     let opportunityLine = markersInLine.filter(
       (marks) => marks === COMPUTER_MARKER
     );
+    console.log("opportunityLine: ", opportunityLine);
+
     if (opportunityLine.length === 2) {
-      move = WINNING_LINES[line].find(
+      console.log("opportunity!");
+
+      let winningMove = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
+      return winningMove;
     }
 
     // defensive logic
     let atRiskLine = markersInLine.filter((marks) => marks === HUMAN_MARKER);
+    console.log("atRiskLine: ", atRiskLine);
 
-    if (atRiskLine.length === 2) {
-      move = WINNING_LINES[line].find(
+    if (!markersInLine.includes("O") && atRiskLine.length === 2) {
+      console.log("risk!");
+      let counterMove = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
+      return counterMove;
+    } else if (line === WINNING_LINES.length - 1) {
+      return undefined;
     }
   }
-
-  return move;
 }
 
 function computerChoosesSquare(gameBoard) {
-  let move = findAtRiskSquare(gameBoard);
-  console.log(move);
+  let move = computerAI(gameBoard);
+  console.log("move: ", move);
 
   if (move !== undefined) {
     return (gameBoard[move] = COMPUTER_MARKER);
@@ -138,7 +148,7 @@ function computerChoosesSquare(gameBoard) {
 function detectWinner(gameBoard) {
   for (let line = 0; line < WINNING_LINES.length; line++) {
     let [sq1, sq2, sq3] = WINNING_LINES[line];
-    // findAtRiskSquare(WINNING_LINES[line], gameBoard);
+    // computerAI(WINNING_LINES[line], gameBoard);
 
     if (
       gameBoard[sq1] === HUMAN_MARKER &&
