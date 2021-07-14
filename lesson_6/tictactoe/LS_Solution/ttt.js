@@ -100,6 +100,7 @@ function findAtRiskSquare(gameBoard) {
     let atRiskLine = markersInLine.filter((marks) => marks === "X");
 
     if (atRiskLine.length === 2) {
+      console.log("WINNING_LINES[line]: ", WINNING_LINES[line]);
       WINNING_LINES[line].filter((squareNum) => {
         if (gameBoard[squareNum] !== "X") {
           counterMove = squareNum;
