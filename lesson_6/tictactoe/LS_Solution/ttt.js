@@ -234,7 +234,6 @@ function playTicTacToe() {
       prompt("It's a tie!");
     }
 
-    // add input validation here
     let answer = getValidAnswer();
     if (answer !== "y") {
       break;
