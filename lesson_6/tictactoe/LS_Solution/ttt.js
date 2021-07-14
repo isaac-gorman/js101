@@ -198,6 +198,22 @@ function humanFirst(gameBoard) {
   }
 }
 
+function getValidAnswer() {
+  let answer;
+  while (true) {
+    prompt("\n Would you like to play again (y or n)");
+    answer = READ_LINE.question().trim();
+
+    if (answer !== "y" || answer !== "n") {
+      console.clear();
+      prompt("You entered an invalid answer");
+    } else {
+      break;
+    }
+  }
+  return answer;
+}
+
 function playTicTacToe() {
   while (true) {
     let board = initializeBoard();
@@ -218,8 +234,8 @@ function playTicTacToe() {
       prompt("It's a tie!");
     }
 
-    prompt("\n Would you like to play again (y or n)");
-    let answer = READ_LINE.question().trim();
+    // add input validation here
+    let answer = getValidAnswer();
     if (answer !== "y") {
       break;
     }
