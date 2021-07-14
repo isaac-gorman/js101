@@ -97,10 +97,15 @@ function findAtRiskSquare(gameBoard) {
     let markersInLine = WINNING_LINES[line].map(
       (squareNum) => gameBoard[squareNum]
     );
-    let atRiskLine = markersInLine.filter((marks) => marks === "X");
+    console.log("markersInLine: ", markersInLine);
+    let atRiskLine = markersInLine.filter((marks) => marks === HUMAN_MARKER);
+    console.log("atRiskLine: ", atRiskLine.length);
 
     if (atRiskLine.length === 2) {
-      counter = WINNING_LINES[line].find((squareNum) => squareNum === " ");
+      console.log("at risk");
+      counterMove = WINNING_LINES[line].find(
+        (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
+      );
     }
   }
 
