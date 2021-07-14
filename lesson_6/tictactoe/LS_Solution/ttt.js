@@ -91,33 +91,41 @@ function playerChoosesSquare(gameBoard) {
 }
 
 function findAtRiskSquare(gameBoard) {
-  let counterMove = undefined;
+  let move = undefined;
 
   for (let line = 0; line < WINNING_LINES.length; line++) {
     let markersInLine = WINNING_LINES[line].map(
       (squareNum) => gameBoard[squareNum]
     );
-    console.log("markersInLine: ", markersInLine);
+
+    // offensive logic
+    let opportunityLine = markersInLine.filter(
+      (marks) => marks === COMPUTER_MARKER
+    );
+    if (opportunityLine.length === 2) {
+      move = WINNING_LINES[line].find(
+        (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
+      );
+    }
+
+    // defensive logic
     let atRiskLine = markersInLine.filter((marks) => marks === HUMAN_MARKER);
-    console.log("atRiskLine: ", atRiskLine.length);
 
     if (atRiskLine.length === 2) {
-      console.log("at risk");
-      counterMove = WINNING_LINES[line].find(
+      move = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
     }
   }
 
-  return counterMove;
+  return move;
 }
 
 function computerChoosesSquare(gameBoard) {
-  // if no at risk the just pick at random
-  let counterMove = findAtRiskSquare(gameBoard);
-  console.log(counterMove); // => undefined || #
+  let move = findAtRiskSquare(gameBoard);
+  console.log(move);
 
-  if (counterMove !== undefined) {
+  if (move !== undefined) {
     return (gameBoard[counterMove] = COMPUTER_MARKER);
   }
   let emptySquares = getEmptySquares(gameBoard);
