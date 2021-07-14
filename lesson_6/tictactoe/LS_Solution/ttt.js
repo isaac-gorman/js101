@@ -33,7 +33,7 @@ function joinOr(array) {
 }
 
 function display(board) {
-  //   console.clear();
+  console.clear();
 
   prompt(`You are ${HUMAN_MARKER}. Computer is ${COMPUTER_MARKER}.`);
   console.log("");
@@ -92,23 +92,15 @@ function playerChoosesSquare(gameBoard) {
 
 function computerAI(gameBoard) {
   for (let line = 0; line < WINNING_LINES.length; line++) {
-    console.log("\nline: ", line);
-    console.log("WINNING_LINES[line]: ", WINNING_LINES[line]);
-
     let markersInLine = WINNING_LINES[line].map(
       (squareNum) => gameBoard[squareNum]
     );
-    console.log("markersInLine: ", markersInLine);
 
-    // offensive logic
     let opportunityLine = markersInLine.filter(
       (marks) => marks === COMPUTER_MARKER
     );
-    console.log("opportunityLine: ", opportunityLine);
 
     if (!markersInLine.includes("X") && opportunityLine.length === 2) {
-      console.log("opportunity!");
-
       let winningMove = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
@@ -117,14 +109,15 @@ function computerAI(gameBoard) {
 
     // defensive logic
     let atRiskLine = markersInLine.filter((marks) => marks === HUMAN_MARKER);
-    console.log("atRiskLine: ", atRiskLine);
+    // console.log("atRiskLine: ", atRiskLine);
 
     if (!markersInLine.includes("O") && atRiskLine.length === 2) {
-      console.log("risk!");
-      let counterMove = WINNING_LINES[line].find(
+      let defensiveMove = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
-      return counterMove;
+      return defensiveMove;
+    } else if (line === WINNING_LINES.length - 1 && gameBoard[5] === " ") {
+      return 5;
     } else if (line === WINNING_LINES.length - 1) {
       return undefined;
     }
@@ -133,7 +126,7 @@ function computerAI(gameBoard) {
 
 function computerChoosesSquare(gameBoard) {
   let move = computerAI(gameBoard);
-  console.log("move: ", move);
+  //   console.log("move: ", move);
 
   if (move !== undefined) {
     return (gameBoard[move] = COMPUTER_MARKER);
