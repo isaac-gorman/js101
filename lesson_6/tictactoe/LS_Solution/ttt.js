@@ -141,7 +141,6 @@ function computerChoosesSquare(gameBoard) {
 function detectWinner(gameBoard) {
   for (let line = 0; line < WINNING_LINES.length; line++) {
     let [sq1, sq2, sq3] = WINNING_LINES[line];
-    // computerAI(WINNING_LINES[line], gameBoard);
 
     if (
       gameBoard[sq1] === HUMAN_MARKER &&
@@ -149,7 +148,9 @@ function detectWinner(gameBoard) {
       gameBoard[sq3] === HUMAN_MARKER
     ) {
       return "Player";
-    } else if (
+    }
+
+    if (
       gameBoard[sq1] === COMPUTER_MARKER &&
       gameBoard[sq2] === COMPUTER_MARKER &&
       gameBoard[sq3] === COMPUTER_MARKER
@@ -162,6 +163,7 @@ function detectWinner(gameBoard) {
 }
 
 function boardIsFull(gameBoard) {
+  prompt("called!");
   return getEmptySquares(gameBoard).length === 0;
 }
 
@@ -173,18 +175,34 @@ function playTicTacToe() {
   while (true) {
     let board = initializeBoard();
 
-    while (true) {
-      display(board);
+    prompt("c or h?");
+    let firstMover = READ_LINE.question();
+    if (firstMover === "c") {
+      while (true) {
+        display(board);
 
-      playerChoosesSquare(board);
-      display(board);
-      // if (someoneWon(board) || boardIsFull(board)) break;
+        computerChoosesSquare(board);
+        display(board);
+        if (someoneWon(board) || boardIsFull(board)) break;
 
-      computerChoosesSquare(board);
+        playerChoosesSquare(board);
+        display(board);
+        if (someoneWon(board) || boardIsFull(board)) break;
+      }
+    } else {
+      while (true) {
+        display(board);
 
-      display(board);
-      if (someoneWon(board) || boardIsFull(board)) break;
+        playerChoosesSquare(board);
+        display(board);
+        if (someoneWon(board) || boardIsFull(board)) break;
+
+        computerChoosesSquare(board);
+        display(board);
+        if (someoneWon(board) || boardIsFull(board)) break;
+      }
     }
+
     display(board);
     if (someoneWon(board)) {
       prompt(`${detectWinner(board)} won!`);
