@@ -1,3 +1,5 @@
+## MVP TicTacToe
+
 Step 2) Player and computer turn
 Q: What have we done so far? - A: Thus far we have implemented the game board. The game board is represented
 by an object data structure and is implemented by a function called displayBoard that displays the board on the console or terminal.
@@ -8,7 +10,6 @@ by an object data structure and is implemented by a function called displayBoard
          2) Have the computer mark a square.
 
 Players Turn
-
 Q: What would be the ideal implementation of having the player take a turn, why? - A: Ideally we would want to use a function to request the player to take a turn.
 
 1. write a function called `playerChoosesSquare`. Think about what arguments it needs to take as input. We need to pass as the input the board object, since we need to mutate it after the player has made a move (selected a square).
@@ -18,7 +19,6 @@ Q: What would be the ideal implementation of having the player take a turn, why?
 3) Now I need to implement a guard clause to only allow valid inputs, and to enable the user to only select squares that have not been selected yet.
 
 Step 3 Implementation Overview:
-
 Q: What is the problem with the current implementation?
 
 A: Well there are two major issues:
@@ -34,4 +34,18 @@ A: Well I obviously want to limit the input choices for the user that make sense
 ## Implementing Computer Defense AI
 
 Q: What would be a good starting point for implementing a solution for defending the 3rd square?
-A: The most non-clever approach. To see whether a player is about to win I will iterate through the `winningLines` array within the `detectWinner()` function.
+
+- The most non-clever approach. To see whether a player is about to win I will iterate through the `winningLines` array within the `detectWinner()` function.
+
+- Now we can use the `winningLines` array to check if any of the lines on the current board are at risk.
+
+Implementation
+
+INPUT OUTPUT
+The `winningLines` array is an array of 3-element sub-arrays.
+
+INPUT: 3 element sub-array
+So we will pass as input to our `findAtRiskSquare()` the sub-arrays of 3 elements.
+
+OUTPUT: the number of the square the human can use as a winning move if the human has the potential to make one.
+Our output form the function is the `winningMove` if they human player has a potential winning move.
