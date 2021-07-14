@@ -161,5 +161,4 @@ function playTicTacToe() {
   console.clear();
   prompt("Thank you for playing");
 }
-
 playTicTacToe();
