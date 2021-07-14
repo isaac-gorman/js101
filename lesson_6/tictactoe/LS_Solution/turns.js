@@ -11,13 +11,22 @@ const MESSAGES = require("./messages.json");
 
 function findAtRiskSquare(line, gameBoard) {
   let markersInLine = line.map((square) => gameBoard[square]);
+
+  if (markersInLine.filter((val) => val === "X").length === 2) {
+    let unusedSquare = line.find((square) => board[square] === " ");
+    if (unusedSquare !== undefined) {
+      return unusedSquare;
+    }
+  }
+
+  return null;
 }
 
-let getEmptySquares = (gameBoard) => {
+function getEmptySquares(gameBoard) {
   return Object.keys(gameBoard).filter((key) => {
     return gameBoard[key] === INITIAL_MARKER;
   });
-};
+}
 
 function playerChoosesSquare(gameBoard) {
   let squareNumber;
