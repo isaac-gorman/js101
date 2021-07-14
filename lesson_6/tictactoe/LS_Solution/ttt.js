@@ -100,23 +100,24 @@ function computerAI(gameBoard) {
       (marks) => marks === COMPUTER_MARKER
     );
 
-    if (!markersInLine.includes("X") && opportunityLine.length === 2) {
+    if (!markersInLine.includes(HUMAN_MARKER) && opportunityLine.length === 2) {
       let winningMove = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
       return winningMove;
     }
 
-    // defensive logic
     let atRiskLine = markersInLine.filter((marks) => marks === HUMAN_MARKER);
-    // console.log("atRiskLine: ", atRiskLine);
 
-    if (!markersInLine.includes("O") && atRiskLine.length === 2) {
+    if (!markersInLine.includes(COMPUTER_MARKER) && atRiskLine.length === 2) {
       let defensiveMove = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
       return defensiveMove;
-    } else if (line === WINNING_LINES.length - 1 && gameBoard[5] === " ") {
+    } else if (
+      line === WINNING_LINES.length - 1 &&
+      gameBoard[5] === INITIAL_MARKER
+    ) {
       return 5;
     } else if (line === WINNING_LINES.length - 1) {
       return undefined;
@@ -126,7 +127,6 @@ function computerAI(gameBoard) {
 
 function computerChoosesSquare(gameBoard) {
   let move = computerAI(gameBoard);
-  //   console.log("move: ", move);
 
   if (move !== undefined) {
     return (gameBoard[move] = COMPUTER_MARKER);
