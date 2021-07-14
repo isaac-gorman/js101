@@ -90,7 +90,7 @@ function playerChoosesSquare(gameBoard) {
   gameBoard[squareNumber] = HUMAN_MARKER;
 }
 
-function findAtRiskSquare(gameBoard) {
+function findAtRiskSquare(line, gameBoard) {
   let counterMove = undefined;
 
   for (let line = 0; line < WINNING_LINES.length; line++) {
