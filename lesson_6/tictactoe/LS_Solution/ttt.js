@@ -126,7 +126,7 @@ function computerChoosesSquare(gameBoard) {
   console.log(move);
 
   if (move !== undefined) {
-    return (gameBoard[counterMove] = COMPUTER_MARKER);
+    return (gameBoard[move] = COMPUTER_MARKER);
   }
   let emptySquares = getEmptySquares(gameBoard);
   let randomIndex = Math.floor(Math.random() * emptySquares.length);
