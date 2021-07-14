@@ -90,7 +90,7 @@ function playerChoosesSquare(gameBoard) {
   gameBoard[squareNumber] = HUMAN_MARKER;
 }
 
-function findAtRiskSquare(line, gameBoard) {
+function findAtRiskSquare(gameBoard) {
   let counterMove = undefined;
 
   for (let line = 0; line < WINNING_LINES.length; line++) {
@@ -100,12 +100,7 @@ function findAtRiskSquare(line, gameBoard) {
     let atRiskLine = markersInLine.filter((marks) => marks === "X");
 
     if (atRiskLine.length === 2) {
-      console.log("WINNING_LINES[line]: ", WINNING_LINES[line]);
-      WINNING_LINES[line].filter((squareNum) => {
-        if (gameBoard[squareNum] !== "X") {
-          counterMove = squareNum;
-        }
-      });
+      counter = WINNING_LINES[line].find((squareNum) => squareNum === " ");
     }
   }
 
