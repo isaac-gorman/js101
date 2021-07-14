@@ -101,7 +101,7 @@ function findAtRiskSquare(gameBoard) {
 
     if (atRiskLine.length === 2) {
       WINNING_LINES[line].filter((squareNum) => {
-        if (board[squareNum] !== "X") {
+        if (gameBoard[squareNum] !== "X") {
           counterMove = squareNum;
         }
       });
@@ -111,12 +111,14 @@ function findAtRiskSquare(gameBoard) {
   return counterMove;
 }
 
-function computerDefenseAI(gameBoard) {}
-
 function computerChoosesSquare(gameBoard) {
   // if no at risk the just pick at random
-  findAtRiskSquare(gameBoard);
-  console.log(findAtRiskSquare); // => undefined || #
+  let counterMove = findAtRiskSquare(gameBoard);
+  console.log(counterMove); // => undefined || #
+
+  if (counterMove !== undefined) {
+    prompt(`make a counter with ${counterMove}`);
+  }
 
   let emptySquares = getEmptySquares(gameBoard);
   let randomIndex = Math.floor(Math.random() * emptySquares.length);
