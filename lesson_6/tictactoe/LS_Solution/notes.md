@@ -49,3 +49,19 @@ So we will pass as input to our `findAtRiskSquare()` the sub-arrays of 3 element
 
 OUTPUT: the number of the square the human can use as a winning move if the human has the potential to make one.
 Our output form the function is the `winningMove` if they human player has a potential winning move.
+
+## Implementing Computer Offense AI
+
+Currently the defensive ai is working. Although the ai isn't that great. The ai either uses a defensive tactic but if there is no impending threat it generates a move at random based on the number of squares left empty.
+
+Q: How can we improve the computers chances of winning?
+A: By giving it the ability to find a winning move.
+
+Q: How will we give the computer the ability to find a winning move?
+A: Again we will first implement the most non-clever logic successfully then try more clever implementations. I will accomplish this by piggy backing off of the `findAtRiskSquare` function and turn it into an offensive mechanism.
+
+Logic
+
+- Defensive Strategy: Finding an empty square where the two other squares belong to the human player.
+
+- Offensive Strategy: Finding an empty square in a line where the two other squares belong to the computer.

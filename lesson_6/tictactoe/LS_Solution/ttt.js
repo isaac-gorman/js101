@@ -33,7 +33,7 @@ function joinOr(array) {
 }
 
 function display(board) {
-  //   console.clear();
+  console.clear();
 
   prompt(`You are ${HUMAN_MARKER}. Computer is ${COMPUTER_MARKER}.`);
   console.log("");
@@ -90,35 +90,46 @@ function playerChoosesSquare(gameBoard) {
   gameBoard[squareNumber] = HUMAN_MARKER;
 }
 
-function findAtRiskSquare(gameBoard) {
-  let counterMove = undefined;
-
+function computerAI(gameBoard) {
   for (let line = 0; line < WINNING_LINES.length; line++) {
     let markersInLine = WINNING_LINES[line].map(
       (squareNum) => gameBoard[squareNum]
     );
-    console.log("markersInLine: ", markersInLine);
-    let atRiskLine = markersInLine.filter((marks) => marks === HUMAN_MARKER);
-    console.log("atRiskLine: ", atRiskLine.length);
 
-    if (atRiskLine.length === 2) {
-      console.log("at risk");
-      counterMove = WINNING_LINES[line].find(
+    let opportunityLine = markersInLine.filter(
+      (marks) => marks === COMPUTER_MARKER
+    );
+
+    if (!markersInLine.includes(HUMAN_MARKER) && opportunityLine.length === 2) {
+      let winningMove = WINNING_LINES[line].find(
         (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
       );
+      return winningMove;
+    }
+
+    let atRiskLine = markersInLine.filter((marks) => marks === HUMAN_MARKER);
+
+    if (!markersInLine.includes(COMPUTER_MARKER) && atRiskLine.length === 2) {
+      let defensiveMove = WINNING_LINES[line].find(
+        (squareNum) => gameBoard[squareNum] === INITIAL_MARKER
+      );
+      return defensiveMove;
+    } else if (
+      line === WINNING_LINES.length - 1 &&
+      gameBoard[5] === INITIAL_MARKER
+    ) {
+      return 5;
+    } else if (line === WINNING_LINES.length - 1) {
+      return undefined;
     }
   }
-
-  return counterMove;
 }
 
 function computerChoosesSquare(gameBoard) {
-  // if no at risk the just pick at random
-  let counterMove = findAtRiskSquare(gameBoard);
-  console.log(counterMove); // => undefined || #
+  let move = computerAI(gameBoard);
 
-  if (counterMove !== undefined) {
-    return (gameBoard[counterMove] = COMPUTER_MARKER);
+  if (move !== undefined) {
+    return (gameBoard[move] = COMPUTER_MARKER);
   }
   let emptySquares = getEmptySquares(gameBoard);
   let randomIndex = Math.floor(Math.random() * emptySquares.length);
@@ -130,7 +141,6 @@ function computerChoosesSquare(gameBoard) {
 function detectWinner(gameBoard) {
   for (let line = 0; line < WINNING_LINES.length; line++) {
     let [sq1, sq2, sq3] = WINNING_LINES[line];
-    // findAtRiskSquare(WINNING_LINES[line], gameBoard);
 
     if (
       gameBoard[sq1] === HUMAN_MARKER &&
@@ -138,7 +148,9 @@ function detectWinner(gameBoard) {
       gameBoard[sq3] === HUMAN_MARKER
     ) {
       return "Player";
-    } else if (
+    }
+
+    if (
       gameBoard[sq1] === COMPUTER_MARKER &&
       gameBoard[sq2] === COMPUTER_MARKER &&
       gameBoard[sq3] === COMPUTER_MARKER
@@ -158,22 +170,47 @@ function someoneWon(gameBoard) {
   return !!detectWinner(gameBoard);
 }
 
+function computerFirst(gameBoard) {
+  while (true) {
+    display(gameBoard);
+
+    computerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+
+    playerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+  }
+}
+
+function humanFirst(gameBoard) {
+  while (true) {
+    display(gameBoard);
+
+    playerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+
+    computerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+  }
+}
+
 function playTicTacToe() {
   while (true) {
     let board = initializeBoard();
 
-    while (true) {
-      display(board);
-
-      playerChoosesSquare(board);
-      display(board);
-      // if (someoneWon(board) || boardIsFull(board)) break;
-
-      computerChoosesSquare(board);
-
-      display(board);
-      if (someoneWon(board) || boardIsFull(board)) break;
+    let firstMover = READ_LINE.question(
+      "Who plays first? Computer or Human? \n(c or h): "
+    );
+    if (firstMover === "c") {
+      computerFirst(board);
+    } else {
+      humanFirst(board);
     }
+
     display(board);
     if (someoneWon(board)) {
       prompt(`${detectWinner(board)} won!`);
