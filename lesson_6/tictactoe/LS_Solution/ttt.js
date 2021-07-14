@@ -163,12 +163,39 @@ function detectWinner(gameBoard) {
 }
 
 function boardIsFull(gameBoard) {
-  prompt("called!");
   return getEmptySquares(gameBoard).length === 0;
 }
 
 function someoneWon(gameBoard) {
   return !!detectWinner(gameBoard);
+}
+
+function computerFirst(gameBoard) {
+  while (true) {
+    display(gameBoard);
+
+    playerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+
+    computerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+  }
+}
+
+function humanFirst(gameBoard) {
+  while (true) {
+    display(gameBoard);
+
+    playerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+
+    computerChoosesSquare(gameBoard);
+    display(gameBoard);
+    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
+  }
 }
 
 function playTicTacToe() {
@@ -178,29 +205,9 @@ function playTicTacToe() {
     prompt("c or h?");
     let firstMover = READ_LINE.question();
     if (firstMover === "c") {
-      while (true) {
-        display(board);
-
-        computerChoosesSquare(board);
-        display(board);
-        if (someoneWon(board) || boardIsFull(board)) break;
-
-        playerChoosesSquare(board);
-        display(board);
-        if (someoneWon(board) || boardIsFull(board)) break;
-      }
+      computerFirst(board);
     } else {
-      while (true) {
-        display(board);
-
-        playerChoosesSquare(board);
-        display(board);
-        if (someoneWon(board) || boardIsFull(board)) break;
-
-        computerChoosesSquare(board);
-        display(board);
-        if (someoneWon(board) || boardIsFull(board)) break;
-      }
+      humanFirst(board);
     }
 
     display(board);
