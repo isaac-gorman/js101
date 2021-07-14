@@ -106,7 +106,7 @@ function computerAI(gameBoard) {
     );
     console.log("opportunityLine: ", opportunityLine);
 
-    if (opportunityLine.length === 2) {
+    if (!markersInLine.includes("X") && opportunityLine.length === 2) {
       console.log("opportunity!");
 
       let winningMove = WINNING_LINES[line].find(
