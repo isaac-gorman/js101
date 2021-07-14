@@ -204,7 +204,7 @@ function getValidAnswer() {
     prompt("\n Would you like to play again (y or n)");
     answer = READ_LINE.question().trim();
 
-    if (answer !== "y" || answer !== "n") {
+    if (answer !== "y" && answer !== "n") {
       console.clear();
       prompt("You entered an invalid answer");
     } else {
