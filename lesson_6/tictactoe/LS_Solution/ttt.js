@@ -5,6 +5,20 @@ const INITIAL_MARKER = " ";
 const HUMAN_MARKER = "X";
 const COMPUTER_MARKER = "O";
 
+const WINNING_LINES = [
+  // rows
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  // columns
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  // diagonals
+  [1, 5, 9],
+  [3, 5, 7],
+];
+
 let prompt = (message) => console.log(message);
 
 function joinOr(array) {
@@ -76,7 +90,34 @@ function playerChoosesSquare(gameBoard) {
   gameBoard[squareNumber] = HUMAN_MARKER;
 }
 
+function findAtRiskSquare(gameBoard) {
+  let counterMove = undefined;
+
+  for (let line = 0; line < WINNING_LINES.length; line++) {
+    let markersInLine = WINNING_LINES[line].map(
+      (squareNum) => gameBoard[squareNum]
+    );
+    let atRiskLine = markersInLine.filter((marks) => marks === "X");
+
+    if (atRiskLine.length === 2) {
+      WINNING_LINES[line].filter((squareNum) => {
+        if (board[squareNum] !== "X") {
+          counterMove = squareNum;
+        }
+      });
+    }
+  }
+
+  return counterMove;
+}
+
+function computerDefenseAI(gameBoard) {}
+
 function computerChoosesSquare(gameBoard) {
+  // if no at risk the just pick at random
+  findAtRiskSquare(gameBoard);
+  console.log(findAtRiskSquare); // => undefined || #
+
   let emptySquares = getEmptySquares(gameBoard);
   let randomIndex = Math.floor(Math.random() * emptySquares.length);
 
@@ -84,35 +125,10 @@ function computerChoosesSquare(gameBoard) {
   gameBoard[squareSelection] = COMPUTER_MARKER;
 }
 
-function findAtRiskSquare(line, board) {
-  let markersInLine = line.map((squareNum) => board[squareNum]);
-  console.log("markersInLine: ", markersInLine);
-  let atRiskLine = markersInLine.filter((marks) => marks === "X");
-  let winningMove = atRiskLine;
-  if (atRiskLine.length === 2) {
-    console.log(line);
-    prompt(`${line} is at risk`);
-  }
-}
-
 function detectWinner(gameBoard) {
-  let winningLines = [
-    // rows
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    // columns
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9],
-    // diagonals
-    [1, 5, 9],
-    [3, 5, 7],
-  ];
-
-  for (let line = 0; line < winningLines.length; line++) {
-    let [sq1, sq2, sq3] = winningLines[line];
-    findAtRiskSquare(winningLines[line], gameBoard);
+  for (let line = 0; line < WINNING_LINES.length; line++) {
+    let [sq1, sq2, sq3] = WINNING_LINES[line];
+    // findAtRiskSquare(WINNING_LINES[line], gameBoard);
 
     if (
       gameBoard[sq1] === HUMAN_MARKER &&
