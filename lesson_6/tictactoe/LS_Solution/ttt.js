@@ -128,34 +128,38 @@ function someoneWon(gameBoard) {
   return !!detectWinner(gameBoard);
 }
 
-while (true) {
-  let board = initializeBoard();
-
+function playTicTacToe() {
   while (true) {
+    let board = initializeBoard();
+
+    while (true) {
+      display(board);
+
+      playerChoosesSquare(board);
+      display(board);
+      // if (someoneWon(board) || boardIsFull(board)) break;
+
+      computerChoosesSquare(board);
+
+      display(board);
+      if (someoneWon(board) || boardIsFull(board)) break;
+    }
     display(board);
+    if (someoneWon(board)) {
+      prompt(`${detectWinner(board)} won!`);
+    } else {
+      prompt("It's a tie!");
+    }
 
-    playerChoosesSquare(board);
-    display(board);
-    // if (someoneWon(board) || boardIsFull(board)) break;
-
-    computerChoosesSquare(board);
-
-    display(board);
-    if (someoneWon(board) || boardIsFull(board)) break;
+    prompt("\n Would you like to play again (y or n)");
+    let answer = READ_LINE.question().trim();
+    if (answer !== "y") {
+      break;
+    }
   }
-  display(board);
-  if (someoneWon(board)) {
-    prompt(`${detectWinner(board)} won!`);
-  } else {
-    prompt("It's a tie!");
-  }
-
-  prompt("\n Would you like to play again (y or n)");
-  let answer = READ_LINE.question().trim();
-  if (answer !== "y") {
-    break;
-  }
+  ``;
+  console.clear();
+  prompt("Thank you for playing");
 }
-``;
-console.clear();
-prompt("Thank you for playing");
+
+playTicTacToe();
