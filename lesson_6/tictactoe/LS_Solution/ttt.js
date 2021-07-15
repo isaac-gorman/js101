@@ -170,23 +170,17 @@ function someoneWon(gameBoard) {
   return !!detectWinner(gameBoard);
 }
 
-function computerFirst(gameBoard) {
+function computerFirst(gameBoard, currentPlayer) {
   while (true) {
     display(gameBoard);
-
-    computerChoosesSquare(gameBoard);
-    display(gameBoard);
-    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
-
-    humanChoosesSquare(gameBoard);
-    display(gameBoard);
+    chooseSquare(gameBoard, currentPlayer);
+    currentPlayer = alternatePlayer(currentPlayer);
     if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
   }
 }
 
-function humanFirst(gameBoard) {
+function humanFirst(gameBoard, currentPlayer) {
   while (true) {
-    let currentPlayer = "human";
     display(gameBoard);
     chooseSquare(gameBoard, currentPlayer);
     currentPlayer = alternatePlayer(currentPlayer);
@@ -237,9 +231,9 @@ function playTicTacToe() {
       "Who plays first? Computer or Human? \n(c or h): "
     );
     if (firstMover === "c") {
-      computerFirst(board);
+      computerFirst(board, "computer");
     } else {
-      humanFirst(board);
+      humanFirst(board, "human");
     }
 
     display(board);
