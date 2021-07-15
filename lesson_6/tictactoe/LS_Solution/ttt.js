@@ -69,7 +69,7 @@ function getEmptySquares(gameBoard) {
   });
 }
 
-function playerChoosesSquare(gameBoard) {
+function humanChoosesSquare(gameBoard) {
   let squareNumber;
 
   let emptySquares = getEmptySquares(gameBoard);
@@ -178,7 +178,7 @@ function computerFirst(gameBoard) {
     display(gameBoard);
     if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
 
-    playerChoosesSquare(gameBoard);
+    humanChoosesSquare(gameBoard);
     display(gameBoard);
     if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
   }
@@ -186,26 +186,32 @@ function computerFirst(gameBoard) {
 
 function humanFirst(gameBoard) {
   while (true) {
+    let currentPlayer = "human";
     display(gameBoard);
-
-    playerChoosesSquare(gameBoard);
-    display(gameBoard);
-    if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
-
-    computerChoosesSquare(gameBoard);
-    display(gameBoard);
+    chooseSquare(gameBoard, currentPlayer);
+    currentPlayer = alternatePlayer(currentPlayer);
     if (someoneWon(gameBoard) || boardIsFull(gameBoard)) break;
   }
 }
 
 function alternatePlayer(currentPlayer) {
   // input: current player computer || human
-  currentPlayer === "humanFirst"
-    ? prompt("computerFirst")
-    : prompt("humanFirst");
+  if (currentPlayer === "human") {
+    return "computer";
+  } else {
+    return "human";
+  }
   // output: new current player the opposite of the inputted current player
 }
-// alternatePlayer("computerFirst");
+// alternatePlayer("computer");
+
+function chooseSquare(gameBoard, currentPlayer) {
+  if (currentPlayer === "human") {
+    humanChoosesSquare(gameBoard);
+  } else {
+    computerChoosesSquare(gameBoard);
+  }
+}
 
 function getValidAnswer() {
   let answer;
@@ -252,4 +258,4 @@ function playTicTacToe() {
   console.clear();
   prompt("Thank you for playing");
 }
-// playTicTacToe();
+playTicTacToe();
