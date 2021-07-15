@@ -189,15 +189,12 @@ function humanFirst(gameBoard, currentPlayer) {
 }
 
 function alternatePlayer(currentPlayer) {
-  // input: current player computer || human
   if (currentPlayer === "human") {
     return "computer";
   } else {
     return "human";
   }
-  // output: new current player the opposite of the inputted current player
 }
-// alternatePlayer("computer");
 
 function chooseSquare(gameBoard, currentPlayer) {
   if (currentPlayer === "human") {
