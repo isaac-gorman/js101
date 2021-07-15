@@ -198,6 +198,15 @@ function humanFirst(gameBoard) {
   }
 }
 
+function alternatePlayer(currentPlayer) {
+  // input: current player computer || human
+  currentPlayer === "humanFirst"
+    ? prompt("computerFirst")
+    : prompt("humanFirst");
+  // output: new current player the opposite of the inputted current player
+}
+// alternatePlayer("computerFirst");
+
 function getValidAnswer() {
   let answer;
   while (true) {
@@ -243,4 +252,4 @@ function playTicTacToe() {
   console.clear();
   prompt("Thank you for playing");
 }
-playTicTacToe();
+// playTicTacToe();
