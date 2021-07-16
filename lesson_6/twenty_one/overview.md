@@ -57,4 +57,10 @@ All of the card values are pretty straightforward, expect Ace. The cards with nu
 | Aces              | 1 or 11    |
 
 **Player Turn:**
-The player always goes first, and can decide to either **hit** or **stay**. A hit means that players wants to be dealt another card. Remember, if his total exceeds 21, he will bust and loose the game. The decision to hit or stay depends on the player's cards and what the player thinks his dealer has. For example
+The player always goes first, and can decide to either **hit** or **stay**. A hit means that players wants to be dealt another card. Remember, if his total exceeds 21, he will bust and loose the game. The decision to hit or stay depends on the player's cards and what the player thinks his dealer has. For example, if the dealer is showing a "10" (the other card are hidden), and the player has "2" and a "4", then the obvious choice is for the player to hit. The play can continue to hit as many time as they want. The turn is over when the player either bust or stays. If the player bust, the game is over, and the dealer won.
+
+**Dealer Turn**
+When the player stays, it's the dealer's turn. The dealer must follow a strict rule for determining whether to hit or stay: hit until the total is at least 17. The dealer bust, then the player wins.
+
+**Comparing Cards**
+When both the player and the dealer stay, it's time to compare the total value of the cards and see who has the highest value.
