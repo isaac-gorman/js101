@@ -5,17 +5,51 @@
 // A: If I have set values in one data structure that I pass at random to the player data structure then calculate it.
 
 let deck = {
+  2: [2, 2, 2, 2],
+  3: [3, 3, 3, 3],
   4: [4, 4, 4, 4],
+  5: [5, 5, 5, 5],
   6: [6, 6, 6, 6],
+  7: [7, 7, 7, 7],
+  8: [8, 8, 8, 8],
+  9: [9, 9, 9, 9],
+  10: [10, 10, 10, 10],
   Jack: [10, 10, 10, 10],
   Queen: [10, 10, 10, 10],
+  King: [10, 10, 10, 10],
+  Ace: [11, 11, 11, 11],
+};
+
+let dealerHand = {
+  2: [],
+  3: [],
+  4: [],
+  5: [],
+  6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
+  Jack: [],
+  Queen: [],
+  King: [],
+  Ace: [],
 };
 
 let playerHand = {
+  2: [],
+  3: [],
   4: [],
+  5: [],
   6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
   Jack: [],
   Queen: [],
+  King: [],
+  Ace: [],
 };
 
 function hit(playerOrDealer) {
