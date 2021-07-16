@@ -56,9 +56,13 @@ function hit(playerOrDealer) {
   let deckCards = Object.keys(deck);
   let randomCardType =
     Math.floor(Math.random() * (deckCards.length - 1 - 0 + 1)) + 0;
-  return playerOrDealer[deckCards[randomCardType]].push(
+  let card = playerOrDealer[deckCards[randomCardType]].push(
     deck[deckCards[randomCardType]].pop()
   );
+
+  console.log("card:", card);
+
+  return card;
 }
 
 function calculateTotalHand(playerOrDealer) {
@@ -83,7 +87,7 @@ function hitPlayer() {
 
 function hitDealer() {
   hit(dealerHand);
-  //   viewHand(dealerHand);
+  viewHand(dealerHand);
   //   calculateTotalHand(dealerHand);
 }
 
@@ -110,7 +114,7 @@ let randomCardType =
   Math.floor(Math.random() * (onlyCardsWithValues.length - 1 - 0 + 1)) + 0;
 console.log("randomCardType: ", randomCardType);
 
-const DEALER_REVEALED_CARD = dealerHand[dealerCardTypes[randomCardType]];
-// console.log("DEALER_REVEALED_CARD", DEALER_REVEALED_CARD);
+const DEALER_REVEALED_CARD = dealerHand[onlyCardsWithValues[randomCardType]][0];
+console.log("DEALER_REVEALED_CARD", DEALER_REVEALED_CARD);
 // Player hits or stays
 // Dealer hits or stays
