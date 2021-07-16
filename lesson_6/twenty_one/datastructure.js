@@ -99,7 +99,9 @@ function hitPlayer() {
 
 function hitDealer() {
   hit(dealerHand);
-  //   viewHand(dealerHand);
+  prompt("\nDealer Hand-v-v-v-v-v-v-v-v-v-v-v");
+  viewHand(dealerHand);
+  prompt("Dealer Hand-^-^-^-^-^-^-^-^-^-^-^-^");
   //   calculateTotalHand(dealerHand);
 }
 
