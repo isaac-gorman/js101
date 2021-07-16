@@ -21,6 +21,16 @@
 Q: What would be the best data structure to contain the deck?
 A: The data structure would have to contain the 54 card deck, the player's cards, and the dealer's cards. Maybe an object? Maybe an array? Nested array?
 
+Q: How would I use the deck or the data structure? What do I need from it?
+A: Ideas:
+
+- Initialize the deck
+- Pick at random form the deck and deal cards to the player and the dealer
+- Deal one card to the player at random till player bust or stays:
+- - Player needs to keep track of their total.
+- Deal one card to the dealer at random till they have at least 17 or greater in total.
+- - Dealer needs to keep track of their total.
+
 ### Calculating Aces
 
 ### Player Turn
