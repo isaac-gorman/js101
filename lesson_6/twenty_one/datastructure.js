@@ -77,19 +77,34 @@ function viewHand(playerOrDealer) {
 
 function hitPlayer() {
   hit(playerHand);
-  viewHand(playerHand);
-  calculateTotalHand(playerHand);
+  //   viewHand(playerHand);
+  //   calculateTotalHand(playerHand);
 }
 
 function hitDealer() {
   hit(dealerHand);
-  viewHand(dealerHand);
-  calculateTotalHand(dealerHand);
+  //   viewHand(dealerHand);
+  //   calculateTotalHand(dealerHand);
 }
 
-hitPlayer();
-hitPlayer();
+function dealInitialCards() {
+  hitPlayer();
+  hitPlayer();
 
-hitDealer();
-hitDealer();
+  hitDealer();
+  hitDealer();
 
+}
+dealInitialCards();
+
+// I need to see one of the dealers cards
+let dealerCardTypes = Object.keys(dealerHand);
+console.log("dealerCardTypes: ", dealerCardTypes);
+let randomCardType =
+  Math.floor(Math.random() * (dealerCardTypes.length - 1 - 0 + 1)) + 0;
+console.log("randomCardType: ", randomCardType);
+
+const DEALER_REVEALED_CARD = dealerHand[dealerCardTypes[randomCardType]];
+// console.log("DEALER_REVEALED_CARD", DEALER_REVEALED_CARD);
+// Player hits or stays
+// Dealer hits or stays
