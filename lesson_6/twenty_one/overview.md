@@ -55,3 +55,6 @@ All of the card values are pretty straightforward, expect Ace. The cards with nu
 | 2 - 10            | face value |
 | Jack, Queen, King | centered   |
 | Aces              | 1 or 11    |
+
+**Player Turn:**
+The player always goes first, and can decide to either **hit** or **stay**. A hit means that players wants to be dealt another card. Remember, if his total exceeds 21, he will bust and loose the game. The decision to hit or stay depends on the player's cards and what the player thinks his dealer has. For example
