@@ -27,11 +27,24 @@ function hit(playerOrDealer) {
   );
 }
 
-hit(playerHand);
+function calculateTotalHand(playerOrDealer) {
+  let cardTypes = Object.keys(playerHand);
+  let total = 0;
+  cardTypes.forEach((key) => {
+    let totalPerCardType = playerOrDealer[key].reduce((acc, cv) => acc + cv, 0);
+    total += totalPerCardType;
+  });
+  console.log(total);
+}
 
 hit(playerHand);
+calculateTotalHand(playerHand);
 
 hit(playerHand);
+calculateTotalHand(playerHand);
 
-console.log("deck: ", deck);
-console.log("playerHand: ", playerHand);
+hit(playerHand);
+calculateTotalHand(playerHand);
+
+// console.log("deck: ", deck);
+// console.log("playerHand: ", playerHand);
