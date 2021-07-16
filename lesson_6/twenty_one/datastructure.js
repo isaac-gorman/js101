@@ -11,6 +11,11 @@ let deck = {
   Queen: [10, 10, 10, 10],
 };
 // console.log(deck);
+let deckCards = Object.keys(deck);
+let randomCardType = Math.floor(Math.random() * ((deckCards.length - 1) - 0 + 1)) + 0;
+console.log(deckCards);
+console.log("index: ", randomCardType);
+console.log(deckCards[randomCardType]);
 
 let playerHand = {
   4: [],
@@ -19,8 +24,8 @@ let playerHand = {
   Queen: [],
 };
 
-playerHand[4].push(deck[4].pop());
-playerHand[4].push(deck[4].pop());
-playerHand[4].push(deck[4].pop());
-console.log(playerHand);
-console.log(deck);
+// playerHand[4].push(deck[4].pop());
+// playerHand[4].push(deck[4].pop());
+// playerHand[4].push(deck[4].pop());
+// console.log(playerHand);
+// console.log(deck);
