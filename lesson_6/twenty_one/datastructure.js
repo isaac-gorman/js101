@@ -3,6 +3,7 @@
 
 // Q: What is a good way to test that feature in as a test case?
 // A: If I have set values in one data structure that I pass at random to the player data structure then calculate it.
+const READ_LINE = require("readline-sync");
 
 let deck = {
   2: [2, 2, 2, 2],
@@ -60,8 +61,6 @@ function hit(playerOrDealer) {
     deck[deckCards[randomCardType]].pop()
   );
 
-  console.log("card:", card);
-
   return card;
 }
 
@@ -73,6 +72,7 @@ function calculateTotalHand(playerOrDealer) {
     total += totalPerCardType;
   });
   console.log("Total in hand: ", total);
+  return total;
 }
 
 function viewHand(playerOrDealer) {
@@ -81,13 +81,13 @@ function viewHand(playerOrDealer) {
 
 function hitPlayer() {
   hit(playerHand);
-  //   viewHand(playerHand);
-  //   calculateTotalHand(playerHand);
+  viewHand(playerHand);
+  calculateTotalHand(playerHand);
 }
 
 function hitDealer() {
   hit(dealerHand);
-  viewHand(dealerHand);
+  //   viewHand(dealerHand);
   //   calculateTotalHand(dealerHand);
 }
 
@@ -98,23 +98,37 @@ function dealInitialCards() {
   hitDealer();
   hitDealer();
 }
-dealInitialCards();
 
-// I need to see one of the dealers cards
-let dealerCardTypes = Object.keys(dealerHand);
-console.log("dealerCardTypes: ", dealerCardTypes);
+function revealOneDealerCard() {
+  let dealerCardTypes = Object.keys(dealerHand);
 
-let onlyCardsWithValues = dealerCardTypes.filter((key) => {
-  return dealerHand[key].length !== 0;
-});
+  let onlyCardsWithValues = dealerCardTypes.filter((key) => {
+    return dealerHand[key].length !== 0;
+  });
 
-console.log(onlyCardsWithValues);
+  let randomCardType =
+    Math.floor(Math.random() * (onlyCardsWithValues.length - 1 - 0 + 1)) + 0;
 
-let randomCardType =
-  Math.floor(Math.random() * (onlyCardsWithValues.length - 1 - 0 + 1)) + 0;
-console.log("randomCardType: ", randomCardType);
+  const DEALER_REVEALED_CARD =
+    dealerHand[onlyCardsWithValues[randomCardType]][0];
 
-const DEALER_REVEALED_CARD = dealerHand[onlyCardsWithValues[randomCardType]][0];
-console.log("DEALER_REVEALED_CARD", DEALER_REVEALED_CARD);
+  console.log("DEALER_REVEALED_CARD", DEALER_REVEALED_CARD);
+}
+
+while (true) {
+  dealInitialCards();
+    revealOneDealerCard();
+    
+    // READ_LINE
+
+  if (
+    calculateTotalHand(playerHand) <= 21 ||
+    calculateTotalHand(dealerHand) <= 21
+  )
+    break;
+}
+
+revealOneDealerCard();
+hitPlayer();
 // Player hits or stays
 // Dealer hits or stays
