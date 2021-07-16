@@ -38,7 +38,7 @@ function calculateTotalHand(playerOrDealer) {
 }
 
 function viewHand(playerOrDealer) {
-  console.log(playerOrDealer);
+  console.log("\n", playerOrDealer);
 }
 
 hit(playerHand);
