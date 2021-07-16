@@ -3,8 +3,10 @@
 
 // Q: What is a good way to test that feature in as a test case?
 // A: If I have set values in one data structure that I pass at random to the player data structure then calculate it.
+// eslint-disable-next-line no-undef
 const READ_LINE = require("readline-sync");
 
+// eslint-disable-next-line no-redeclare
 let prompt = (message) => console.log(message);
 
 let deck = {
@@ -67,12 +69,21 @@ function hit(playerOrDealer) {
 }
 
 function calculateTotalHand(playerOrDealer) {
-  let cardTypes = Object.keys(playerHand);
+  let cardTypes = Object.keys(deck);
   let total = 0;
+  let totalAces = 0;
   cardTypes.forEach((key) => {
+    if (key === "Ace" && playerOrDealer[key].length > 1) {
+      totalAces += 2;
+    }
     let totalPerCardType = playerOrDealer[key].reduce((acc, cv) => acc + cv, 0);
     total += totalPerCardType;
   });
+
+  if (totalAces >= 2) {
+    total -= 10;
+  }
+
   return total;
 }
 
@@ -88,8 +99,6 @@ function hitPlayer() {
 
 function hitDealer() {
   hit(dealerHand);
-  //   viewHand(dealerHand);
-  //   calculateTotalHand(dealerHand);
 }
 
 function dealInitialCards() {
@@ -128,10 +137,12 @@ function playTwentyOne() {
   dealInitialCards();
   let dealerCard = revealOneDealerCard();
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     console.log("\nDealer Card: ", dealerCard);
 
     console.log("My total hand: ", calculateTotalHand(playerHand));
+
     prompt("Hit or Stay (h or s)?");
     let hitOrStay = READ_LINE.question();
 
@@ -139,7 +150,7 @@ function playTwentyOne() {
       hitPlayer();
     }
 
-    if (calculateTotalHand(playerHand) >= 21) {
+    if (calculateTotalHand(playerHand) > 21) {
       prompt("Player bust. Dealer wins!");
       console.log("Player Total: ", calculateTotalHand(playerHand));
       break;
@@ -151,7 +162,7 @@ function playTwentyOne() {
       hitDealer();
     }
 
-    if (calculateTotalHand(dealerHand) >= 21) {
+    if (calculateTotalHand(dealerHand) > 21) {
       prompt("Dealer bust. Player wins!");
       console.log("Dealer Total: ", calculateTotalHand(dealerHand));
       break;
