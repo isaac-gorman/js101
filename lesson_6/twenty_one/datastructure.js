@@ -93,13 +93,19 @@ function dealInitialCards() {
 
   hitDealer();
   hitDealer();
-
 }
 dealInitialCards();
 
 // I need to see one of the dealers cards
 let dealerCardTypes = Object.keys(dealerHand);
 console.log("dealerCardTypes: ", dealerCardTypes);
+
+let onlyCardsWithValues = dealerCardTypes.filter((key) => {
+  dealerHand[key].length !== 0;
+});
+
+console.log(onlyCardsWithValues)
+
 let randomCardType =
   Math.floor(Math.random() * (dealerCardTypes.length - 1 - 0 + 1)) + 0;
 console.log("randomCardType: ", randomCardType);
