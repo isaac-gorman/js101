@@ -67,9 +67,12 @@ function hit(playerOrDealer) {
 }
 
 function calculateTotalHand(playerOrDealer) {
-  let cardTypes = Object.keys(playerHand);
+  let cardTypes = Object.keys(deck);
   let total = 0;
   cardTypes.forEach((key) => {
+    if (key === "Ace") {
+      console.log("Ace:", playerOrDealer[key]);
+    }
     let totalPerCardType = playerOrDealer[key].reduce((acc, cv) => acc + cv, 0);
     total += totalPerCardType;
   });
