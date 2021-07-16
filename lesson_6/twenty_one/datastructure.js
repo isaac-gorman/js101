@@ -10,7 +10,7 @@ let deck = {
   Jack: [10, 10, 10, 10],
   Queen: [10, 10, 10, 10],
 };
-console.log(deck);
+// console.log(deck);
 
 let playerHand = {
   4: [],
@@ -18,5 +18,9 @@ let playerHand = {
   Jack: [],
   Queen: [],
 };
-deck.Queen.pop();
+
+playerHand[4].push(deck[4].pop());
+playerHand[4].push(deck[4].pop());
+playerHand[4].push(deck[4].pop());
+console.log(playerHand);
 console.log(deck);
