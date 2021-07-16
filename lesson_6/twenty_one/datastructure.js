@@ -11,6 +11,13 @@ let deck = {
   Queen: [10, 10, 10, 10],
 };
 
+let playerHand = {
+  4: [],
+  6: [],
+  Jack: [],
+  Queen: [],
+};
+
 function hit(playerOrDealer) {
   let deckCards = Object.keys(deck);
   let randomCardType =
@@ -20,29 +27,11 @@ function hit(playerOrDealer) {
   );
 }
 
-let playerHand = {
-  4: [],
-  6: [],
-  Jack: [],
-  Queen: [],
-};
+hit(playerHand);
+
+hit(playerHand);
 
 hit(playerHand);
 
 console.log("deck: ", deck);
-console.log("playerHand: ", deck);
-
-hit(playerHand);
-
-console.log("deck: ", deck);
-console.log("playerHand: ", deck);
-
-hit(playerHand);
-
-console.log("deck: ", deck);
-console.log("playerHand: ", deck);
-// playerHand[4].push(deck[4].pop());
-// playerHand[4].push(deck[4].pop());
-// playerHand[4].push(deck[4].pop());
-// console.log(playerHand);
-// console.log(deck);
+console.log("playerHand: ", playerHand);
