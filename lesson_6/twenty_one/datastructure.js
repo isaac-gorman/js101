@@ -34,19 +34,19 @@ function calculateTotalHand(playerOrDealer) {
     let totalPerCardType = playerOrDealer[key].reduce((acc, cv) => acc + cv, 0);
     total += totalPerCardType;
   });
-  console.log(total);
+  console.log("Total in hand: ", total);
+}
+
+function viewHand(playerOrDealer) {
+  console.log(playerOrDealer);
 }
 
 hit(playerHand);
-console.log("playerHand: ", playerHand);
+viewHand(playerHand);
 calculateTotalHand(playerHand);
 
 hit(playerHand);
-console.log("playerHand: ", playerHand);
-calculateTotalHand(playerHand);
-
-hit(playerHand);
-console.log("playerHand: ", playerHand);
+viewHand(playerHand);
 calculateTotalHand(playerHand);
 
 // console.log("deck: ", deck);
