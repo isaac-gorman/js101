@@ -150,7 +150,7 @@ function playTwentyOne() {
       hitPlayer();
     }
 
-    if (calculateTotalHand(playerHand) >= 21) {
+    if (calculateTotalHand(playerHand) > 21) {
       prompt("Player bust. Dealer wins!");
       console.log("Player Total: ", calculateTotalHand(playerHand));
       break;
@@ -162,7 +162,7 @@ function playTwentyOne() {
       hitDealer();
     }
 
-    if (calculateTotalHand(dealerHand) >= 21) {
+    if (calculateTotalHand(dealerHand) > 21) {
       prompt("Dealer bust. Player wins!");
       console.log("Dealer Total: ", calculateTotalHand(dealerHand));
       break;
