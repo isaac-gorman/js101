@@ -152,4 +152,38 @@ while (true) {
     prompt("Player wins!");
     break;
   }
+
+  if (hitOrStay === "s" && dealerLogic === false) {
+    prompt("\nComparing Cards");
+
+    let playerTotal = calculateTotalHand(playerHand);
+    let dealerTotal = calculateTotalHand(dealerHand);
+
+    switch (playerTotal) {
+      case playerTotal > dealerTotal:
+        console.log(
+          "Player Won!: ",
+          `Player Total ${playerTotal} > Dealer Total ${dealerTotal}`
+        );
+        break;
+
+      case playerTotal < dealerTotal:
+        console.log(
+          "Dealer Won: ",
+          `Dealer Total ${dealerTotal} > Player Total ${playerTotal} `
+        );
+        break;
+
+      case playerTotal === dealerTotal:
+        console.log(
+          "Tie!: ",
+          `Dealer Total ${dealerTotal} = Player Total ${playerTotal} `
+        );
+
+      default:
+        break;
+    }
+
+    break;
+  }
 }
