@@ -31,6 +31,16 @@ hit(playerHand);
 
 console.log("deck: ", deck);
 console.log("playerHand: ", deck);
+
+hit(playerHand);
+
+console.log("deck: ", deck);
+console.log("playerHand: ", deck);
+
+hit(playerHand);
+
+console.log("deck: ", deck);
+console.log("playerHand: ", deck);
 // playerHand[4].push(deck[4].pop());
 // playerHand[4].push(deck[4].pop());
 // playerHand[4].push(deck[4].pop());
