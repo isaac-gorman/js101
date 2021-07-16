@@ -19,7 +19,7 @@
 ### Data Structure
 
 Q: What would be the best data structure to contain the deck?
-A: The data structure would have to contain the 54 card deck, the player's cards, and the dealer's cards. Maybe an object? Maybe an array? Nested array?
+A: The data structure would have to contain the 52 card deck, the player's cards, and the dealer's cards. Maybe an object? Maybe an array? Nested array?
 
 Q: How would I use the deck or the data structure? What do I need from it?
 A: Ideas:

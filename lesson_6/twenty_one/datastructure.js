@@ -75,13 +75,21 @@ function viewHand(playerOrDealer) {
   console.log("\n", playerOrDealer);
 }
 
-hit(playerHand);
-viewHand(playerHand);
-calculateTotalHand(playerHand);
+function hitPlayer() {
+  hit(playerHand);
+  viewHand(playerHand);
+  calculateTotalHand(playerHand);
+}
 
-hit(playerHand);
-viewHand(playerHand);
-calculateTotalHand(playerHand);
+function hitDealer() {
+  hit(dealerHand);
+  viewHand(dealerHand);
+  calculateTotalHand(dealerHand);
+}
 
-// console.log("deck: ", deck);
-// console.log("playerHand: ", playerHand);
+hitPlayer();
+hitPlayer();
+
+hitDealer();
+hitDealer();
+
