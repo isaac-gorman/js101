@@ -141,7 +141,8 @@ while (true) {
   }
 
   if (calculateTotalHand(playerHand) >= 21) {
-    prompt("Dealer wins!");
+    prompt("Player bust. Dealer wins!");
+    console.log("Player Total: ", calculateTotalHand(playerHand));
     break;
   }
 
@@ -153,7 +154,8 @@ while (true) {
   }
 
   if (calculateTotalHand(dealerHand) >= 21) {
-    prompt("Player wins!");
+    prompt("Dealer bust. Player wins!");
+    console.log("Dealer Total: ", calculateTotalHand(dealerHand));
     break;
   }
 
