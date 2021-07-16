@@ -5,6 +5,8 @@
 // A: If I have set values in one data structure that I pass at random to the player data structure then calculate it.
 const READ_LINE = require("readline-sync");
 
+let prompt = (message) => console.log(message);
+
 let deck = {
   2: [2, 2, 2, 2],
   3: [3, 3, 3, 3],
@@ -115,17 +117,21 @@ function revealOneDealerCard() {
   console.log("DEALER_REVEALED_CARD", DEALER_REVEALED_CARD);
 }
 
-while (true) {
-  dealInitialCards();
-    revealOneDealerCard();
-    
-    // READ_LINE
+dealInitialCards();
+revealOneDealerCard();
 
-  if (
-    calculateTotalHand(playerHand) <= 21 ||
-    calculateTotalHand(dealerHand) <= 21
-  )
-    break;
+while (true) {
+  // Ask if the player would like to hit or stay
+
+  prompt("Hit or Stay (h or s)?");
+  let hitOrStay = READ_LINE.question();
+  if (hitOrStay === "h") {
+    hitPlayer();
+  }
+  if (calculateTotalHand(playerHand) <= 21) break;
+
+  // Ask the deal if they would like to hit or stay
+  if (calculateTotalHand(dealerHand) <= 21) break;
 }
 
 revealOneDealerCard();
