@@ -72,7 +72,6 @@ function calculateTotalHand(playerOrDealer) {
   let totalAces = 0;
   cardTypes.forEach((key) => {
     if (key === "Ace" && playerOrDealer[key].length > 1) {
-      console.log("Ace:", playerOrDealer[key]);
       totalAces += 2;
     }
     let totalPerCardType = playerOrDealer[key].reduce((acc, cv) => acc + cv, 0);
@@ -80,7 +79,6 @@ function calculateTotalHand(playerOrDealer) {
   });
 
   if (totalAces >= 2) {
-    prompt("taking -10 from total");
     total -= 10;
   }
 
@@ -102,7 +100,7 @@ function hitDealer() {
   prompt("\nDealer Hand-v-v-v-v-v-v-v-v-v-v-v");
   viewHand(dealerHand);
   prompt("Dealer Hand-^-^-^-^-^-^-^-^-^-^-^-^");
-  //   calculateTotalHand(dealerHand);
+  calculateTotalHand(dealerHand);
 }
 
 function dealInitialCards() {
