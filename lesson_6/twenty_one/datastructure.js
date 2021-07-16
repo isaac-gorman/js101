@@ -79,9 +79,11 @@ function calculateTotalHand(playerOrDealer) {
     total += totalPerCardType;
   });
 
-  if (totalAces > 2) {
+  if (totalAces >= 2) {
+    prompt("taking -10 from total");
     total -= 10;
   }
+
   return total;
 }
 
