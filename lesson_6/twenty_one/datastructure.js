@@ -135,9 +135,11 @@ while (true) {
   console.log("My total hand: ", calculateTotalHand(playerHand));
   prompt("Hit or Stay (h or s)?");
   let hitOrStay = READ_LINE.question();
+
   if (hitOrStay === "h") {
     hitPlayer();
   }
+
   if (calculateTotalHand(playerHand) >= 21) {
     prompt("Dealer wins!");
     break;
@@ -145,9 +147,11 @@ while (true) {
 
   // Ask the deal if they would like to hit or stay
   let dealerLogic = dealerAI();
+
   if (dealerLogic) {
     hitDealer();
   }
+
   if (calculateTotalHand(dealerHand) >= 21) {
     prompt("Player wins!");
     break;
@@ -159,29 +163,21 @@ while (true) {
     let playerTotal = calculateTotalHand(playerHand);
     let dealerTotal = calculateTotalHand(dealerHand);
 
-    switch (playerTotal) {
-      case playerTotal > dealerTotal:
-        console.log(
-          "Player Won!: ",
-          `Player Total ${playerTotal} > Dealer Total ${dealerTotal}`
-        );
-        break;
-
-      case playerTotal < dealerTotal:
-        console.log(
-          "Dealer Won: ",
-          `Dealer Total ${dealerTotal} > Player Total ${playerTotal} `
-        );
-        break;
-
-      case playerTotal === dealerTotal:
-        console.log(
-          "Tie!: ",
-          `Dealer Total ${dealerTotal} = Player Total ${playerTotal} `
-        );
-
-      default:
-        break;
+    if (playerTotal > dealerTotal) {
+      console.log(
+        "Player Won!: ",
+        `Player Total ${playerTotal} > Dealer Total ${dealerTotal}`
+      );
+    } else if (playerTotal < dealerTotal) {
+      console.log(
+        "Dealer Won: ",
+        `Dealer Total ${dealerTotal} > Player Total ${playerTotal} `
+      );
+    } else if (playerTotal === dealerTotal) {
+      console.log(
+        "Tie!: ",
+        `Dealer Total ${dealerTotal} = Player Total ${playerTotal} `
+      );
     }
 
     break;
