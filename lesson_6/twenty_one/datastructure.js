@@ -97,10 +97,6 @@ function hitPlayer() {
 
 function hitDealer() {
   hit(dealerHand);
-  prompt("\nDealer Hand-v-v-v-v-v-v-v-v-v-v-v");
-  viewHand(dealerHand);
-  prompt("Dealer Hand-^-^-^-^-^-^-^-^-^-^-^-^");
-  calculateTotalHand(dealerHand);
 }
 
 function dealInitialCards() {
