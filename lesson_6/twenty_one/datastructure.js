@@ -118,7 +118,6 @@ function revealOneDealerCard() {
 
 function dealerAI() {
   if (calculateTotalHand(dealerHand) >= 17) {
-    prompt("🤖 total is greater than or equal to 17");
     return false;
   } else {
     return true;
@@ -129,7 +128,6 @@ dealInitialCards();
 let dealerCard = revealOneDealerCard();
 
 while (true) {
-  // Ask if the player would like to hit or stay
   console.log("\nDealer Card: ", dealerCard);
 
   console.log("My total hand: ", calculateTotalHand(playerHand));
@@ -146,7 +144,6 @@ while (true) {
     break;
   }
 
-  // Ask the deal if they would like to hit or stay
   let dealerLogic = dealerAI();
 
   if (dealerLogic) {
