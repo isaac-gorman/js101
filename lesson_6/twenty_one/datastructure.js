@@ -73,7 +73,6 @@ function calculateTotalHand(playerOrDealer) {
     let totalPerCardType = playerOrDealer[key].reduce((acc, cv) => acc + cv, 0);
     total += totalPerCardType;
   });
-  console.log("Total in hand: ", total);
   return total;
 }
 
@@ -114,27 +113,43 @@ function revealOneDealerCard() {
   const DEALER_REVEALED_CARD =
     dealerHand[onlyCardsWithValues[randomCardType]][0];
 
-  console.log("DEALER_REVEALED_CARD", DEALER_REVEALED_CARD);
+  return DEALER_REVEALED_CARD;
+}
+
+function dealerAI() {
+  if (calculateTotalHand(dealerHand) >= 17) {
+    prompt("🤖 total is greater than or equal to 17");
+    return false;
+  } else {
+    return true;
+  }
 }
 
 dealInitialCards();
-revealOneDealerCard();
+let dealerCard = revealOneDealerCard();
 
 while (true) {
   // Ask if the player would like to hit or stay
+  console.log("\nDealer Card: ", dealerCard);
 
+  console.log("My total hand: ", calculateTotalHand(playerHand));
   prompt("Hit or Stay (h or s)?");
   let hitOrStay = READ_LINE.question();
   if (hitOrStay === "h") {
     hitPlayer();
   }
-  if (calculateTotalHand(playerHand) <= 21) break;
+  if (calculateTotalHand(playerHand) >= 21) {
+    prompt("Dealer wins!");
+    break;
+  }
 
   // Ask the deal if they would like to hit or stay
-  if (calculateTotalHand(dealerHand) <= 21) break;
+  let dealerLogic = dealerAI();
+  if (dealerLogic) {
+    hitDealer();
+  }
+  if (calculateTotalHand(dealerHand) >= 21) {
+    prompt("Player wins!");
+    break;
+  }
 }
-
-revealOneDealerCard();
-hitPlayer();
-// Player hits or stays
-// Dealer hits or stays
