@@ -38,12 +38,15 @@ function calculateTotalHand(playerOrDealer) {
 }
 
 hit(playerHand);
+console.log("playerHand: ", playerHand);
 calculateTotalHand(playerHand);
 
 hit(playerHand);
+console.log("playerHand: ", playerHand);
 calculateTotalHand(playerHand);
 
 hit(playerHand);
+console.log("playerHand: ", playerHand);
 calculateTotalHand(playerHand);
 
 // console.log("deck: ", deck);
