@@ -3,8 +3,10 @@
 
 // Q: What is a good way to test that feature in as a test case?
 // A: If I have set values in one data structure that I pass at random to the player data structure then calculate it.
+// eslint-disable-next-line no-undef
 const READ_LINE = require("readline-sync");
 
+// eslint-disable-next-line no-redeclare
 let prompt = (message) => console.log(message);
 
 let deck = {
@@ -135,10 +137,12 @@ function playTwentyOne() {
   dealInitialCards();
   let dealerCard = revealOneDealerCard();
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     console.log("\nDealer Card: ", dealerCard);
 
     console.log("My total hand: ", calculateTotalHand(playerHand));
+
     prompt("Hit or Stay (h or s)?");
     let hitOrStay = READ_LINE.question();
 
