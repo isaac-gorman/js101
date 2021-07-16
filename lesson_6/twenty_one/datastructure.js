@@ -101,13 +101,13 @@ let dealerCardTypes = Object.keys(dealerHand);
 console.log("dealerCardTypes: ", dealerCardTypes);
 
 let onlyCardsWithValues = dealerCardTypes.filter((key) => {
- return dealerHand[key].length !== 0;
+  return dealerHand[key].length !== 0;
 });
 
 console.log(onlyCardsWithValues);
 
 let randomCardType =
-  Math.floor(Math.random() * (dealerCardTypes.length - 1 - 0 + 1)) + 0;
+  Math.floor(Math.random() * (onlyCardsWithValues.length - 1 - 0 + 1)) + 0;
 console.log("randomCardType: ", randomCardType);
 
 const DEALER_REVEALED_CARD = dealerHand[dealerCardTypes[randomCardType]];
